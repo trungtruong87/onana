@@ -1,935 +1,987 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ensora Health TPO Interview Prep</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ensora TPO Interview Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--surface:#161b22;--surface2:#1c2230;--border:#21293a;
+  --accent:#3dd68c;--accent2:#58a6ff;--accent3:#f78166;--accent4:#d2a8ff;
+  --text:#e6edf3;--muted:#7d8fa3;--faint:#2a3444;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Lora',serif;min-height:100vh;overflow-x:hidden}
 
-  :root {
-    --bg: #0b0f1a;
-    --surface: #111827;
-    --surface2: #1a2235;
-    --border: #1e2d45;
-    --accent: #00d4a8;
-    --accent2: #4f8ef7;
-    --accent3: #f7934f;
-    --text: #e8edf5;
-    --muted: #6b7a99;
-    --tag-ai: #1a3a2e;
-    --tag-ai-text: #00d4a8;
-    --tag-story: #1a2a3e;
-    --tag-story-text: #4f8ef7;
-    --tag-collab: #2e2218;
-    --tag-collab-text: #f7934f;
-    --tag-trans: #2a1a3a;
-    --tag-trans-text: #c084fc;
-    --tag-process: #1a2a1a;
-    --tag-process-text: #86efac;
-  }
+/* grid bg */
+body::before{content:'';position:fixed;inset:0;
+  background-image:radial-gradient(circle at 20% 50%,rgba(61,214,140,0.04) 0%,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(88,166,255,0.04) 0%,transparent 50%);
+  pointer-events:none;z-index:0}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+.wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:48px 24px 100px}
 
-  /* Background grid */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,168,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,168,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ── HEADER ── */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--accent)}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.03em;margin-bottom:10px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{color:var(--muted);font-size:14.5px;line-height:1.7;max-width:520px;font-style:italic;margin-bottom:36px}
 
-  .container {
-    position: relative; z-index: 1;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
+/* ── STATS ── */
+.stats{display:flex;gap:0;margin-bottom:32px;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.stat{flex:1;padding:16px 20px;border-right:1px solid var(--border);text-align:center}
+.stat:last-child{border-right:none}
+.sv{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--accent);line-height:1}
+.sl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 
-  /* Header */
-  header {
-    margin-bottom: 48px;
-  }
-  .eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-  header h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(28px, 5vw, 42px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-  header h1 span {
-    color: var(--accent);
-  }
-  .subtitle {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 15px;
-    font-weight: 300;
-    max-width: 540px;
-    line-height: 1.6;
-  }
+/* ── PROGRESS ── */
+.prog-row{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.prog-bg{flex:1;height:3px;background:var(--faint);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .5s ease}
+.prog-txt{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap}
 
-  /* Stats bar */
-  .stats-bar {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin: 28px 0 36px;
-    padding: 16px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .stat-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-  }
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .stat-divider { width: 1px; background: var(--border); }
+/* ── FILTERS ── */
+.filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;align-items:center}
+.fl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.fb{padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;cursor:pointer;transition:all .18s;letter-spacing:.06em}
+.fb:hover{border-color:var(--accent);color:var(--accent)}
+.fb.on{background:var(--accent);border-color:var(--accent);color:#0d1117;font-weight:500}
 
-  /* Filter bar */
-  .filter-bar {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-    align-items: center;
-  }
-  .filter-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-right: 4px;
-  }
-  .filter-btn {
-    padding: 5px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 500; }
+/* ── TOOLBAR ── */
+.toolbar{display:flex;gap:8px;justify-content:flex-end;margin-bottom:24px}
+.tbtn{padding:5px 14px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .18s}
+.tbtn:hover{border-color:var(--accent2);color:var(--accent2)}
 
-  /* Progress */
-  .progress-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-  .progress-bar-bg {
-    flex: 1;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-  .progress-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    white-space: nowrap;
-  }
+/* ── SECTION DIVIDER ── */
+.sdiv{display:flex;align-items:center;gap:12px;margin:40px 0 18px}
+.sdiv-line{flex:1;height:1px;background:var(--border)}
+.sdiv-label{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;white-space:nowrap;color:var(--muted)}
+.sdiv-num{color:var(--accent);margin-right:5px;font-family:'IBM Plex Mono',monospace}
 
-  /* Card grid */
-  .card-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+/* ── CARD ── */
+.cards{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:rgba(61,214,140,.25);box-shadow:0 2px 24px rgba(61,214,140,.05)}
+.card.open{border-color:rgba(88,166,255,.3)}
+.card.mastered{opacity:.45}
+.card.mastered .cq{text-decoration:line-through;text-decoration-color:var(--muted)}
 
-  /* Flashcard */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .card:hover {
-    border-color: rgba(0,212,168,0.3);
-    box-shadow: 0 4px 32px rgba(0,212,168,0.07);
-  }
-  .card.revealed {
-    border-color: rgba(79,142,247,0.3);
-  }
+.ch{display:flex;align-items:flex-start;gap:12px;padding:18px 20px 16px;cursor:pointer;user-select:none}
+.cnum{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);padding-top:2px;min-width:32px;letter-spacing:.06em}
+.cmeta{flex:1}
+.ctags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px}
+.t-ai{background:rgba(61,214,140,.1);color:var(--accent)}
+.t-story{background:rgba(88,166,255,.1);color:var(--accent2)}
+.t-trans{background:rgba(210,168,255,.1);color:var(--accent4)}
+.t-collab{background:rgba(247,129,102,.1);color:var(--accent3)}
+.t-process{background:rgba(255,212,59,.08);color:#e3b341}
+.cq{font-family:'Syne',sans-serif;font-weight:600;font-size:15.5px;line-height:1.45;color:var(--text)}
+.ctoggle{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:1px solid var(--border);color:var(--muted);font-size:11px;flex-shrink:0;transition:all .2s;margin-top:2px}
+.card.open .ctoggle{background:var(--accent2);border-color:var(--accent2);color:#0d1117;transform:rotate(90deg)}
 
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 20px 22px 18px;
-  }
-  .card-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    padding-top: 3px;
-    min-width: 28px;
-    letter-spacing: 0.08em;
-  }
-  .card-question-block { flex: 1; }
-  .card-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
-  }
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-  .tag-ai { background: var(--tag-ai); color: var(--tag-ai-text); }
-  .tag-story { background: var(--tag-story); color: var(--tag-story-text); }
-  .tag-collab { background: var(--tag-collab); color: var(--tag-collab-text); }
-  .tag-trans { background: var(--tag-trans); color: var(--tag-trans-text); }
-  .tag-process { background: var(--tag-process); color: var(--tag-process-text); }
+/* answer */
+.ca{display:none;border-top:1px solid var(--border);background:var(--surface2);padding:20px 20px 20px 64px;animation:slideIn .22s ease}
+.card.open .ca{display:block}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
-  .card-question {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.45;
-    color: var(--text);
-  }
+.a-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px}
+.a-text{font-size:14px;line-height:1.82;color:#c3cdd9;font-weight:400}
+.a-text b{color:var(--text);font-weight:600}
+.a-text em{color:var(--accent);font-style:normal}
+.a-text ul{margin:8px 0 8px 16px;display:flex;flex-direction:column;gap:5px}
+.a-text li{padding-left:4px}
+.a-text li::marker{color:var(--accent)}
 
-  .card-reveal-hint {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 22px 16px 64px;
-    font-size: 12px;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.06em;
-  }
-  .hint-icon {
-    width: 16px; height: 16px;
-    border: 1px solid var(--muted);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    transition: all 0.2s;
-    flex-shrink: 0;
-  }
-  .card.revealed .hint-icon {
-    background: var(--accent2);
-    border-color: var(--accent2);
-    color: white;
-  }
+/* learn concepts row */
+.learn-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;padding-top:14px;border-top:1px solid var(--faint)}
+.learn-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:4px}
+.learn-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px 4px 8px;background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.18);border-radius:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);cursor:pointer;transition:all .18s;letter-spacing:.04em}
+.learn-chip:hover{background:rgba(61,214,140,.15);border-color:var(--accent)}
+.learn-chip svg{width:12px;height:12px;flex-shrink:0}
 
-  /* Answer section */
-  .card-answer {
-    display: none;
-    border-top: 1px solid var(--border);
-    background: var(--surface2);
-    padding: 22px 22px 22px 64px;
-    animation: slideDown 0.25s ease;
-  }
-  .card.revealed .card-answer { display: block; }
+/* tip */
+.tip{margin-top:14px;padding:11px 13px;background:rgba(247,129,102,.07);border-left:2px solid var(--accent3);border-radius:0 6px 6px 0;font-size:12.5px;color:var(--muted);line-height:1.65;font-family:'IBM Plex Mono',monospace}
+.tip-lbl{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent3);margin-bottom:4px}
 
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* card footer */
+.cf{display:none;padding:10px 20px 12px 64px;border-top:1px solid var(--border);gap:8px;align-items:center}
+.card.open .cf{display:flex}
+.mbtn{padding:4px 12px;border-radius:5px;border:1px solid var(--border);background:transparent;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .18s;color:var(--muted)}
+.mbtn.m-mastered{border-color:var(--accent);color:var(--accent)}
+.mbtn.m-review{border-color:#e3b341;color:#e3b341}
+.mbtn:hover{opacity:.75}
 
-  .answer-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 12px;
-  }
-  .answer-text {
-    font-size: 14.5px;
-    line-height: 1.75;
-    color: #c8d3e8;
-    font-weight: 300;
-  }
-  .answer-text strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-  .answer-text .highlight {
-    color: var(--accent);
-    font-weight: 500;
-  }
-  .answer-text ul {
-    margin: 10px 0 10px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .answer-text li::marker { color: var(--accent); }
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,8,15,.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .22s;backdrop-filter:blur(4px)}
+.modal-overlay.visible{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:100%;max-width:620px;max-height:82vh;overflow:hidden;display:flex;flex-direction:column;transform:translateY(16px) scale(.97);transition:transform .25s ease;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+.modal-overlay.visible .modal{transform:translateY(0) scale(1)}
+.mhead{display:flex;align-items:flex-start;justify-content:space-between;padding:22px 24px 18px;border-bottom:1px solid var(--border);gap:12px;flex-shrink:0}
+.mtopic{flex:1}
+.mtag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.mtitle{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;line-height:1.3;color:var(--text)}
+.mclose{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}
+.mclose:hover{border-color:var(--accent3);color:var(--accent3)}
+.mbody{overflow-y:auto;padding:22px 24px 28px;flex:1}
+.mbody::-webkit-scrollbar{width:5px}
+.mbody::-webkit-scrollbar-track{background:transparent}
+.mbody::-webkit-scrollbar-thumb{background:var(--faint);border-radius:3px}
 
-  /* Pro tip */
-  .pro-tip {
-    margin-top: 16px;
-    padding: 12px 14px;
-    background: rgba(0,212,168,0.06);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 6px 6px 0;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  .pro-tip-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 4px;
-  }
+/* article styles */
+.art-section{margin-bottom:22px}
+.art-section:last-child{margin-bottom:0}
+.art-h{font-family:'Syne',sans-serif;font-weight:700;font-size:13.5px;color:var(--accent2);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.art-h::before{content:'';display:inline-block;width:14px;height:2px;background:var(--accent2);border-radius:1px}
+.art-p{font-size:13.5px;line-height:1.8;color:#b0bac8;margin-bottom:9px}
+.art-p b{color:var(--text)}
+.art-p em{color:var(--accent);font-style:normal}
+.art-list{margin:6px 0 9px 18px;display:flex;flex-direction:column;gap:5px}
+.art-list li{font-size:13px;color:#b0bac8;line-height:1.7}
+.art-list li::marker{color:var(--accent)}
+.art-list li b{color:var(--text)}
+.art-callout{background:rgba(88,166,255,.07);border:1px solid rgba(88,166,255,.2);border-radius:8px;padding:12px 14px;margin:12px 0}
+.art-callout p{font-size:12.5px;color:var(--accent2);line-height:1.7;font-family:'IBM Plex Mono',monospace}
+.art-example{background:rgba(61,214,140,.06);border-left:2px solid var(--accent);border-radius:0 6px 6px 0;padding:10px 13px;margin:10px 0;font-size:12.5px;color:#b0bac8;line-height:1.7}
+.art-example b{color:var(--accent)}
 
-  /* Section dividers */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 36px 0 20px;
-  }
-  .section-divider-line { flex: 1; height: 1px; background: var(--border); }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    padding: 5px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-  }
-  .section-title .num {
-    color: var(--accent);
-    margin-right: 6px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* Expand all */
-  .toolbar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: flex-end;
-  }
-  .tool-btn {
-    padding: 6px 16px;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .tool-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* Mastered badge */
-  .card-footer {
-    display: none;
-    padding: 10px 22px 14px 64px;
-    gap: 10px;
-    align-items: center;
-    border-top: 1px solid var(--border);
-  }
-  .card.revealed .card-footer { display: flex; }
-  .mark-btn {
-    padding: 5px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: transparent;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--muted);
-  }
-  .mark-btn.mastered { border-color: var(--accent); color: var(--accent); background: rgba(0,212,168,0.08); }
-  .mark-btn.review { border-color: var(--accent3); color: var(--accent3); background: rgba(247,147,79,0.08); }
-  .mark-btn:hover { opacity: 0.8; }
-
-  /* Mastered overlay */
-  .card.is-mastered { opacity: 0.55; }
-  .card.is-mastered .card-question { text-decoration: line-through; text-decoration-color: var(--muted); }
-
-  @media (max-width: 600px) {
-    .card-answer { padding-left: 22px; }
-    .card-reveal-hint { padding-left: 22px; }
-    .card-footer { padding-left: 22px; }
-    .stats-bar { gap: 16px; }
-    .stat-divider { display: none; }
-  }
+@media(max-width:580px){
+  .ca,.cf{padding-left:20px}
+  .stats{flex-wrap:wrap}
+  .stat{min-width:45%}
+  .modal{max-height:90vh}
+}
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="eyebrow">// Interview Prep · Technical Round</div>
-    <h1>Ensora Health <span>TPO</span><br/>Interview Flashcards</h1>
-    <p class="subtitle">Technical development team round — focused on AI product depth, user stories, cross-functional collaboration, and engineering translation.</p>
-  </header>
+<div class="wrap">
 
-  <div class="stats-bar">
-    <div class="stat"><span class="stat-value" id="total-count">20</span><span class="stat-label">Total Questions</span></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><span class="stat-value" id="mastered-count">0</span><span class="stat-label">Mastered</span></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><span class="stat-value" id="revealed-count">0</span><span class="stat-label">Reviewed</span></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><span class="stat-value" id="pct">0%</span><span class="stat-label">Progress</span></div>
-  </div>
+<header>
+  <div class="eyebrow">Technical Round · Dev Team Interview</div>
+  <h1>Ensora Health<br/><em>TPO Interview</em> Prep</h1>
+  <p class="sub">20 flashcards covering AI depth, user stories, technical translation, cross-team collaboration, and process. Tap any card to reveal — use the 📖 chips to study the concepts behind each answer.</p>
+</header>
 
-  <div class="progress-row">
-    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
-    <span class="progress-text" id="progress-label">0 / 20 mastered</span>
-  </div>
+<div class="stats">
+  <div class="stat"><div class="sv" id="s-total">20</div><div class="sl">Questions</div></div>
+  <div class="stat"><div class="sv" id="s-rev">0</div><div class="sl">Reviewed</div></div>
+  <div class="stat"><div class="sv" id="s-mas">0</div><div class="sl">Mastered</div></div>
+  <div class="stat"><div class="sv" id="s-pct">0%</div><div class="sl">Progress</div></div>
+</div>
 
-  <div class="filter-bar">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="ai">AI/ML Depth</button>
-    <button class="filter-btn" data-filter="story">User Stories</button>
-    <button class="filter-btn" data-filter="trans">Vision→Tech</button>
-    <button class="filter-btn" data-filter="collab">Collaboration</button>
-    <button class="filter-btn" data-filter="process">Process/Improvements</button>
-  </div>
+<div class="prog-row">
+  <div class="prog-bg"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
+  <span class="prog-txt" id="ptxt">0 / 20 mastered</span>
+</div>
 
-  <div class="toolbar">
-    <button class="tool-btn" id="expand-all">Expand All</button>
-    <button class="tool-btn" id="collapse-all">Collapse All</button>
-  </div>
+<div class="filters">
+  <span class="fl">Filter:</span>
+  <button class="fb on" data-f="all">All</button>
+  <button class="fb" data-f="ai">AI/ML</button>
+  <button class="fb" data-f="story">User Stories</button>
+  <button class="fb" data-f="trans">Vision↔Tech</button>
+  <button class="fb" data-f="collab">Collaboration</button>
+  <button class="fb" data-f="process">Process</button>
+</div>
 
-  <div class="card-list" id="card-list">
-    <!-- Cards injected by JS -->
+<div class="toolbar">
+  <button class="tbtn" id="exp-all">Expand All</button>
+  <button class="tbtn" id="col-all">Collapse All</button>
+</div>
+
+<div class="cards" id="clist"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="mhead">
+      <div class="mtopic">
+        <div class="mtag" id="m-tag">Concept</div>
+        <div class="mtitle" id="m-title">Title</div>
+      </div>
+      <button class="mclose" id="mclose">✕</button>
+    </div>
+    <div class="mbody" id="m-body"></div>
   </div>
 </div>
 
 <script>
+// ─────────────────────────────────────────────
+// CONCEPT ARTICLES
+// ─────────────────────────────────────────────
+const concepts = {
+  nlp_ml_llm: {
+    tag:"AI Fundamentals",
+    title:"NLP, ML & LLMs — What's the difference?",
+    body:`
+<div class="art-section">
+  <div class="art-h">NLP — Natural Language Processing</div>
+  <p class="art-p"><b>NLP</b> is the branch of AI focused on understanding and working with human language. Think of it as the technology that lets computers read, understand, and extract meaning from text.</p>
+  <p class="art-p">In a healthcare product like Ensora's Session Assistant, NLP is used to pull out structured information from unstructured text — like identifying that a therapist mentioned "generalized anxiety disorder" or "CBT techniques" in a session note.</p>
+  <ul class="art-list">
+    <li><b>Entity extraction:</b> Finding specific things in text (diagnoses, medications, names)</li>
+    <li><b>Sentiment analysis:</b> Detecting tone or emotion in a session</li>
+    <li><b>Text classification:</b> Labeling text into categories (e.g., billing codes)</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">ML — Machine Learning</div>
+  <p class="art-p"><b>ML</b> is the broader concept of teaching computers to learn patterns from data without being explicitly programmed. You give it examples, and it figures out the rules.</p>
+  <p class="art-p">Traditional ML is best for <em>structured prediction problems</em> — things like "given this therapist's past session patterns, predict how long the next session will run" or "suggest the most likely billing code based on the diagnosis entered."</p>
+  <div class="art-callout"><p>💡 Think of ML as: data in → pattern learned → predictions out. It works best when you have lots of historical examples to learn from.</p></div>
+</div>
+<div class="art-section">
+  <div class="art-h">LLMs — Large Language Models</div>
+  <p class="art-p"><b>LLMs</b> like GPT-4 are a newer class of AI trained on massive amounts of text. They're exceptional at generating coherent, human-like text, summarizing information, and following complex instructions.</p>
+  <p class="art-p">For Ensora, an LLM is what powers drafting a full SOAP note from a messy session transcript — it can write fluently and in context, not just extract or classify.</p>
+  <ul class="art-list">
+    <li><b>Zero-shot:</b> The model hasn't seen your specific task before but figures it out from instructions</li>
+    <li><b>Few-shot:</b> You give it a few examples in the prompt and it generalizes</li>
+    <li><b>Fine-tuning:</b> You retrain the model on your specific data to improve performance on your domain</li>
+  </ul>
+  <div class="art-example"><b>Ensora example:</b> Therapist finishes a session → transcript is sent to an LLM → LLM drafts a SOAP note using the clinical context → therapist reviews and signs.</div>
+</div>`
+  },
+
+  ai_lifecycle: {
+    tag:"AI Product Development",
+    title:"The AI Feature Development Lifecycle",
+    body:`
+<div class="art-section">
+  <div class="art-h">Why AI features are different from regular features</div>
+  <p class="art-p">When you build a standard software feature, you write code, test it, and ship it. The behavior is deterministic — it does exactly what you told it to do.</p>
+  <p class="art-p">AI features are <em>probabilistic</em> — the output is a prediction, not a guaranteed answer. This means you need a different development process.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">The 8 stages of an AI feature</div>
+  <ul class="art-list">
+    <li><b>1. Problem framing:</b> What ML task are we actually solving? (Classification? Generation? Retrieval?)</li>
+    <li><b>2. Data assessment:</b> What data do we have? Is it labeled? Is there enough of it?</li>
+    <li><b>3. Model selection:</b> Which approach fits — a pretrained LLM, a custom ML model, or a rules-based system?</li>
+    <li><b>4. Training / fine-tuning:</b> The model learns from your data</li>
+    <li><b>5. Evaluation:</b> How well does it perform on data it hasn't seen before?</li>
+    <li><b>6. Deployment:</b> Ship it to production with monitoring in place</li>
+    <li><b>7. Monitoring:</b> Track performance metrics over time — models can degrade</li>
+    <li><b>8. Iteration:</b> Use real-world feedback to improve the model continuously</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">Where the TPO adds value</div>
+  <p class="art-p">As a TPO, you're most valuable at <em>framing the problem clearly</em>, <em>defining what "good enough" looks like</em> before anyone builds anything, and <em>designing the feedback loops</em> that keep the model improving after launch.</p>
+  <div class="art-callout"><p>💡 You don't train the model. You make sure the team builds the right model, for the right problem, with the right quality bar — and that it keeps working after it ships.</p></div>
+</div>`
+  },
+
+  model_evaluation: {
+    tag:"AI Quality",
+    title:"How to evaluate AI output quality",
+    body:`
+<div class="art-section">
+  <div class="art-h">Why you can't just say "it works"</div>
+  <p class="art-p">With regular software, a feature either works or it doesn't. With AI, the output is a probability — so you need to define what "good enough" means <em>before</em> you build it, and measure it rigorously.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">Key evaluation metrics you should know</div>
+  <ul class="art-list">
+    <li><b>Precision:</b> Of all the things the model flagged as correct, how many actually were? (Avoiding false alarms)</li>
+    <li><b>Recall:</b> Of all the correct things, how many did the model find? (Avoiding missed cases)</li>
+    <li><b>F1 score:</b> A single number that balances precision and recall</li>
+    <li><b>BLEU score:</b> Used for text generation — measures how similar the AI output is to a human-written reference</li>
+    <li><b>Latency:</b> How fast does it respond? (p95 = the 95th percentile response time)</li>
+  </ul>
+  <div class="art-example"><b>In plain English:</b> If a model extracts diagnoses from a note, precision asks "were all the diagnoses it found real?" and recall asks "did it miss any real diagnoses?"</div>
+</div>
+<div class="art-section">
+  <div class="art-h">Human-in-the-loop evaluation</div>
+  <p class="art-p">For healthcare AI especially, automated metrics aren't enough. You need <em>domain experts</em> (like clinicians) to review a sample of outputs and validate that they're clinically accurate and safe.</p>
+  <p class="art-p">This is called a <b>human-in-the-loop</b> evaluation process — and it's not just a QA step, it's a compliance requirement in most healthcare AI contexts.</p>
+  <div class="art-callout"><p>💡 For Ensora: a clinician must always review and sign off on an AI-drafted note. The AI drafts, the human owns.</p></div>
+</div>`
+  },
+
+  hipaa_ai: {
+    tag:"Healthcare Compliance",
+    title:"HIPAA & AI in Healthcare — What you need to know",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is HIPAA?</div>
+  <p class="art-p"><b>HIPAA</b> (Health Insurance Portability and Accountability Act) is the US law that protects patient health information. Any system that stores, transmits, or processes <em>Protected Health Information (PHI)</em> — like session notes, diagnoses, or patient names — must comply with HIPAA.</p>
+  <p class="art-p">For Ensora, almost every AI feature touches PHI, which means HIPAA compliance isn't optional — it's the baseline requirement for every feature you build.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">What is a BAA?</div>
+  <p class="art-p">A <b>Business Associate Agreement (BAA)</b> is a contract between a healthcare company and any vendor that handles PHI on their behalf. If Ensora uses OpenAI or AWS for AI processing, those vendors must sign a BAA confirming they'll handle PHI in a HIPAA-compliant way.</p>
+  <div class="art-callout"><p>💡 As TPO, whenever you evaluate an AI vendor or API, your first question should be: "Do they sign a BAA?" If not, they're off the table for anything touching patient data.</p></div>
+</div>
+<div class="art-section">
+  <div class="art-h">Practical HIPAA requirements for AI features</div>
+  <ul class="art-list">
+    <li><b>Encryption:</b> PHI must be encrypted in transit (HTTPS/TLS) and at rest</li>
+    <li><b>Audit logging:</b> Every access to PHI must be logged with who accessed what and when</li>
+    <li><b>Consent:</b> Patients must consent to how their data is used — especially for AI training</li>
+    <li><b>Minimum necessary:</b> Only the data actually needed for a task should be used — not everything you have</li>
+    <li><b>Data retention:</b> PHI can't be stored longer than needed, and must be deleted properly</li>
+  </ul>
+</div>`
+  },
+
+  model_drift: {
+    tag:"AI Operations",
+    title:"Model Drift — Why AI degrades over time",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is model drift?</div>
+  <p class="art-p"><b>Model drift</b> happens when the real world changes but your AI model doesn't. The model was trained on historical data — but if the patterns in new data are different, the model starts making worse predictions.</p>
+  <div class="art-example"><b>Healthcare example:</b> An AI model trained on therapy notes from 2022 might not handle new CPT billing codes introduced in 2024. Or a model trained before telehealth became common might perform poorly on video session transcripts.</div>
+</div>
+<div class="art-section">
+  <div class="art-h">Two types of drift</div>
+  <ul class="art-list">
+    <li><b>Data drift:</b> The input data changes (e.g., therapists start using different terminology)</li>
+    <li><b>Concept drift:</b> The underlying relationship changes (e.g., a diagnosis that used to mean one thing now maps to a different treatment protocol)</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">How to catch it</div>
+  <p class="art-p">The key is <em>monitoring</em>. You need to track your model's real-world performance metrics continuously — not just at launch. Common signals:</p>
+  <ul class="art-list">
+    <li>Drop in user acceptance rate (therapists editing more of the AI draft)</li>
+    <li>Increase in user complaints or negative feedback</li>
+    <li>Statistical drift in input data distribution</li>
+  </ul>
+  <div class="art-callout"><p>💡 As TPO: make sure monitoring dashboards are part of your Definition of Done. A model without monitoring is a ticking clock.</p></div>
+</div>`
+  },
+
+  user_story_writing: {
+    tag:"Agile Fundamentals",
+    title:"Writing Good User Stories & Acceptance Criteria",
+    body:`
+<div class="art-section">
+  <div class="art-h">The anatomy of a user story</div>
+  <p class="art-p">A user story captures a feature from the perspective of the person using it. The classic format is:</p>
+  <div class="art-callout"><p>"As a [role], I want [goal] so that [reason/benefit]."</p></div>
+  <p class="art-p">The "so that" is the most important part — it forces you to connect the feature to actual value, not just functionality.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">What makes Acceptance Criteria good?</div>
+  <p class="art-p"><b>Acceptance Criteria (AC)</b> define the conditions that must be true for a story to be considered "done." Good AC is:</p>
+  <ul class="art-list">
+    <li><b>Testable:</b> A tester can write a test case from it without asking questions</li>
+    <li><b>Specific:</b> No vague words like "fast", "accurate", or "good" — replace with numbers and conditions</li>
+    <li><b>Complete:</b> Covers both the happy path AND error/edge cases</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">The Given-When-Then format</div>
+  <p class="art-p">A clean way to write AC is the <b>Gherkin format</b>:</p>
+  <div class="art-example">
+    <b>Given</b> [the starting state or context]<br/>
+    <b>When</b> [the user takes an action or an event occurs]<br/>
+    <b>Then</b> [the expected outcome]
+  </div>
+  <p class="art-p">This format forces clarity. If you can't complete the "Then" statement precisely, the AC isn't ready to be developed against.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">AI-specific acceptance criteria challenges</div>
+  <p class="art-p">Regular AC tests binary outcomes — it works or it doesn't. AI AC needs to handle probabilistic outputs:</p>
+  <ul class="art-list">
+    <li>Replace "the output should be accurate" with "entity extraction achieves ≥85% precision on the QA test set"</li>
+    <li>Always define the fallback: what happens when the AI is unavailable or low-confidence?</li>
+    <li>Include a human-review requirement for healthcare outputs</li>
+  </ul>
+</div>`
+  },
+
+  api_integration: {
+    tag:"Technical Concepts",
+    title:"APIs & Integrations — A TPO's guide",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is an API?</div>
+  <p class="art-p">An <b>API</b> (Application Programming Interface) is a set of rules that lets two software systems talk to each other. Think of it as a waiter in a restaurant — you (the app) give your order to the waiter (the API), who takes it to the kitchen (another system) and brings back your food (the response).</p>
+</div>
+<div class="art-section">
+  <div class="art-h">REST vs SOAP — what's the difference?</div>
+  <ul class="art-list">
+    <li><b>REST APIs</b> are the modern standard. They use standard web URLs and return data in JSON format. Fast, lightweight, widely used by cloud services.</li>
+    <li><b>SOAP APIs</b> are older and more rigid. They use XML and have strict rules. Still common in healthcare systems (like HL7/FHIR integrations with EHRs).</li>
+  </ul>
+  <div class="art-callout"><p>💡 In healthcare tech, you'll encounter both. Legacy insurance and EHR systems often use SOAP. Modern internal APIs and third-party services tend to use REST.</p></div>
+</div>
+<div class="art-section">
+  <div class="art-h">What to watch for in integration stories</div>
+  <ul class="art-list">
+    <li><b>Error handling:</b> What happens when the third-party API is down or slow?</li>
+    <li><b>Authentication:</b> How does our system prove it's allowed to call the other system? (OAuth, API keys, etc.)</li>
+    <li><b>Rate limits:</b> How many calls can we make per minute/hour before we're throttled?</li>
+    <li><b>Versioning:</b> What API version are we integrating against? Vendor upgrades can break integrations silently.</li>
+    <li><b>Data contracts:</b> The exact format of data sent and received — any field name or type mismatch causes failures.</li>
+  </ul>
+</div>`
+  },
+
+  enabler_stories: {
+    tag:"Agile & SAFe",
+    title:"Enabler Stories & Technical Infrastructure",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is an enabler story?</div>
+  <p class="art-p">An <b>enabler story</b> is a backlog item that builds technical infrastructure the end user never directly sees — but that a user-facing feature depends on.</p>
+  <p class="art-p">Examples: setting up a data pipeline, building an internal API, creating a data labeling workflow for an ML model. These don't deliver visible value alone, but nothing valuable ships without them.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">Why they matter for AI features</div>
+  <p class="art-p">AI features almost always require significant enabler work before any user value is visible:</p>
+  <ul class="art-list">
+    <li>Data ingestion and normalization pipelines</li>
+    <li>Model serving infrastructure (an API endpoint that returns predictions)</li>
+    <li>Logging and monitoring setup</li>
+    <li>Training data labeling workflows</li>
+  </ul>
+  <div class="art-callout"><p>💡 A common TPO mistake is treating enabler work as invisible. Make it a first-class backlog item with its own story, AC, and story points — or it becomes invisible to capacity planning.</p></div>
+</div>
+<div class="art-section">
+  <div class="art-h">SAFe terminology connection</div>
+  <p class="art-p">In the <b>SAFe framework</b> (which Ensora's POPM certification preference references), enabler stories are an explicit story type alongside feature stories. They're categorized as: <em>Exploration</em> (research/spikes), <em>Architecture</em> (infrastructure), and <em>Compliance</em> (regulatory requirements).</p>
+</div>`
+  },
+
+  vision_to_tech: {
+    tag:"TPO Core Skill",
+    title:"Translating Vision into Technical Requirements",
+    body:`
+<div class="art-section">
+  <div class="art-h">The TPO's core translation job</div>
+  <p class="art-p">The TPO sits between two worlds: the business/product side that thinks in outcomes and experiences, and the engineering side that thinks in systems and constraints. Your job is to make sure both sides are working on the same thing.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">Common translation failures</div>
+  <ul class="art-list">
+    <li><b>"Make it real-time"</b> → What does real-time actually mean? Milliseconds? Seconds? End of session? Each answer implies a totally different architecture.</li>
+    <li><b>"Use AI"</b> → Which kind? For what task? What data do we have? What does success look like?</li>
+    <li><b>"Make it seamless"</b> → What specific friction are users experiencing today? Where exactly does it break down?</li>
+  </ul>
+  <div class="art-callout"><p>💡 Every vague business requirement contains a hidden assumption. Your job is to surface that assumption before engineering builds the wrong thing.</p></div>
+</div>
+<div class="art-section">
+  <div class="art-h">The 3-scenario technique</div>
+  <p class="art-p">When engineering gives you a timeline or constraint that conflicts with business expectations, don't just relay it — present three options:</p>
+  <ul class="art-list">
+    <li><b>Full build:</b> Everything the PM wants, full timeline and cost</li>
+    <li><b>Phased delivery:</b> Core value shipped early, remaining capability delivered later</li>
+    <li><b>Strategic deferral:</b> Defer entirely — here's what we'd do instead and why it might be smarter</li>
+  </ul>
+  <p class="art-p">This turns a "no" into a conversation, and gives stakeholders agency rather than just absorbing bad news.</p>
+</div>`
+  },
+
+  tech_debt: {
+    tag:"Engineering Concepts",
+    title:"Technical Debt — What it is and how to manage it",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is technical debt?</div>
+  <p class="art-p"><b>Technical debt</b> is the accumulated cost of shortcuts, workarounds, and outdated code that slows down future development. Like financial debt, it accrues interest — the longer you ignore it, the more it costs to fix.</p>
+  <div class="art-example"><b>Example:</b> A payment module was built quickly three years ago and works fine — but every new billing feature takes twice as long to build because the code is tangled and poorly structured. That slowdown is the "interest" on the original shortcut.</div>
+</div>
+<div class="art-section">
+  <div class="art-h">Types of debt that matter in healthcare tech</div>
+  <ul class="art-list">
+    <li><b>Security debt:</b> Outdated encryption, unpatched libraries — in HIPAA context, this is a liability exposure</li>
+    <li><b>Compliance debt:</b> Features that don't meet current regulatory standards — can block audits</li>
+    <li><b>Architectural debt:</b> Systems that weren't designed to scale or integrate — limits future AI capabilities</li>
+    <li><b>Documentation debt:</b> Undocumented systems that only one person understands — creates risk</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">How to prioritize it as TPO</div>
+  <p class="art-p">The key is making debt visible and quantifiable. If a debt item adds 20% overhead to every sprint that touches it, calculate the cumulative cost and compare it to the fix cost — usually fixing it is cheaper within 3-4 sprints.</p>
+  <div class="art-callout"><p>💡 Advocate for a standing 15-20% sprint capacity reserved for technical debt and architectural enablers. Fight for this in PI planning, not sprint by sprint.</p></div>
+</div>`
+  },
+
+  agile_ai: {
+    tag:"Agile for AI",
+    title:"Adapting Agile for AI Feature Development",
+    body:`
+<div class="art-section">
+  <div class="art-h">Why standard Scrum doesn't quite fit AI</div>
+  <p class="art-p">Standard Scrum was designed for deterministic software — you build a thing, it works or it doesn't. AI development is fundamentally different because:</p>
+  <ul class="art-list">
+    <li>Experiments fail — and failure is valuable information, not a sprint failure</li>
+    <li>Model training doesn't fit neatly into two-week cycles</li>
+    <li>You can't always define the acceptance criteria before you've explored the problem space</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">Adaptations that work</div>
+  <ul class="art-list">
+    <li><b>Spike / discovery sprints:</b> A time-boxed experiment (1-3 days) to answer a specific feasibility question before committing a feature to a sprint. Output is a decision, not code.</li>
+    <li><b>Decouple model work from integration:</b> ML experiments run on their own cadence. The integration story is written against a mocked interface while the model is still being trained.</li>
+    <li><b>Model retros:</b> A periodic (monthly/quarterly) review of model performance in production — separate from the normal team retrospective.</li>
+    <li><b>AI risk register:</b> A living document of hallucination risks, bias risks, and compliance risks tracked alongside the backlog.</li>
+  </ul>
+  <div class="art-callout"><p>💡 The goal isn't to throw out Scrum — it's to add the right guardrails for probabilistic work without disrupting velocity on deterministic features.</p></div>
+</div>`
+  },
+
+  model_cards: {
+    tag:"AI Documentation",
+    title:"Model Cards — The standard for AI documentation",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is a model card?</div>
+  <p class="art-p">A <b>model card</b> is a short document that accompanies an AI model in production. Introduced by Google, it's become an industry standard for communicating what a model does, how well it performs, and what its limitations are.</p>
+  <p class="art-p">Think of it as the "product spec" for an AI model — not the technical code, but the human-readable summary of what it is and isn't.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">What a model card covers</div>
+  <ul class="art-list">
+    <li><b>Model description:</b> What task it performs, what architecture it uses</li>
+    <li><b>Training data:</b> What it was trained on, any known biases in that data</li>
+    <li><b>Evaluation metrics:</b> Precision, recall, F1 — and on what test set</li>
+    <li><b>Intended use:</b> What it should be used for — and what it shouldn't</li>
+    <li><b>Known limitations:</b> Conditions where performance degrades</li>
+    <li><b>Ethical considerations:</b> Fairness, potential for misuse, who reviewed it</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">Why it matters for TPOs</div>
+  <p class="art-p">In a healthcare context, model cards are valuable for <em>compliance audits</em>, <em>onboarding new team members</em>, and <em>stakeholder communication</em>. If a regulator asks "how does your AI system make decisions?", the model card is your starting point for the answer.</p>
+  <div class="art-callout"><p>💡 As TPO, make model card creation part of your AI feature Definition of Done. It doesn't need to be long — one page is enough if it covers the essentials.</p></div>
+</div>`
+  },
+
+  feasibility: {
+    tag:"AI Product Management",
+    title:"Scoping AI Features — Feasibility questions that matter",
+    body:`
+<div class="art-section">
+  <div class="art-h">Why AI feasibility is different</div>
+  <p class="art-p">With regular features, feasibility is mostly about time and complexity. With AI features, there are additional dimensions that can make or break a feature before a line of code is written:</p>
+</div>
+<div class="art-section">
+  <div class="art-h">The feasibility checklist</div>
+  <ul class="art-list">
+    <li><b>Data availability:</b> Do we have enough labeled examples? What's the quality? Is there class imbalance? (e.g., rare diagnoses with few training examples)</li>
+    <li><b>Task definition:</b> Is the ML task clearly defined? Classification, regression, generation, retrieval — each has different requirements.</li>
+    <li><b>Latency budget:</b> How fast does the response need to be? Real-time &lt;1s requires different architecture than async batch processing.</li>
+    <li><b>Accuracy threshold:</b> What's the minimum acceptable performance? Is false positive or false negative worse in this context?</li>
+    <li><b>Cost at scale:</b> LLM API calls cost money per token. At 200,000 users, small cost per call adds up fast.</li>
+    <li><b>Compliance:</b> Does the model vendor sign a HIPAA BAA? Can PHI leave our infrastructure?</li>
+  </ul>
+  <div class="art-callout"><p>💡 Run a feasibility brief before any AI feature enters the roadmap. One page. Problem, approach, data reality, open questions, and a go/no-go recommendation from the ML lead.</p></div>
+</div>`
+  },
+
+  data_labeling: {
+    tag:"ML Data",
+    title:"Training Data & Data Labeling — Why it's a product problem",
+    body:`
+<div class="art-section">
+  <div class="art-h">Why labeled data matters</div>
+  <p class="art-p">Most supervised ML models learn by example — you show them thousands of labeled examples (input + correct answer) and they learn the pattern. Without enough labeled data, even the best model architecture will perform poorly.</p>
+  <div class="art-example"><b>Example:</b> To build a model that extracts diagnoses from session notes, you need hundreds of real session notes where a clinician has already highlighted every diagnosis. That highlighted dataset is your "labeled training data."</div>
+</div>
+<div class="art-section">
+  <div class="art-h">Labeling approaches</div>
+  <ul class="art-list">
+    <li><b>Manual annotation:</b> Human experts label data by hand. Slow and expensive but highest quality.</li>
+    <li><b>Active learning:</b> The model identifies which unlabeled examples would be most valuable to label — reduces the labeling effort significantly.</li>
+    <li><b>Third-party annotation services:</b> External vendors who label data at scale. Must be HIPAA-compliant for healthcare data.</li>
+    <li><b>Synthetic data:</b> AI-generated examples used to supplement real data. Useful but risky if not carefully validated.</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">The TPO's role in data readiness</div>
+  <p class="art-p">Data labeling is a product and operations problem, not just an ML problem. As TPO, you need to plan labeling capacity the same way you plan engineering capacity — it takes time, costs money, and has its own quality requirements.</p>
+  <div class="art-callout"><p>💡 Add a data labeling workstream to the backlog as a formal item when a model needs more data. Invisible data work creates invisible delays.</p></div>
+</div>`
+  },
+
+  definition_of_done: {
+    tag:"Agile Quality",
+    title:"Definition of Done for AI Features",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is the Definition of Done?</div>
+  <p class="art-p">The <b>Definition of Done (DoD)</b> is a shared checklist that every team member agrees defines when a story is truly complete — not just "code written" but fully tested, reviewed, deployed, and documented.</p>
+  <p class="art-p">Having a clear DoD prevents the "it's done, we just need to test it" antipattern, which is one of the most common sources of sprint delays.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">Standard DoD (non-AI)</div>
+  <ul class="art-list">
+    <li>Code reviewed and approved</li>
+    <li>Unit and integration tests written and passing</li>
+    <li>Deployed to staging environment</li>
+    <li>Acceptance criteria verified by QA or PO</li>
+    <li>Documentation updated</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">Extended DoD for AI features</div>
+  <ul class="art-list">
+    <li><b>Model evaluation report:</b> Offline metrics documented and meet the threshold set in AC</li>
+    <li><b>Human review sample:</b> A clinician or domain expert has reviewed a structured sample of AI outputs</li>
+    <li><b>Monitoring instrumentation:</b> Dashboards tracking key metrics are live — not planned for "later"</li>
+    <li><b>Fallback path tested:</b> What happens when the model is slow, unavailable, or low-confidence — explicitly tested</li>
+    <li><b>Compliance clearance:</b> PHI handling and audit logging reviewed against HIPAA requirements</li>
+    <li><b>Model card created or updated</b></li>
+  </ul>
+  <div class="art-callout"><p>💡 The AI DoD is longer because AI failure modes are different. A bug in regular code fails loudly. A degrading model fails silently — until a clinician signs a note with the wrong diagnosis in it.</p></div>
+</div>`
+  },
+
+  contract_testing: {
+    tag:"Engineering Practice",
+    title:"Contract Testing — Keeping integrations honest",
+    body:`
+<div class="art-section">
+  <div class="art-h">The problem with third-party integrations</div>
+  <p class="art-p">When your product depends on an external API — an insurance clearinghouse, an EHR system, a payment processor — you're trusting that their interface stays stable. In reality, vendors update their APIs, change field names, or deprecate endpoints. When that happens, your integration breaks — often silently.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">What is a contract test?</div>
+  <p class="art-p">A <b>contract test</b> is an automated test that validates your integration assumptions against a stable interface definition. It doesn't call the real third-party API — it mocks it — but it checks that your code correctly handles the expected request/response format.</p>
+  <p class="art-p">When the vendor updates their API, you update the contract and your tests immediately reveal what's broken in your integration — before it reaches production.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">Why TPOs should care</div>
+  <p class="art-p">Contract tests are an engineering practice, but as TPO you should include them in your integration story AC. Writing "contract test added to CI pipeline for this integration" in the DoD prevents a whole class of production incidents.</p>
+  <div class="art-callout"><p>💡 In healthcare, a broken billing integration = unpaid claims. A broken EHR integration = clinical data loss. Contract tests are cheap insurance.</p></div>
+</div>`
+  },
+
+  safe_agile: {
+    tag:"SAFe / Agile",
+    title:"SAFe & Agile for Product Owners",
+    body:`
+<div class="art-section">
+  <div class="art-h">What is SAFe?</div>
+  <p class="art-p"><b>SAFe</b> (Scaled Agile Framework) is a way of applying Agile practices to larger organizations with multiple teams. Instead of one Scrum team, SAFe coordinates dozens of teams working on a shared product — called an <em>Agile Release Train (ART)</em>.</p>
+  <p class="art-p">Ensora's preference for <b>SAFe POPM certification</b> signals they likely use this framework. As a TPO, your role in SAFe is similar to a Product Owner — but you also coordinate with a Product Manager above you and interact with a System Architect on the technical side.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">Key SAFe concepts you should know</div>
+  <ul class="art-list">
+    <li><b>PI Planning:</b> Program Increment Planning — a quarterly event where all teams align on what they'll build in the next 10-12 weeks</li>
+    <li><b>Enabler stories:</b> Technical work that doesn't deliver direct user value but enables future features</li>
+    <li><b>Story points:</b> Relative effort estimation — not hours, but complexity relative to other stories</li>
+    <li><b>Sprint vs. Iteration:</b> SAFe uses "iteration" for what Scrum calls a sprint (same concept, different name)</li>
+    <li><b>ART Kanban:</b> A board tracking features across the entire program, not just one team's sprint</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">Scrum ceremonies you'll participate in</div>
+  <ul class="art-list">
+    <li><b>Sprint/Iteration Planning:</b> What stories does the team commit to this sprint?</li>
+    <li><b>Daily standup:</b> 15-minute sync: what did I do, what am I doing, any blockers?</li>
+    <li><b>Backlog refinement:</b> Grooming upcoming stories — writing ACs, estimating, removing ambiguity</li>
+    <li><b>Sprint review/demo:</b> Show stakeholders what was built</li>
+    <li><b>Retrospective:</b> What went well, what didn't, what do we change?</li>
+  </ul>
+</div>`
+  },
+
+  thirty_day: {
+    tag:"Leadership",
+    title:"The 30/60/90 Day Framework for New TPOs",
+    body:`
+<div class="art-section">
+  <div class="art-h">Why the first 30 days are critical</div>
+  <p class="art-p">When you join a new team as TPO, the biggest mistake is coming in with a transformation agenda before you understand the current state. Engineers and stakeholders have context you don't — and if you ignore it, you'll spend months fixing the problems your changes created.</p>
+</div>
+<div class="art-section">
+  <div class="art-h">A strong 30-60-90 plan</div>
+  <ul class="art-list">
+    <li><b>Days 1-30 (Listen):</b> Shadow the team. Review the backlog without judgment. Map the stakeholders. Have 1:1s with key engineers, the ML lead, and your product manager. Ask: "What slows you down most?" Don't propose solutions yet.</li>
+    <li><b>Days 31-60 (Identify):</b> Spot the top 3 process or clarity gaps. Draft a lightweight prioritization framework. Run your first properly structured backlog refinement. Earn trust before proposing change.</li>
+    <li><b>Days 61-90 (Improve):</b> Introduce one or two concrete process improvements. Ship your first sprint with fully written AC and a proper DoD. Establish recurring rituals (weekly refinement, AI model review).</li>
+  </ul>
+</div>
+<div class="art-section">
+  <div class="art-h">The trust principle</div>
+  <div class="art-callout"><p>💡 Engineers are allergic to process theater. Every practice you introduce needs to solve a real pain they already feel. If you solve their problems first, they'll follow your lead on everything else.</p></div>
+</div>`
+  },
+};
+
+// ─────────────────────────────────────────────
+// CARD DATA
+// ─────────────────────────────────────────────
 const cards = [
-  // ─── SECTION 1: AI TECHNICAL DEPTH ───
-  {
-    section: "AI & Technical Depth",
-    tag: ["ai"],
-    q: "Walk me through your understanding of NLP, ML, and LLMs. How would you apply each in a behavioral health product like Ensora's AI Session Assistant?",
-    a: `<strong>NLP</strong> (Natural Language Processing) deals with understanding and generating human language — in Ensora's context, this powers things like transcribing therapy session notes, extracting clinical entities (diagnoses, symptoms, treatment goals), and sentiment analysis on session content.<br><br>
-<strong>ML</strong> (traditional Machine Learning) is best for structured prediction problems — think billing code suggestion, session duration prediction, or identifying documentation gaps using historical data patterns.<br><br>
-<strong>LLMs</strong> (Large Language Models) like GPT-class models excel at generating coherent long-form text from context — ideal for drafting SOAP notes, treatment plan summaries, or suggesting session narratives from sparse inputs.<br><br>
-As TPO, I'd work with the AI/ML team to identify which capability solves which problem. For the Session Assistant, I'd expect an LLM layer handling note generation, with NLP preprocessing for entity extraction, and ML models handling quality scoring or anomaly flagging downstream.`,
-    tip: "Anchor your answer in Ensora's actual product — the AI Session Assistant. Shows you did your homework."
+  // ── AI DEPTH ──
+  { sec:"AI & Technical Depth", tags:["ai"],
+    q:"Walk me through NLP, ML, and LLMs. How do they each apply to Ensora's AI Session Assistant?",
+    a:`Three different tools for three different jobs. <b>NLP</b> understands language — it extracts things like diagnoses, treatment goals, and medications from session text. <b>ML</b> learns patterns from historical data — great for predicting billing codes or flagging documentation gaps. <b>LLMs</b> generate fluent text from context — that's what drafts a full SOAP note from a session transcript.<br><br>For the Session Assistant specifically, I'd expect an LLM handling note generation, NLP preprocessing handling entity extraction, and ML models scoring output quality or flagging anomalies downstream.`,
+    tip:"Ground your answer in the actual product. It signals you did your research.",
+    learn:[{label:"NLP, ML & LLMs explained",key:"nlp_ml_llm"},{label:"HIPAA & AI basics",key:"hipaa_ai"}]
   },
-  {
-    section: "AI & Technical Depth",
-    tag: ["ai"],
-    q: "What does a typical AI feature development lifecycle look like, and where does a TPO add the most value?",
-    a: `The AI feature lifecycle goes roughly: <strong>problem framing → data assessment → model selection → training/fine-tuning → evaluation → deployment → monitoring → iteration</strong>.<br><br>
-As TPO, I add the most value at three specific points:<br>
-<ul>
-  <li><strong>Problem framing:</strong> Translating vague business needs into a precise ML task definition (classification vs. generation vs. retrieval)</li>
-  <li><strong>Evaluation criteria:</strong> Defining what "good enough" means before the model is built — precision/recall tradeoffs, latency thresholds, fallback behavior when confidence is low</li>
-  <li><strong>Feedback loop design:</strong> Making sure the product captures the right user signals post-launch so the model improves over time</li>
-</ul>
-I keep the guardrails, not the gradients — but I need to understand both well enough to ask the right questions.`,
-    tip: "The phrase 'I keep the guardrails, not the gradients' is memorable and technically honest."
+  { sec:"AI & Technical Depth", tags:["ai"],
+    q:"What does the AI feature development lifecycle look like, and where does a TPO add the most value?",
+    a:`It goes: problem framing, data assessment, model selection, training, evaluation, deployment, monitoring, and iteration. That's the loop — and the loop never really ends.<br><br>As TPO, my highest-value moments are at the front and back: <b>framing the right problem</b> so the team doesn't build a brilliant solution to the wrong thing, <b>defining what "good enough" looks like</b> before anyone writes a line of code, and <b>designing the feedback loops</b> so the model keeps improving after launch. I keep the guardrails, not the gradients.`,
+    tip:"'I keep the guardrails, not the gradients' — this is quotable. Use it.",
+    learn:[{label:"AI feature lifecycle",key:"ai_lifecycle"},{label:"Scoping AI features",key:"feasibility"}]
   },
-  {
-    section: "AI & Technical Depth",
-    tag: ["ai"],
-    q: "How would you evaluate whether an AI-generated clinical note is 'good enough' to ship?",
-    a: `I'd define evaluation criteria across three dimensions before we write a single line of training code:<br><br>
-<strong>Clinical accuracy:</strong> Do the extracted entities (diagnoses, interventions, goals) match what the therapist actually discussed? This requires structured human review — likely a clinician sign-off sample — and metrics like precision/recall on key clinical terms.<br><br>
-<strong>Functional completeness:</strong> Does the note satisfy payer documentation requirements? Are SOAP sections populated? Does it pass a structured rubric the compliance team defines?<br><br>
-<strong>User acceptance:</strong> What percentage of AI-drafted notes are accepted without edits vs. heavily modified? High edit rates signal a model that's adding friction, not reducing it.<br><br>
-I'd also design a staged rollout — beta cohort of willing therapists first — so we capture real-world data before GA. And critically, I'd ensure there's always a human-in-the-loop for the final note. The AI drafts; the clinician owns.`,
-    tip: "Mentioning 'human-in-the-loop' for clinical output is critical — shows healthcare regulatory awareness."
+  { sec:"AI & Technical Depth", tags:["ai"],
+    q:"How would you evaluate whether an AI-generated clinical note is good enough to ship?",
+    a:`I'd nail down three things before we build anything: <b>clinical accuracy</b> — do the extracted entities match what the therapist actually said? That needs a clinician-reviewed sample with precision and recall metrics. <b>Functional completeness</b> — does the note satisfy payer documentation requirements? And <b>user acceptance</b> — what percentage of drafts do therapists accept without heavy edits? High edit rates mean the AI is adding friction, not reducing it.<br><br>I'd also run a staged beta with willing therapists first, and I'd make sure the therapist always signs the final note — the AI drafts, the clinician owns.`,
+    tip:"'The AI drafts, the clinician owns' — critical framing for healthcare. Shows regulatory awareness.",
+    learn:[{label:"Model evaluation metrics",key:"model_evaluation"},{label:"HIPAA & AI basics",key:"hipaa_ai"}]
   },
-  {
-    section: "AI & Technical Depth",
-    tag: ["ai"],
-    q: "What questions would you ask an AI/ML engineer to assess the feasibility of a new LLM-powered feature?",
-    a: `My standard feasibility checklist for LLM features:<br>
-<ul>
-  <li><strong>Data:</strong> Do we have sufficient labeled examples, or are we relying on zero-shot/few-shot prompting?</li>
-  <li><strong>Latency:</strong> What's the p95 response time? Is that acceptable for the UX context (real-time vs. async)?</li>
-  <li><strong>Hallucination risk:</strong> What's the model's failure mode — and do we have a detection or fallback strategy?</li>
-  <li><strong>Cost at scale:</strong> What's the per-call token cost, and how does that scale with our user base?</li>
-  <li><strong>Fine-tuning vs. prompting:</strong> Can we get acceptable quality via prompt engineering, or do we need domain fine-tuning?</li>
-  <li><strong>Compliance:</strong> Does the model or API vendor meet HIPAA BAA requirements?</li>
-</ul>
-These questions let me write an honest feasibility brief for product leadership without needing to run the experiments myself.`,
-    tip: "HIPAA BAA question at the end signals healthcare domain awareness — will land well with this team."
+  { sec:"AI & Technical Depth", tags:["ai"],
+    q:"What questions would you ask an AI engineer to assess whether a new LLM feature is feasible?",
+    a:`My checklist: <b>Do we have enough data, or are we relying on prompting?</b> <b>What's the p95 latency — and does the UX support that wait time?</b> <b>What's the failure mode when the model is wrong, and do we have a fallback?</b> <b>What's the per-call cost at our user scale?</b> <b>Can prompt engineering get us there, or do we need fine-tuning?</b> And critically in healthcare: <b>does this vendor sign a HIPAA BAA?</b><br><br>If I can get clear answers to those six, I can write an honest feasibility brief for product leadership without running the experiments myself.`,
+    tip:"The HIPAA BAA question lands every time with a healthcare dev team. Save it for last.",
+    learn:[{label:"Scoping AI features",key:"feasibility"},{label:"HIPAA & AI basics",key:"hipaa_ai"}]
   },
-  {
-    section: "AI & Technical Depth",
-    tag: ["ai"],
-    q: "How do you handle model drift or degradation post-deployment? What's your role as TPO?",
-    a: `Model drift happens when the real-world data distribution shifts away from training data — in a behavioral health context, this could be changing therapy modalities, new billing codes, or evolving clinical documentation standards.<br><br>
-As TPO, my role is to make sure we ship monitoring <em>with</em> the feature, not after the fact. That means:<br>
-<ul>
-  <li>Defining a performance baseline at launch (e.g., note acceptance rate, edit distance from draft to final)</li>
-  <li>Working with engineering to set alerting thresholds that trigger a review cycle</li>
-  <li>Building retraining or re-evaluation into the product roadmap as a recurring backlog item — not a one-off</li>
-  <li>Designing feedback mechanisms in the UI so therapist corrections feed back into model improvement</li>
-</ul>
-The goal is to treat the model as a living product, not a shipped artifact.`,
-    tip: "'Treat the model as a living product' — use this exact framing. It resonates with ML engineers."
+  { sec:"AI & Technical Depth", tags:["ai"],
+    q:"How do you handle model drift after an AI feature ships? What's your role as TPO?",
+    a:`Model drift is when the world changes but the model doesn't — and in behavioral health, that happens: new billing codes, new therapy modalities, new documentation standards.<br><br>My job is to make sure we ship monitoring <em>with</em> the feature, not after it. That means defining a performance baseline at launch, setting alerting thresholds with engineering, building retraining cycles into the roadmap as a recurring backlog item, and designing UI feedback mechanisms so therapist corrections can feed back into model improvement. The model isn't a shipped artifact — it's a living product.`,
+    tip:"'The model isn't a shipped artifact — it's a living product.' Use this framing explicitly.",
+    learn:[{label:"Model drift explained",key:"model_drift"},{label:"AI feature lifecycle",key:"ai_lifecycle"}]
   },
 
-  // ─── SECTION 2: USER STORIES & ACCEPTANCE CRITERIA ───
-  {
-    section: "User Stories & Acceptance Criteria",
-    tag: ["story"],
-    q: "Write a user story and acceptance criteria for an AI feature that auto-generates a SOAP note from a therapy session transcript.",
-    a: `<strong>User Story:</strong><br>
-<em>As a licensed therapist, I want the system to automatically generate a draft SOAP note from my session transcript so that I can reduce post-session documentation time and focus more on client care.</em><br><br>
-<strong>Acceptance Criteria:</strong><br>
-<ul>
-  <li>Given a completed session recording/transcript, when processing completes within 60 seconds of session end, then a structured SOAP note draft is surfaced in the documentation interface.</li>
-  <li>The draft populates all four SOAP sections (Subjective, Objective, Assessment, Plan) with session-specific content — no placeholder text.</li>
-  <li>Clinical entity accuracy (diagnoses, interventions, goals) meets or exceeds 85% match rate against clinician-reviewed ground truth in QA testing.</li>
-  <li>The therapist can edit any section inline before signing; the original AI draft is preserved for audit.</li>
-  <li>The feature is inaccessible if the session recording consent flag is not set — enforced at both UI and API layer.</li>
-  <li>All session transcript data used for AI processing is transmitted and stored in compliance with HIPAA encryption standards.</li>
-</ul>`,
-    tip: "The consent flag and HIPAA AC items show you think like a healthcare TPO — not just a generic one."
+  // ── USER STORIES ──
+  { sec:"User Stories & Acceptance Criteria", tags:["story"],
+    q:"Write a user story and acceptance criteria for an AI feature that auto-generates a SOAP note from a session transcript.",
+    a:`<b>User story:</b> As a licensed therapist, I want the system to generate a draft SOAP note from my session transcript so I can spend less time on documentation and more time on client care.<br><br><b>Acceptance criteria:</b> Given a completed session, when processing finishes within 60 seconds of session end, then a structured SOAP note with all four sections populated appears in the documentation interface. The therapist can edit any section inline before signing, and the original AI draft is preserved for audit. Entity accuracy meets 85% match rate on our QA test set. The feature is blocked at UI and API level if recording consent isn't set. All transcript data is transmitted and stored in compliance with HIPAA encryption standards.`,
+    tip:"The consent flag and HIPAA AC items are what separate a generic TPO answer from a healthcare TPO answer.",
+    learn:[{label:"Writing user stories & ACs",key:"user_story_writing"},{label:"HIPAA & AI basics",key:"hipaa_ai"}]
   },
-  {
-    section: "User Stories & Acceptance Criteria",
-    tag: ["story"],
-    q: "How do you write acceptance criteria for an API integration where the behavior depends on a third-party service you don't fully control?",
-    a: `This is a common challenge and requires AC that handles both the happy path <em>and</em> degraded states.<br><br>
-My approach:<br>
-<ul>
-  <li><strong>Contract the expected interface:</strong> AC specifies the exact request/response schema, authentication method, and SLA we're designing against.</li>
-  <li><strong>Define fallback behavior explicitly:</strong> "When the third-party API returns a 5xx error or times out after 3 seconds, the system surfaces a user-facing message and logs the failure for retry — it does not silently fail or lose data."</li>
-  <li><strong>Test at the boundary:</strong> AC includes a test case for every documented error code from the third-party spec, not just the success scenario.</li>
-  <li><strong>Version lock:</strong> AC notes which API version we're integrating against, so a vendor upgrade doesn't break our build silently.</li>
-</ul>
-I also insist on a contract test in CI — a lightweight test that mocks the third-party interface and validates our integration assumptions don't drift over time.`,
-    tip: "Mentioning contract tests signals engineering maturity — this will resonate with a senior dev team."
+  { sec:"User Stories & Acceptance Criteria", tags:["story"],
+    q:"How do you write acceptance criteria for an API integration where behavior depends on a third-party service you don't fully control?",
+    a:`The happy path is easy — the interesting work is defining every degraded state. My ACs for integrations always specify the expected request/response schema and authentication method we're building against, an explicit fallback for every documented error code — not just 200, but 4xx and 5xx, with exact system behavior for each, a latency timeout after which we surface a user-facing message and queue for retry, and a version lock noting which API version we're integrating against.<br><br>I also include a contract test in the DoD — a lightweight test in CI that mocks the third-party interface and validates our assumptions don't silently drift when the vendor updates.`,
+    tip:"Mentioning contract tests shows engineering maturity. It'll resonate with a senior dev team.",
+    learn:[{label:"APIs & integrations guide",key:"api_integration"},{label:"Contract testing",key:"contract_testing"}]
   },
-  {
-    section: "User Stories & Acceptance Criteria",
-    tag: ["story"],
-    q: "How do you write a user story for a feature that has both a clinician-facing component and a data pipeline component that the end user never sees?",
-    a: `I write two linked stories with a clear dependency marker.<br><br>
-<strong>Enabler Story (technical/infrastructure):</strong><br>
-<em>As the data platform, I need to ingest and normalize session transcript data from the recording service into a format suitable for LLM processing, so that the note generation feature has clean, consistent inputs.</em><br><br>
-AC for the enabler covers data schema, latency, error handling, and PHI handling requirements.<br><br>
-<strong>Feature Story (user-facing):</strong><br>
-<em>As a therapist, I want a draft SOAP note ready for review within 60 seconds of session end...</em><br>
-This story is explicitly marked "depends on [Enabler Story ID]" and only enters a sprint once the enabler is done or being done in parallel with a mocked interface.<br><br>
-This keeps engineering unblocked while giving product a clear picture of what's a technical pre-condition vs. what delivers user value.`,
-    tip: "The enabler story pattern is a SAFe concept — worth namedropping given the CSPO/SAFe POPM preference in the JD."
+  { sec:"User Stories & Acceptance Criteria", tags:["story"],
+    q:"How do you write a story for a feature that has a user-facing component and a data pipeline the user never sees?",
+    a:`Two linked stories with an explicit dependency marker. First, an <b>enabler story</b> for the pipeline: "As the data platform, I need to ingest and normalize session transcripts into a format suitable for LLM processing, so that note generation has clean, consistent inputs." Its ACs cover schema, latency, error handling, and PHI requirements.<br><br>Then the <b>feature story</b> for the therapist-facing experience, marked "depends on [Enabler ID]." The feature story only enters a sprint once the enabler is done or running in parallel against a mocked interface. This keeps engineering unblocked while making the dependency visible to everyone.`,
+    tip:"The enabler story pattern is a SAFe concept — worth namedropping given the POPM preference in the JD.",
+    learn:[{label:"Enabler stories explained",key:"enabler_stories"},{label:"SAFe & Agile",key:"safe_agile"}]
   },
-  {
-    section: "User Stories & Acceptance Criteria",
-    tag: ["story"],
-    q: "A developer says your acceptance criteria for an AI feature are too vague to implement. How do you respond?",
-    a: `I say: <em>"Thank you — that's exactly the right flag to raise and I want to fix it before we pull this into a sprint."</em><br><br>
-Then I schedule a 30-minute AC refinement session with that developer and the QA lead. The goal is to get to a shared definition of done that's testable and unambiguous.<br><br>
-Common sources of vagueness in AI ACs:<br>
-<ul>
-  <li>"The output should be accurate" → replace with a specific metric and threshold</li>
-  <li>"The system should handle errors gracefully" → replace with exact error conditions and expected system behavior for each</li>
-  <li>"Performance should be acceptable" → replace with a p95 latency SLA</li>
-</ul>
-I treat developer pushback on ACs as a quality gate, not friction. If they can't implement from it, users can't test from it either.`,
-    tip: "This answer shows psychological safety and engineering-first mindset — both valued in a dev team interview."
+  { sec:"User Stories & Acceptance Criteria", tags:["story"],
+    q:"A developer says your acceptance criteria for an AI feature are too vague to implement. How do you respond?",
+    a:`I say thank you — genuinely. That's exactly the flag I want raised before we pull it into a sprint, not after. Then I schedule a 30-minute AC refinement with that developer and QA. The usual culprits: "accurate" without a threshold, "handles errors gracefully" without specifying which errors and what "gracefully" looks like, "fast" without a latency number.<br><br>We rewrite it together until it's testable and unambiguous. Developer pushback on ACs is a quality gate, not friction — if they can't implement from it, QA can't test from it either.`,
+    tip:"Reacting positively to pushback signals psychological safety and engineering-first mindset.",
+    learn:[{label:"Writing user stories & ACs",key:"user_story_writing"},{label:"Definition of Done for AI",key:"definition_of_done"}]
   },
 
-  // ─── SECTION 3: VISION → TECHNICAL TRANSLATION ───
-  {
-    section: "Translating Vision ↔ Technical Constraints",
-    tag: ["trans"],
-    q: "A product manager says they want 'real-time AI feedback during therapy sessions.' How do you translate that into technical requirements?",
-    a: `First, I push back on "real-time" with a clarifying question: <em>what does real-time mean to the therapist — milliseconds, seconds, or end-of-session?</em> That single question can dramatically change the architecture.<br><br>
-If it's truly in-session (seconds-level), the technical plan involves:<br>
-<ul>
-  <li>Streaming audio transcription via a low-latency ASR service (e.g., AWS Transcribe Streaming)</li>
-  <li>Incremental LLM inference on rolling transcript windows — not waiting for session end</li>
-  <li>A WebSocket or SSE connection to push suggestions to the therapist's UI without page reload</li>
-  <li>Careful UX design to ensure suggestions don't distract — probably a non-intrusive sidebar, not a pop-up</li>
-</ul>
-If it's end-of-session, we shift to async batch processing which is simpler, cheaper, and more reliable.<br><br>
-I'd document both architectures with rough cost and complexity estimates, and bring them back to product to make an informed tradeoff.`,
-    tip: "The clarifying question about 'what real-time means' shows senior TPO instincts — requirements always need interrogation."
+  // ── VISION ↔ TECH ──
+  { sec:"Translating Vision ↔ Technical Constraints", tags:["trans"],
+    q:"A product manager says they want 'real-time AI feedback during therapy sessions.' How do you translate that into technical requirements?",
+    a:`First thing I do is challenge the word "real-time." That single word can mean milliseconds, seconds, or end-of-session — and each answer implies a completely different architecture. So I ask: what does real-time mean to the therapist in practice?<br><br>If it's truly in-session, we're talking streaming audio transcription, incremental LLM inference on rolling transcript windows, and a WebSocket connection pushing suggestions to a sidebar without disrupting the session. If it's end-of-session, we shift to async batch processing — simpler, cheaper, and more reliable. I'd document both architectures with rough cost and complexity estimates and bring them back to make an informed tradeoff together.`,
+    tip:"The clarifying question shows senior TPO instincts. Requirements always contain hidden assumptions.",
+    learn:[{label:"Translating vision to tech",key:"vision_to_tech"},{label:"AI feature lifecycle",key:"ai_lifecycle"}]
   },
-  {
-    section: "Translating Vision ↔ Technical Constraints",
-    tag: ["trans"],
-    q: "Engineering tells you a desired AI feature will take 6 months to build. How do you translate that constraint back to your product stakeholders?",
-    a: `I don't just relay the 6-month estimate — I facilitate a structured conversation around it.<br><br>
-My process:<br>
-<ul>
-  <li><strong>Unpack the estimate:</strong> Work with engineering to identify what drives the timeline — data pipeline, model training, compliance review, or integration work. Usually one factor dominates.</li>
-  <li><strong>Identify the value decomposition:</strong> Can we ship 80% of the value in 2 months with a simpler version? Often yes. An MVP with rule-based logic or a prompted LLM can deliver early value while the "full" ML model is built in parallel.</li>
-  <li><strong>Present options, not a verdict:</strong> I bring stakeholders three scenarios — full build (6 months), phased delivery (2+4 months), and a strategic deferral — with a clear tradeoff matrix for each.</li>
-</ul>
-My job is to make the constraint visible and actionable, not to be the bearer of bad news or to shield stakeholders from reality.`,
-    tip: "The 'three scenarios' framing is a classic senior product move — it gives stakeholders agency."
+  { sec:"Translating Vision ↔ Technical Constraints", tags:["trans"],
+    q:"Engineering says a desired AI feature will take 6 months. How do you communicate that constraint to your product stakeholders?",
+    a:`I don't just relay the estimate — I unpack it first. What's driving the timeline — data pipeline, model training, compliance review? Usually one factor dominates, and sometimes there's a faster path to 80% of the value.<br><br>Then I bring stakeholders three options, not a verdict: full build on the 6-month timeline, a phased delivery where we ship a simpler version in 2 months while the full ML model is built in parallel, and a strategic deferral with a clear rationale. This turns a constraint into a conversation and gives stakeholders agency. My job is to make the constraint visible and actionable — not to shield them from reality or just deliver bad news.`,
+    tip:"The three-scenario approach is a classic senior product move. It gives stakeholders agency.",
+    learn:[{label:"Translating vision to tech",key:"vision_to_tech"},{label:"Technical debt",key:"tech_debt"}]
   },
-  {
-    section: "Translating Vision ↔ Technical Constraints",
-    tag: ["trans"],
-    q: "How do you explain a complex API integration failure to a non-technical clinical operations stakeholder?",
-    a: `I use an analogy and a clear impact statement — never jargon.<br><br>
-For example: <em>"Think of our billing integration like a fax machine between our system and the insurance network. Right now, the insurance network changed the format they accept, and our fax machine is still sending the old format — so transmissions are being rejected. We've identified the fix and estimate it'll take 2 days to update our side. In the meantime, claims submitted today will be queued and processed automatically once we deploy the fix — no data is lost."</em><br><br>
-The key elements: <strong>what broke, why it matters to them, what we're doing, and when it'll be resolved.</strong> I avoid root cause deep-dives unless they ask. Stakeholders want confidence, not a post-mortem.`,
-    tip: "The fax machine analogy is healthcare-native — clinical ops stakeholders will immediately get it."
+  { sec:"Translating Vision ↔ Technical Constraints", tags:["trans"],
+    q:"How do you explain a complex API integration failure to a non-technical clinical operations stakeholder?",
+    a:`Analogy first, jargon never. I'd say something like: "Think of our billing integration like a fax machine between our system and the insurance network. The insurance network changed the format they accept, and our system is still sending the old format — so transmissions are being rejected. We've identified the fix, it'll take two days to update our side, and any claims submitted today will be queued and processed automatically once we deploy. No data is lost."<br><br>Four things: what broke, why it matters to them, what we're doing about it, and when it's resolved. I skip the root cause deep-dive unless they ask. Stakeholders want confidence, not a post-mortem.`,
+    tip:"The fax machine analogy is healthcare-native. Clinical ops will immediately picture it.",
+    learn:[{label:"APIs & integrations guide",key:"api_integration"}]
   },
-  {
-    section: "Translating Vision ↔ Technical Constraints",
-    tag: ["trans"],
-    q: "How do you prioritize technical debt alongside feature work when both are competing for sprint capacity?",
-    a: `I treat technical debt as a first-class backlog citizen, not a "someday" item. My framework:<br><br>
-<ul>
-  <li><strong>Classify debt by impact:</strong> Does it slow velocity, create security risk, or create compliance exposure? Compliance and security debt gets prioritized automatically — especially in a HIPAA environment.</li>
-  <li><strong>Quantify the drag:</strong> If a debt item is adding 20% overhead to every related feature story, it's costing more over time than fixing it. I make that math explicit in backlog conversations.</li>
-  <li><strong>Reserve capacity:</strong> I advocate for a standing 15-20% sprint allocation for enablers and debt — negotiated upfront in PI planning, not fought for sprint by sprint.</li>
-  <li><strong>Pair debt with features:</strong> When possible, attach debt paydown to the feature it blocks — "we'll refactor the session service as part of the note generation story, because we'd have to touch it anyway."</li>
-</ul>`,
-    tip: "The 'compliance and security debt gets auto-prioritized' framing shows you understand the healthcare stakes."
+  { sec:"Translating Vision ↔ Technical Constraints", tags:["trans"],
+    q:"How do you prioritize technical debt alongside feature work when both are competing for sprint capacity?",
+    a:`Technical debt is a first-class backlog item in my world — not a "someday" pile. My approach: classify debt by impact. Compliance and security debt in a HIPAA environment gets prioritized automatically — it's not negotiable. For everything else, I quantify the drag: if a debt item is adding 20% overhead to every related feature story, it's costing more over time than fixing it. I make that math explicit.<br><br>I also advocate for a standing 15-20% sprint allocation for debt and enablers, negotiated in PI planning rather than fought for sprint by sprint. And when possible, I pair debt paydown with the feature that depends on it — we refactor what we touch.`,
+    tip:"'Compliance and security debt gets auto-prioritized' shows you understand the HIPAA stakes.",
+    learn:[{label:"Technical debt",key:"tech_debt"},{label:"SAFe & Agile",key:"safe_agile"}]
   },
 
-  // ─── SECTION 4: COLLABORATION WITH AI/ML TEAMS ───
-  {
-    section: "Collaborating with AI/ML Teams",
-    tag: ["collab"],
-    q: "You're scoping a new ML feature with a data science team that has limited product context. How do you run that conversation?",
-    a: `I come in with a problem statement, not a solution requirement. The worst thing I can do is walk into a scoping session saying "we need a classification model that does X" — that constrains the team before they've even seen the problem.<br><br>
-My structure:<br>
-<ul>
-  <li><strong>Start with the user problem:</strong> What does the therapist/biller/admin need to accomplish, and where are they currently failing?</li>
-  <li><strong>Share the data reality:</strong> What signals do we actually have? Volume, quality, labeling status.</li>
-  <li><strong>Ask the team what's possible:</strong> Given the constraints, what approaches would they consider? I want their ideas before I constrain with product requirements.</li>
-  <li><strong>Align on success metrics together:</strong> Precision, recall, latency, cost — all negotiated, not handed down.</li>
-  <li><strong>Document a shared feasibility brief:</strong> One page that captures the problem, the proposed approach, risks, and open questions. Signed off by both product and engineering.</li>
-</ul>`,
-    tip: "'I come in with a problem statement, not a solution requirement' — lead with this line."
+  // ── COLLABORATION ──
+  { sec:"Collaborating with AI/ML Teams", tags:["collab"],
+    q:"You're scoping a new ML feature with a data science team that has limited product context. How do you run that conversation?",
+    a:`I come in with a problem statement, not a solution requirement. The worst thing I can do is walk in saying "we need a classification model that does X" — that constrains the team before they've even seen the problem space.<br><br>My structure: start with the user problem, share the data reality, then ask the team what's possible. I want their thinking before I constrain it with product requirements. We align on success metrics together — precision, recall, latency, cost — negotiated, not handed down. And we close with a one-page feasibility brief that captures the problem, proposed approach, risks, and open questions. Signed by both product and engineering before it enters the roadmap.`,
+    tip:"'I come in with a problem statement, not a solution requirement' — lead with this line.",
+    learn:[{label:"Scoping AI features",key:"feasibility"},{label:"AI feature lifecycle",key:"ai_lifecycle"}]
   },
-  {
-    section: "Collaborating with AI/ML Teams",
-    tag: ["collab"],
-    q: "A data scientist tells you that the model needs more labeled training data before it can be production-ready. How do you handle this as TPO?",
-    a: `This is a resourcing and timeline problem disguised as a technical one, and my job is to surface it cleanly.<br><br>
-Steps I'd take:<br>
-<ul>
-  <li><strong>Quantify the gap:</strong> How many labeled examples do we have vs. need? What's the labeling rate — examples per hour — with available resources?</li>
-  <li><strong>Identify labeling options:</strong> Can we use active learning to prioritize high-value examples? Can we use a clinician review panel? Would a third-party annotation service work within HIPAA constraints?</li>
-  <li><strong>Consider interim approaches:</strong> Could we launch a rules-based or prompted LLM version first — lower accuracy, clearly disclosed — while the training data is built up? This generates real user feedback that also improves data quality.</li>
-  <li><strong>Update the roadmap:</strong> Adjust sprint capacity to include a data labeling workstream as a formal backlog item, not an informal side task.</li>
-</ul>
-Data readiness is a product problem, not just an ML problem. I own making it visible and resourced.`,
-    tip: "'Data readiness is a product problem' — this reframe shows genuine ML product maturity."
+  { sec:"Collaborating with AI/ML Teams", tags:["collab"],
+    q:"A data scientist says the model needs more labeled training data before it can be production-ready. How do you handle this?",
+    a:`This is a resourcing and timeline problem wearing a technical costume. First I quantify the gap — how many labeled examples do we have vs. need, and what's the labeling rate we can sustain? Then I look at options: active learning to prioritize high-value examples, a clinician review panel, or an annotation service — all checked for HIPAA compliance.<br><br>While that's being solved, I ask whether we can launch a rules-based or prompted LLM version in the interim — lower accuracy, clearly disclosed to users — and use real-world feedback to improve data quality simultaneously. And I add a data labeling workstream to the backlog as a formal item. Data readiness is a product problem, not just an ML problem.`,
+    tip:"'Data readiness is a product problem' reframes this beautifully. Shows genuine ML product maturity.",
+    learn:[{label:"Training data & labeling",key:"data_labeling"},{label:"HIPAA & AI basics",key:"hipaa_ai"}]
   },
-  {
-    section: "Collaborating with AI/ML Teams",
-    tag: ["collab"],
-    q: "How do you manage disagreements between what the ML team thinks is technically feasible and what product stakeholders want to promise customers?",
-    a: `This is a trust and communication problem at its core, and my role is to be the honest broker between both sides.<br><br>
-What I do in practice:<br>
-<ul>
-  <li><strong>Never let promises be made without engineering input.</strong> I make sure the ML team is in roadmap conversations before commitments are made externally.</li>
-  <li><strong>Translate confidence intervals:</strong> "The model performs well in testing" is not the same as "this is production-ready at scale." I make those distinctions explicit in stakeholder communication.</li>
-  <li><strong>Create a feasibility review gate:</strong> Any AI feature that enters the roadmap requires a written feasibility sign-off from the ML lead — not just a verbal "yeah, we can try that."</li>
-  <li><strong>Escalate early, not late:</strong> If there's a fundamental mismatch between what's been promised and what's buildable, I surface it in the current sprint — not two weeks before launch.</li>
-</ul>`,
-    tip: "The 'honest broker' framing and the feasibility gate process will read as process maturity to a dev team."
+  { sec:"Collaborating with AI/ML Teams", tags:["collab"],
+    q:"How do you manage disagreements between what ML engineers think is feasible and what product stakeholders have promised customers?",
+    a:`I try to prevent this situation from arising in the first place by making sure the ML team is in roadmap conversations before any external commitments are made. But when the gap already exists, my role is honest broker.<br><br>Practically: I never let "the model performs well in testing" become "this is production-ready at scale" without explicit alignment on what those words mean. Any AI feature entering the roadmap requires a written feasibility sign-off from the ML lead — not verbal, written. And I escalate the mismatch early, in the current sprint, not two weeks before launch. The more runway you give people to adjust, the more options everyone has.`,
+    tip:"The feasibility sign-off gate is a mature process signal that engineers respect.",
+    learn:[{label:"Scoping AI features",key:"feasibility"},{label:"Model evaluation metrics",key:"model_evaluation"}]
   },
-  {
-    section: "Collaborating with AI/ML Teams",
-    tag: ["collab"],
-    q: "How would you define the 'definition of done' for an AI feature differently from a standard software feature?",
-    a: `Standard DoD covers: code reviewed, tests passing, deployed to staging, AC verified, documentation updated.<br><br>
-For AI features, I extend it with:<br>
-<ul>
-  <li><strong>Model evaluation report:</strong> Offline metrics (accuracy, F1, BLEU, etc.) are documented and meet the threshold defined in AC — not just "it works."</li>
-  <li><strong>Human review sample:</strong> A structured sample of AI outputs has been reviewed by a domain expert (clinician, biller) and signed off.</li>
-  <li><strong>Monitoring instrumentation:</strong> The feature ships with dashboards tracking key performance metrics — we don't monitor after the fact.</li>
-  <li><strong>Fallback path tested:</strong> The behavior when the model is unavailable, slow, or low-confidence is explicitly tested and documented.</li>
-  <li><strong>Compliance clearance:</strong> PHI handling, audit logging, and consent mechanisms have been reviewed against HIPAA requirements.</li>
-</ul>
-The AI DoD is longer because the failure modes are different — and in healthcare, the stakes are higher.`,
-    tip: "Extending the DoD for AI is a sophisticated concept — delivering this fluently will impress senior engineers."
+  { sec:"Collaborating with AI/ML Teams", tags:["collab"],
+    q:"How would you define the 'definition of done' differently for an AI feature vs. a standard software feature?",
+    a:`Standard DoD covers: code reviewed, tests passing, deployed to staging, ACs verified, docs updated. For AI features I extend it with five additions: a <b>model evaluation report</b> showing offline metrics meet the threshold set in AC; a <b>human review sample</b> signed off by a clinician or domain expert; <b>monitoring instrumentation</b> live in production, not planned for later; <b>fallback behavior</b> tested for when the model is slow, unavailable, or low-confidence; and <b>compliance clearance</b> confirming PHI handling and audit logging meet HIPAA requirements.<br><br>The AI DoD is longer because AI failure modes are different. A code bug fails loudly. A degrading model fails silently — until a clinician signs a note with the wrong diagnosis.`,
+    tip:"The 'fails silently' point is vivid and healthcare-relevant. Deliver it as your closing line.",
+    learn:[{label:"Definition of Done for AI",key:"definition_of_done"},{label:"Model cards",key:"model_cards"}]
   },
 
-  // ─── SECTION 5: PROCESS & IMPROVEMENTS ───
-  {
-    section: "Process & Ongoing Improvements",
-    tag: ["process"],
-    q: "What improvements would you recommend to an Agile team's process specifically for AI feature development?",
-    a: `AI features have properties that standard Scrum wasn't designed for — experiments that fail, models that need iteration, and outputs that are probabilistic rather than deterministic. My recommended process adaptations:<br><br>
-<ul>
-  <li><strong>Add a spike/discovery sprint pattern:</strong> Before committing to an AI story in a sprint, run a time-boxed experiment spike (1-3 days) to validate feasibility assumptions.</li>
-  <li><strong>Separate model work from integration work:</strong> ML experiments run on their own cadence. Don't couple model training timelines to two-week sprint boundaries — it creates false urgency and poor quality models.</li>
-  <li><strong>Build evaluation into the sprint, not after:</strong> Include human-review time in sprint capacity planning for AI stories.</li>
-  <li><strong>Run "model retros":</strong> Periodic reviews of model performance in production — separate from the usual team retro — with the data science team and relevant stakeholders.</li>
-  <li><strong>Maintain an AI-specific risk register:</strong> Hallucination risks, bias risks, compliance risks — tracked alongside the standard backlog.</li>
-</ul>`,
-    tip: "The 'spike/discovery sprint' and 'model retros' concepts show you've thought deeply about AI-specific process gaps."
+  // ── PROCESS ──
+  { sec:"Process & Ongoing Improvements", tags:["process"],
+    q:"What process improvements would you recommend specifically for an Agile team building AI features?",
+    a:`A few adaptations that make a real difference: First, <b>spike sprints</b> before committing to an AI story — a 1-3 day time-boxed experiment to validate feasibility assumptions rather than discovering problems mid-sprint. Second, <b>decouple model work from integration work</b> — ML experiments run on their own cadence; the integration story is written against a mocked interface while the model is still being trained. Third, <b>model retros</b> — periodic reviews of model performance in production, separate from the team retro, with the data science team present. And a standing <b>AI risk register</b> tracking hallucination risks, bias risks, and compliance risks alongside the backlog.`,
+    tip:"Spike sprints and model retros are concrete, specific suggestions. Most candidates don't go this deep.",
+    learn:[{label:"Adapting Agile for AI",key:"agile_ai"},{label:"SAFe & Agile",key:"safe_agile"}]
   },
-  {
-    section: "Process & Ongoing Improvements",
-    tag: ["process"],
-    q: "How would you approach improving the documentation practices for AI systems in a team that currently has poor documentation hygiene?",
-    a: `I wouldn't start with a documentation mandate — that creates compliance theater. I'd start with a documentation culture.<br><br>
-My approach:<br>
-<ul>
-  <li><strong>Make documentation the path of least resistance:</strong> Templates for model cards, API docs, and integration specs checked into the repo alongside code — not a separate Confluence task.</li>
-  <li><strong>Add to the DoD:</strong> "Key design decisions and model evaluation results documented" becomes a hard DoD requirement — not optional.</li>
-  <li><strong>Lead by example:</strong> I write and maintain the product-level documentation myself (system workflows, integration specs) so engineering sees it as a shared responsibility, not a PM hand-off.</li>
-  <li><strong>Introduce model cards:</strong> For every AI model in production, a model card documents training data, evaluation metrics, known limitations, and intended use. Lightweight but invaluable for onboarding and compliance.</li>
-  <li><strong>Celebrate good docs in retros:</strong> When documentation saves a developer time during an incident or onboarding, call it out publicly.</li>
-</ul>`,
-    tip: "Model cards are an industry-standard AI documentation practice — using this term shows genuine AI product vocabulary."
+  { sec:"Process & Ongoing Improvements", tags:["process"],
+    q:"How would you improve documentation practices for AI systems in a team with poor documentation hygiene?",
+    a:`I wouldn't start with a mandate — that creates compliance theater. I'd start with the path of least resistance: templates for model cards, API docs, and integration specs living in the repo alongside code, not in a separate Confluence task. I'd add documentation to the DoD as a hard requirement. I'd write and maintain the product-level documentation myself so engineering sees it as shared, not a PM handoff.<br><br>Most importantly, I'd introduce model cards for every AI model in production — a lightweight one-pager covering training data, evaluation metrics, known limitations, and intended use. When someone uses a model card to resolve an incident faster or onboard a new engineer in half the time, I'd call that out in the retro.`,
+    tip:"Using the term 'model cards' precisely signals genuine AI documentation vocabulary.",
+    learn:[{label:"Model cards",key:"model_cards"},{label:"Definition of Done for AI",key:"definition_of_done"}]
   },
-  {
-    section: "Process & Ongoing Improvements",
-    tag: ["process"],
-    q: "How do you stay current on AI/ML developments and translate them into product opportunities for your team?",
-    a: `I have a lightweight but consistent signal-gathering practice:<br><br>
-<ul>
-  <li><strong>Follow applied AI, not just research:</strong> I track sources like The Batch (DeepLearning.AI), Hugging Face blog, and AWS/Azure AI service release notes — things that are shipping, not just papers.</li>
-  <li><strong>Monitor competitor and adjacent product moves:</strong> What are Epic, Athenahealth, or emerging behavioral health AI startups shipping? That's the market signal that matters for Ensora.</li>
-  <li><strong>Maintain an "opportunities backlog":</strong> A living document of AI capabilities that don't have a home yet — when a new LLM capability drops (e.g., function calling, vision), I ask: where does this fit in our product?</li>
-  <li><strong>Partner with the ML team proactively:</strong> Monthly "emerging tech" conversations with the data science team — not to assign work, but to understand what they're excited about and what new tools they're evaluating.</li>
-</ul>
-I'm not trying to be a researcher. I'm trying to be the best-informed product owner in the room when an AI capability becomes relevant.`,
-    tip: "Mentioning specific sources (The Batch, Hugging Face) and competitor tracking shows real initiative — not generic preparation."
+  { sec:"Process & Ongoing Improvements", tags:["process"],
+    q:"You join Ensora as TPO and discover the AI backlog has no clear prioritization framework. What do you do in your first 30 days?",
+    a:`Listen first, act second. Week one: shadow the team, review the backlog without judgment, map the stakeholders, read past retros. Key question in every 1:1: "What slows you down the most?" No proposals yet — just context.<br><br>Week two: find the top three process gaps. Week three: propose a lightweight scoring model — business value times feasibility divided by effort — apply it retroactively to the top 20 items, and run a calibration session with the team. Week four: establish rituals — weekly backlog refinement, AI-specific story templates in Jira, first sprint with properly written ACs and a real DoD.<br><br>I don't come in with a transformation plan. I earn trust first, then improve process.`,
+    tip:"'Earn trust first, then improve process' — this closing line shows the leadership maturity engineers actually want in a TPO.",
+    learn:[{label:"30/60/90 day framework",key:"thirty_day"},{label:"SAFe & Agile",key:"safe_agile"}]
   },
-  {
-    section: "Process & Ongoing Improvements",
-    tag: ["process"],
-    q: "You join Ensora as TPO and discover the AI backlog has no clear prioritization framework. What do you do in your first 30 days?",
-    a: `I follow a listen-first, act-second approach:<br><br>
-<strong>Week 1 — Understand the landscape:</strong> Shadow the engineering team in standups, review existing backlog items without judgment, read available technical documentation and past sprint retros. Map the stakeholders and understand who influences prioritization today.<br><br>
-<strong>Week 2 — Identify the pain:</strong> 1:1s with the ML lead, a senior engineer, and a product stakeholder. Key question: <em>"What's the one thing about our current process that slows you down the most?"</em><br><br>
-<strong>Week 3 — Propose a lightweight framework:</strong> Introduce a scoring model: business value × technical feasibility ÷ effort. Apply it retroactively to the top 20 backlog items and facilitate a team session to calibrate.<br><br>
-<strong>Week 4 — Establish rituals:</strong> Weekly backlog refinement with the ML team, a shared Jira board with AI-specific story templates, and a first AI feature in a properly structured sprint.<br><br>
-I don't come in with a 100-day transformation plan. I earn trust first, then improve process.`,
-    tip: "'I earn trust first, then improve process' — this closing line shows leadership maturity that resonates with engineering teams."
-  }
 ];
 
-// ── Render ──────────────────────────────────────────────────────────────────
-const container = document.getElementById('card-list');
-let currentFilter = 'all';
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+const infoSVG = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
 
-function getTagClass(tag) {
-  const map = { ai: 'tag-ai', story: 'tag-story', trans: 'tag-trans', collab: 'tag-collab', process: 'tag-process' };
-  return map[tag] || 'tag-ai';
-}
-function getTagLabel(tag) {
-  const map = { ai: 'AI/ML', story: 'User Stories', trans: 'Vision↔Tech', collab: 'Collaboration', process: 'Process' };
-  return map[tag] || tag;
-}
+const clist = document.getElementById('clist');
+let activeFilter = 'all';
 
-function buildSection(title) {
-  const div = document.createElement('div');
-  div.className = 'section-divider';
-  div.innerHTML = `<div class="section-divider-line"></div><div class="section-title"><span class="num">//</span>${title}</div><div class="section-divider-line"></div>`;
-  return div;
+function tagClass(t){ return {ai:'t-ai',story:'t-story',trans:'t-trans',collab:'t-collab',process:'t-process'}[t]||'t-ai'; }
+function tagLabel(t){ return {ai:'AI/ML',story:'User Stories',trans:'Vision↔Tech',collab:'Collaboration',process:'Process'}[t]||t; }
+
+function sectionDiv(title){
+  const d=document.createElement('div');d.className='sdiv';
+  d.innerHTML=`<div class="sdiv-line"></div><div class="sdiv-label"><span class="sdiv-num">//</span>${title}</div><div class="sdiv-line"></div>`;
+  return d;
 }
 
-function buildCard(card, idx) {
-  const div = document.createElement('div');
-  div.className = 'card';
-  div.dataset.tags = card.tag.join(',');
-  div.dataset.idx = idx;
+function buildCard(card,idx){
+  const div=document.createElement('div');
+  div.className='card'; div.dataset.tags=card.tags.join(','); div.dataset.idx=idx;
 
-  const tagsHtml = card.tag.map(t => `<span class="tag ${getTagClass(t)}">${getTagLabel(t)}</span>`).join('');
-  const tipHtml = card.tip ? `<div class="pro-tip"><span class="pro-tip-label">⚡ Interview Tip</span>${card.tip}</div>` : '';
+  const tagsHtml=card.tags.map(t=>`<span class="tag ${tagClass(t)}">${tagLabel(t)}</span>`).join('');
+  const learnHtml=card.learn&&card.learn.length?`
+    <div class="learn-row">
+      <span class="learn-label">📖 Learn the concepts</span>
+      ${card.learn.map(l=>`<button class="learn-chip" data-key="${l.key}">${infoSVG}${l.label}</button>`).join('')}
+    </div>`:'';
+  const tipHtml=card.tip?`<div class="tip"><span class="tip-lbl">⚡ Interview tip</span>${card.tip}</div>`:'';
 
-  div.innerHTML = `
-    <div class="card-header">
-      <span class="card-number">Q${String(idx+1).padStart(2,'0')}</span>
-      <div class="card-question-block">
-        <div class="card-tags">${tagsHtml}</div>
-        <div class="card-question">${card.q}</div>
+  div.innerHTML=`
+    <div class="ch">
+      <span class="cnum">Q${String(idx+1).padStart(2,'0')}</span>
+      <div class="cmeta">
+        <div class="ctags">${tagsHtml}</div>
+        <div class="cq">${card.q}</div>
       </div>
+      <div class="ctoggle">▶</div>
     </div>
-    <div class="card-reveal-hint">
-      <div class="hint-icon">▶</div>
-      <span>Click to reveal answer</span>
+    <div class="ca">
+      <div class="a-label">// Model Answer</div>
+      <div class="a-text">${card.a}${learnHtml}${tipHtml}</div>
     </div>
-    <div class="card-answer">
-      <div class="answer-label">// Model Answer</div>
-      <div class="answer-text">${card.a}${tipHtml}</div>
-    </div>
-    <div class="card-footer">
-      <button class="mark-btn mastered" data-action="mastered">✓ Mastered</button>
-      <button class="mark-btn review" data-action="review">↺ Needs Review</button>
-    </div>
-  `;
+    <div class="cf">
+      <button class="mbtn m-mastered">✓ Mastered</button>
+      <button class="mbtn m-review">↺ Review again</button>
+    </div>`;
 
-  div.querySelector('.card-header').addEventListener('click', () => toggleCard(div));
-  div.querySelector('.card-reveal-hint').addEventListener('click', () => toggleCard(div));
-  div.querySelectorAll('.mark-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      handleMark(div, btn.dataset.action);
-    });
+  div.querySelector('.ch').addEventListener('click',()=>toggle(div));
+  div.querySelector('.m-mastered').addEventListener('click',e=>{e.stopPropagation();div.classList.toggle('mastered');updateStats();});
+  div.querySelector('.m-review').addEventListener('click',e=>{e.stopPropagation();div.classList.remove('mastered');updateStats();});
+  div.querySelectorAll('.learn-chip').forEach(btn=>{
+    btn.addEventListener('click',e=>{e.stopPropagation();openModal(btn.dataset.key);});
   });
-
   return div;
 }
 
-function toggleCard(div) {
-  const isRevealed = div.classList.toggle('revealed');
-  const hint = div.querySelector('.card-reveal-hint span');
-  if (hint) hint.textContent = isRevealed ? 'Click to hide answer' : 'Click to reveal answer';
+function toggle(div){
+  div.classList.toggle('open');
   updateStats();
 }
 
-function handleMark(div, action) {
-  if (action === 'mastered') {
-    div.classList.toggle('is-mastered');
-  } else {
-    div.classList.remove('is-mastered');
-  }
-  updateStats();
+function updateStats(){
+  const all=[...document.querySelectorAll('.card')];
+  const revealed=all.filter(c=>c.classList.contains('open')).length;
+  const mastered=all.filter(c=>c.classList.contains('mastered')).length;
+  const total=cards.length;
+  const pct=total?Math.round(mastered/total*100):0;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('s-rev').textContent=revealed;
+  document.getElementById('s-mas').textContent=mastered;
+  document.getElementById('s-pct').textContent=pct+'%';
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('ptxt').textContent=`${mastered} / ${total} mastered`;
 }
 
-function updateStats() {
-  const allVisible = [...document.querySelectorAll('.card')].filter(c => c.style.display !== 'none');
-  const revealed = allVisible.filter(c => c.classList.contains('revealed')).length;
-  const mastered = [...document.querySelectorAll('.card.is-mastered')].length;
-  const total = cards.length;
-  const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
-
-  document.getElementById('total-count').textContent = total;
-  document.getElementById('mastered-count').textContent = mastered;
-  document.getElementById('revealed-count').textContent = revealed;
-  document.getElementById('pct').textContent = pct + '%';
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = `${mastered} / ${total} mastered`;
-}
-
-function render() {
-  container.innerHTML = '';
-  let lastSection = '';
-  cards.forEach((card, idx) => {
-    if (card.section !== lastSection) {
-      container.appendChild(buildSection(card.section));
-      lastSection = card.section;
-    }
-    const el = buildCard(card, idx);
-    container.appendChild(el);
+function applyFilter(f){
+  activeFilter=f;
+  document.querySelectorAll('.card').forEach(c=>{
+    const tags=c.dataset.tags.split(',');
+    c.style.display=(f==='all'||tags.includes(f))?'':'none';
   });
-  applyFilter(currentFilter);
+  document.querySelectorAll('.sdiv').forEach(d=>{
+    let s=d.nextElementSibling,has=false;
+    while(s&&!s.classList.contains('sdiv')){if(s.style.display!=='none')has=true;s=s.nextElementSibling;}
+    d.style.display=has?'':'none';
+  });
+}
+
+function render(){
+  clist.innerHTML='';
+  let lastSec='';
+  cards.forEach((c,i)=>{
+    if(c.sec!==lastSec){clist.appendChild(sectionDiv(c.sec));lastSec=c.sec;}
+    clist.appendChild(buildCard(c,i));
+  });
+  applyFilter(activeFilter);
   updateStats();
 }
 
-function applyFilter(filter) {
-  currentFilter = filter;
-  document.querySelectorAll('.card').forEach(c => {
-    const tags = c.dataset.tags.split(',');
-    c.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
-  });
-  document.querySelectorAll('.section-divider').forEach(div => {
-    // check if section has visible cards
-    let sibling = div.nextElementSibling;
-    let hasVisible = false;
-    while (sibling && !sibling.classList.contains('section-divider')) {
-      if (sibling.style.display !== 'none') hasVisible = true;
-      sibling = sibling.nextElementSibling;
-    }
-    div.style.display = hasVisible ? '' : 'none';
-  });
-  updateStats();
-}
-
-// Filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    applyFilter(btn.dataset.filter);
+// filters
+document.querySelectorAll('.fb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); applyFilter(b.dataset.f);
   });
 });
+document.getElementById('exp-all').addEventListener('click',()=>{
+  document.querySelectorAll('.card').forEach(c=>{if(c.style.display!=='none')c.classList.add('open');});updateStats();
+});
+document.getElementById('col-all').addEventListener('click',()=>{
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('open'));updateStats();
+});
 
-// Expand / Collapse all
-document.getElementById('expand-all').addEventListener('click', () => {
-  document.querySelectorAll('.card').forEach(c => {
-    if (c.style.display !== 'none') {
-      c.classList.add('revealed');
-      const hint = c.querySelector('.card-reveal-hint span');
-      if (hint) hint.textContent = 'Click to hide answer';
-    }
-  });
-  updateStats();
-});
-document.getElementById('collapse-all').addEventListener('click', () => {
-  document.querySelectorAll('.card').forEach(c => {
-    c.classList.remove('revealed');
-    const hint = c.querySelector('.card-reveal-hint span');
-    if (hint) hint.textContent = 'Click to reveal answer';
-  });
-  updateStats();
-});
+// ─────────────────────────────────────────────
+// MODAL
+// ─────────────────────────────────────────────
+const overlay=document.getElementById('modal-overlay');
+const mclose=document.getElementById('mclose');
+
+function openModal(key){
+  const c=concepts[key];
+  if(!c)return;
+  document.getElementById('m-tag').textContent=c.tag;
+  document.getElementById('m-title').textContent=c.title;
+  document.getElementById('m-body').innerHTML=c.body;
+  document.getElementById('m-body').scrollTop=0;
+  overlay.classList.add('visible');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  overlay.classList.remove('visible');
+  document.body.style.overflow='';
+}
+mclose.addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 render();
 </script>
