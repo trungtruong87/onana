@@ -250,6 +250,7 @@ h1 em{font-style:normal;color:var(--accent)}
   <div class="eyebrow">Technical Round · Dev Team Interview</div>
   <h1>Ensora Health<br/><em>TPO Interview</em> Prep</h1>
   <p class="sub">20 flashcards covering AI depth, user stories, technical translation, cross-team collaboration, and process. Tap any card to reveal — hit ▶ to hear it as a live interview dialog.</p>
+  <div id="offline-notice" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(247,129,102,.1);border:1px solid rgba(247,129,102,.3);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#f78166;line-height:1.6;"></div>
 </header>
 
 <div class="stats">
@@ -543,28 +544,54 @@ let progressTimer = null;
 
 function loadVoices(){
   voices = synth.getVoices();
-  // Try to get two different voices for variety
-  // Prefer: one US male-ish, one US female-ish
+  if(!voices.length) return; // not ready yet
+
+  // When running from file://, only localService voices work (no network access).
+  // Always prefer localService:true voices so the file works offline.
+  const isFileProtocol = location.protocol === 'file:';
   const enVoices = voices.filter(v => v.lang.startsWith('en'));
-  // Interviewer: prefer a "Daniel", "Alex", "Google US English Male" or first available
-  const prefer1 = ['Google US English','Alex','Daniel','Microsoft David','en-US-Standard'];
-  const prefer2 = ['Samantha','Victoria','Karen','Google UK English Female','Moira','Tessa','en-US-Wavenet-F'];
-  
+  const localEn  = enVoices.filter(v => v.localService);
+  const pool     = (isFileProtocol && localEn.length) ? localEn : enVoices;
+
+  // Windows built-in voices: David (male), Zira (female), Mark, Hazel, etc.
+  // Mac built-in: Samantha, Alex, Victoria, Daniel, Karen …
+  const prefer1 = ['David','Mark','Alex','Daniel','Google US English','Microsoft David'];
+  const prefer2 = ['Zira','Hazel','Samantha','Victoria','Karen','Google UK English Female','Microsoft Zira'];
+
+  voiceInterviewer = null;
+  voiceCandidate   = null;
+
   for(const p of prefer1){
-    const v = enVoices.find(v=>v.name.includes(p));
-    if(v){voiceInterviewer=v;break;}
+    const v = pool.find(v => v.name.includes(p));
+    if(v){ voiceInterviewer = v; break; }
   }
   for(const p of prefer2){
-    const v = enVoices.find(v=>v.name.includes(p));
-    if(v){voiceCandidate=v;break;}
+    const v = pool.find(v => v.name.includes(p) && v !== voiceInterviewer);
+    if(v){ voiceCandidate = v; break; }
   }
-  // Fallbacks
-  if(!voiceInterviewer && enVoices.length>0) voiceInterviewer=enVoices[0];
-  if(!voiceCandidate && enVoices.length>1) voiceCandidate=enVoices[1];
-  else if(!voiceCandidate) voiceCandidate=voiceInterviewer;
+
+  // Fallbacks: pick any two distinct voices from the pool
+  if(!voiceInterviewer && pool.length > 0) voiceInterviewer = pool[0];
+  if(!voiceCandidate   && pool.length > 1) voiceCandidate   = pool[1];
+  if(!voiceCandidate)                      voiceCandidate   = voiceInterviewer;
+
+  // Show a subtle offline notice only when needed
+  const notice = document.getElementById('offline-notice');
+  if(notice){
+    if(isFileProtocol && localEn.length === 0){
+      notice.textContent = '⚠ No offline voices found. Open this file in Chrome/Edge and make sure Windows TTS voices are installed in Settings → Time & Language → Speech.';
+      notice.style.display = 'block';
+    } else if(isFileProtocol){
+      notice.textContent = `🔊 Offline mode — using local voice: ${voiceInterviewer?.name || 'default'}`;
+      notice.style.display = 'block';
+    } else {
+      notice.style.display = 'none';
+    }
+  }
 }
 
-synth.addEventListener('voiceschanged',loadVoices);
+// Voices load async in Chrome — listen for the event AND call once immediately
+synth.addEventListener('voiceschanged', loadVoices);
 loadVoices();
 
 function stripHtml(html){
@@ -607,11 +634,12 @@ function playFromQueue(){
   utter.rate = parseFloat(document.getElementById('ab-speed').value)||1;
   utter.pitch = item.segment==='q' ? 0.95 : 1.05;
 
+  utter.lang = 'en-US'; // always set lang as base fallback
   if(item.segment==='q'){
-    utter.voice = voiceInterviewer;
+    if(voiceInterviewer) utter.voice = voiceInterviewer;
     utter.volume = 1;
   } else {
-    utter.voice = voiceCandidate;
+    if(voiceCandidate) utter.voice = voiceCandidate;
     utter.volume = 1;
   }
 
