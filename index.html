@@ -83,6 +83,8 @@ h1 em{font-style:normal;color:var(--accent)}
 .t-growth{background:rgba(251,113,133,.1);color:#fb7185}
 .t-concepts{background:rgba(99,102,241,.1);color:#818cf8}
 .t-tech{background:rgba(14,165,233,.1);color:#0ea5e9}
+.t-daily{background:rgba(16,185,129,.12);color:#059669}
+.t-pipelines{background:rgba(99,102,241,.12);color:#7c3aed}
 .cq{font-family:'Syne',sans-serif;font-weight:600;font-size:15.5px;line-height:1.45;color:var(--text)}
 .ctoggle{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:1px solid var(--border);color:var(--muted);font-size:11px;flex-shrink:0;transition:all .2s;margin-top:2px}
 .card.open .ctoggle{background:var(--accent2);border-color:var(--accent2);color:#0d1117;transform:rotate(90deg)}
@@ -117,6 +119,32 @@ h1 em{font-style:normal;color:var(--accent)}
 .ex-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6b3fa0;margin-bottom:8px;font-weight:500;}
 .ex-body{font-size:13px;color:#b0bac8;line-height:1.75;font-style:italic;}
 .ex-body b{color:var(--text);font-style:normal;}
+
+/* ── CHECKLIST PANEL ── */
+.cl-panel{margin-top:20px;display:flex;flex-direction:column;gap:14px;}
+.cl-section{border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+.cl-section-header{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none;transition:opacity .18s;}
+.cl-section-header:hover{opacity:.85;}
+.cl-section-icon{font-size:18px;flex-shrink:0;}
+.cl-section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;flex:1;}
+.cl-section-arrow{font-size:11px;transition:transform .22s;color:inherit;opacity:.7;}
+.cl-section.open .cl-section-arrow{transform:rotate(90deg);}
+.cl-body{display:none;padding:0 16px 14px;}
+.cl-section.open .cl-body{display:block;}
+.cl-group{margin-top:12px;}
+.cl-group-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:8px;opacity:.8;}
+.cl-items{display:flex;flex-direction:column;gap:0;}
+.cl-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.cl-item:last-child{border-bottom:none;}
+.cl-checkbox{width:16px;height:16px;border-radius:3px;border:1.5px solid currentColor;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.6;transition:all .18s;}
+.cl-checkbox.checked{opacity:1;background:currentColor;}
+.cl-checkbox.checked::after{content:'✓';font-size:9px;color:#fff;font-weight:bold;}
+.cl-item-text{font-size:12.5px;line-height:1.6;color:#c3cdd9;flex:1;}
+.cl-progress{display:flex;align-items:center;gap:10px;padding:10px 16px;border-top:1px solid var(--border);background:rgba(255,255,255,.02);}
+.cl-prog-bar{flex:1;height:3px;background:var(--faint);border-radius:2px;overflow:hidden;}
+.cl-prog-fill{height:100%;border-radius:2px;transition:width .3s ease;}
+.cl-prog-txt{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);}
+
 .tip{margin-top:14px;padding:11px 13px;background:rgba(247,129,102,.07);border-left:2px solid var(--accent3);border-radius:0 6px 6px 0;font-size:12.5px;color:var(--muted);line-height:1.65;font-family:'IBM Plex Mono',monospace}
 .tip-lbl{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent3);margin-bottom:4px}
 
@@ -263,7 +291,7 @@ h1 em{font-style:normal;color:var(--accent)}
 </header>
 
 <div class="stats">
-  <div class="stat"><div class="sv" id="s-total">37</div><div class="sl">Questions</div></div>
+  <div class="stat"><div class="sv" id="s-total">45</div><div class="sl">Questions</div></div>
   <div class="stat"><div class="sv" id="s-rev">0</div><div class="sl">Reviewed</div></div>
   <div class="stat"><div class="sv" id="s-mas">0</div><div class="sl">Mastered</div></div>
   <div class="stat"><div class="sv" id="s-pct">0%</div><div class="sl">Progress</div></div>
@@ -271,7 +299,7 @@ h1 em{font-style:normal;color:var(--accent)}
 
 <div class="prog-row">
   <div class="prog-bg"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
-  <span class="prog-txt" id="ptxt">0 / 37 mastered</span>
+  <span class="prog-txt" id="ptxt">0 / 45 mastered</span>
 </div>
 
 <div class="filters">
@@ -284,6 +312,8 @@ h1 em{font-style:normal;color:var(--accent)}
   <button class="fb" data-f="growth">Self-Awareness</button>
   <button class="fb" data-f="tech">APIs/DB/Cloud</button>
   <button class="fb" data-f="concepts">AI Concepts</button>
+  <button class="fb" data-f="daily">Daily Work</button>
+  <button class="fb" data-f="pipelines">AI Pipelines</button>
 </div>
 
 <div class="toolbar">
@@ -719,6 +749,255 @@ const cards = [
    tip:"Naming the real challenge and having a real plan is a green flag. Interviewers are wary of candidates with no gaps.",
    learn:[{label:"HIPAA & AI basics",key:"hipaa_ai"},{label:"30/60/90 day framework",key:"thirty_day"}]},
 
+
+  // ══ SECTION 8: DAILY WORK AS AI TPO ══════════════════════════════════════
+  {sec:"Daily Work as AI TPO",tags:["daily"],
+   q:"What is your approach to handling daily work as an AI Product Owner?",
+   a:"I think about my daily work in three layers: before anything is built, while it's being built, and after it ships. Before — I make sure every story is technically sound, every AI feature is scoped through a structured feasibility check, and nothing enters a sprint on faith. During — I'm removing blockers same day, protecting the sprint from scope changes, and being a same-day decision maker for the engineering team. After — I'm monitoring AI model performance, catching drift early, and communicating honestly with stakeholders. The common thread across all three is that I'm not waiting to be asked — I'm proactively ahead of the team at every stage.",
+   ah:`I think about daily work in three layers: <b>before anything is built</b>, <b>while it's being built</b>, and <b>after it ships</b>.<br><br>That structure keeps me ahead of the team — not reacting, but clearing the runway.`,
+   example:`The best way I can show this is to walk through a real day. In the morning I'm in Jira — making sure stories two sprints out are refining cleanly, nothing has an open question. In standup I'm listening for blockers and resolving them before end of day. In the afternoon I'm in a story refinement session with a data scientist asking: what's the acceptable precision threshold, what happens when the model is unavailable, does this vendor have a BAA? By end of week I'm reviewing the monitoring dashboard to see if our AI feature's acceptance rate is holding. That rhythm — preparation, protection, monitoring — is how I stay effective in a role where the stakes of getting it wrong are clinical.`,
+   tip:"Structure your answer in the three layers: Before (prep/scoping), During (sprint protection), After (monitoring). It shows systems thinking, not just task execution.",
+   learn:[{label:"TPO vs PO explained",key:"tpo_role"},{label:"AI feature lifecycle",key:"ai_lifecycle"},{label:"Definition of Done for AI",key:"definition_of_done"}],
+   checklist:{
+     sections:[
+       {
+         icon:"🔍",
+         title:"BEFORE — Scoping & Story Readiness",
+         color:"#0D7377",
+         bg:"rgba(13,115,119,0.08)",
+         groups:[
+           {
+             label:"Before any Epic / Feature discussion",
+             items:[
+               "What specific user problem are we solving? Can I state it in one sentence?",
+               "Why does this require AI? Could a rules-based system solve it instead?",
+               "Who is the primary user — clinician, biller, admin? What does their current workflow look like?",
+               "SCOPE check: Problem → Capability Fit (NLP/ML/LLM?) → Operational Readiness → Practical Feasibility → Execution Risks",
+               "Do we have enough clean, labeled data? Does any of it contain PHI?",
+               "Does the AI vendor have a signed BAA?",
+               "What's the cost per call × expected daily users?"
+             ]
+           },
+           {
+             label:"Story READY checklist — before sprint planning",
+             items:[
+               "User story written: clear role, goal, and reason",
+               "ACs in Given-When-Then — no vague words like 'accurate', 'fast', 'seamless'",
+               "Happy path AC written AND every error/failure path AC written",
+               "All external dependencies identified — resolved or risk-flagged",
+               "Story estimated by the engineering team, not assigned by me",
+               "Zero open design or technical questions remain",
+               "AI: model evaluation threshold defined (not just 'it should work')",
+               "AI: fallback behavior when model is unavailable or low-confidence defined",
+               "AI: human review requirement specified if output touches clinical/financial data",
+               "PHI handling confirmed — encryption, audit logging, data residency",
+               "BAA confirmed with any AI vendor being called"
+             ]
+           },
+           {
+             label:"AC quality self-check",
+             items:[
+               "Can a developer start coding from this AC without asking me anything?",
+               "Can QA write a test case directly from this AC without interpretation?",
+               "Have I specified exact thresholds, not approximations? (≥85% precision, not 'high accuracy')",
+               "Have I covered what happens when things go wrong — timeouts, low confidence, API failures?",
+               "Have I specified the user-facing message for each error state?",
+               "Have I included non-functional requirements — latency SLA, uptime, data residency?",
+               "Have I specified which role can access this feature (RBAC)?",
+               "Does PHI appear anywhere it shouldn't — logs, error messages, URLs?"
+             ]
+           }
+         ]
+       },
+       {
+         icon:"⚙️",
+         title:"DURING — Sprint Execution",
+         color:"#E67E22",
+         bg:"rgba(230,126,34,0.08)",
+         groups:[
+           {
+             label:"Sprint protection rules",
+             items:[
+               "Scope change mid-sprint? Answer is no — log it, prioritize next sprint",
+               "Scope discovery (team found something new)? Drop something else to protect the commitment",
+               "Never fill 100% of sprint capacity — protect buffer for bugs and reviews",
+               "Developer needs a product decision? Respond same day, not end of week",
+               "Tech debt gets story points — it is never invisible backlog"
+             ]
+           },
+           {
+             label:"Working with ML/Data Science teams",
+             items:[
+               "What ML task type is this — classification, generation, retrieval, regression?",
+               "Are we prompting a pretrained model, using RAG, or training from scratch?",
+               "What's the data situation — volume, quality, labeling status?",
+               "What's the latency expectation at p95? Does the UX support that?",
+               "Is this supervised learning? If so, where is the labeled data coming from?",
+               "Are prompts version-controlled alongside code?",
+               "How are we testing prompt changes before they go to production?",
+               "What monitoring will be in place at launch — not after?"
+             ]
+           },
+           {
+             label:"QA involvement",
+             items:[
+               "QA is in refinement — flagging testability issues before dev starts",
+               "Every AC is directly convertible into a test case",
+               "QA sign-off is in the Definition of Done — not optional",
+               "If bugs appear late → sprint planning problem, not a QA problem"
+             ]
+           }
+         ]
+       },
+       {
+         icon:"🚀",
+         title:"AFTER — Launch & Definition of Done",
+         color:"#14A085",
+         bg:"rgba(20,160,133,0.08)",
+         groups:[
+           {
+             label:"AI Definition of Done — extended checklist",
+             items:[
+               "✓ Code reviewed and approved",
+               "✓ Unit and integration tests passing in CI",
+               "✓ Deployed to staging, ACs verified by QA",
+               "✓ Documentation updated",
+               "AI: Model evaluation report — offline metrics meet the threshold in AC",
+               "AI: Domain expert (clinician, biller) has reviewed a structured sample of outputs",
+               "AI: Monitoring dashboard live and tracking key metrics at launch — not planned for later",
+               "AI: Fallback path tested explicitly — confirmed behavior when model is slow, unavailable, low-confidence",
+               "AI: Compliance clearance — PHI handling, audit logging, encryption reviewed",
+               "AI: Feature is behind a feature flag for staged rollout",
+               "AI: Prompt version logged (prompts are code)",
+               "AI: Hallucination rate baseline documented"
+             ]
+           },
+           {
+             label:"Post-launch monitoring questions",
+             items:[
+               "What metrics are we tracking to detect model drift?",
+               "What threshold triggers a retraining or remediation cycle?",
+               "How are user corrections or rejections being captured for model improvement?",
+               "Is the AI model acceptance rate holding since launch?",
+               "Have we had any hallucination or PHI exposure incidents?"
+             ]
+           }
+         ]
+       },
+       {
+         icon:"🏥",
+         title:"ALWAYS — HIPAA & Healthcare",
+         color:"#C0392B",
+         bg:"rgba(192,57,43,0.08)",
+         groups:[
+           {
+             label:"Check on every feature, every sprint",
+             items:[
+               "Does this feature touch PHI (patient names, diagnoses, session content, billing data)?",
+               "Is PHI encrypted in transit (TLS) and at rest (AES-256)?",
+               "Does every PHI access generate an audit log entry?",
+               "Does the user only see records within their own caseload (RBAC)?",
+               "Does the AI vendor processing PHI have a signed BAA?",
+               "Does PHI stay in US AWS/Azure/GCP regions — not routed through global CDN?",
+               "Are there consent requirements for using session data to train the model?",
+               "Does PHI appear in any log files, error messages, or URLs?"
+             ]
+           }
+         ]
+       },
+       {
+         icon:"🧠",
+         title:"QUICK REF — AI Concept Cheat Sheet",
+         color:"#6B3FA0",
+         bg:"rgba(107,63,160,0.08)",
+         groups:[
+           {
+             label:"Terms and when they matter",
+             items:[
+               "LLM — predicts and generates language; limitations: hallucination, knowledge cutoff, no memory",
+               "NLP — extracts structured meaning from text; use for classification, entity extraction",
+               "RAG — LLM + real-time document retrieval; use when info changes frequently or must be auditable",
+               "Fine-tuning — retraining model on your data; use when prompting plateaus and domain style matters",
+               "Prompt engineering — crafting LLM instructions; prompts are code — version control and test them",
+               "Hallucination — LLM generates confident but wrong content; always require human review for clinical output",
+               "Model drift — model degrades as real-world data changes; set monitoring thresholds at launch",
+               "Embeddings — text converted to numbers capturing meaning; powers retrieval in RAG systems",
+               "Vector DB — database of embeddings for semantic search; infrastructure for any RAG feature",
+               "Context window — max tokens an LLM can process per call; drives chunking strategy and cost",
+               "Token cost formula — users × tokens/call × cost per 1K tokens; run before any LLM feature enters roadmap",
+               "Feature flag — ship code dark, activate for % of users; staged rollout and instant rollback",
+               "AI agent — LLM that takes autonomous actions; requires guardrails, audit logs, phased autonomy",
+               "Precision — of what model flagged, how many were right; use when false positives are costly",
+               "Recall — of all real positives, how many did model find; in healthcare, prioritize recall",
+               "p95 latency — 95th percentile response time; your SLA benchmark for real-time AI features",
+               "ACID — DB transactions that are all-or-nothing; use SQL for billing and financial data",
+               "BAA — Business Associate Agreement with AI vendors; required for any vendor processing PHI"
+             ]
+           }
+         ]
+       }
+     ]
+   }
+  },
+
+
+  // ══ SECTION 9: AI PIPELINES — WHAT A TPO MUST UNDERSTAND ═════════════════
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"What is an AI pipeline and why does a TPO need to understand it?",
+   a:"An AI pipeline is the end-to-end sequence of steps that takes raw data or a user request and turns it into a useful AI output. It's not a single model doing magic — it's a chain of components: data flows in, gets processed and transformed, passes through one or more models, and produces an output that your users actually see. As a TPO, I need to understand pipelines because each step in that chain is a potential failure point, a cost center, and a product requirement. If I write a story for an AI feature without understanding the pipeline it depends on, I'm writing an incomplete story. The pipeline is the system — and I need to own the product requirements at every stage of it.",
+   ah:`An AI pipeline is the end-to-end sequence of steps that takes raw data or a user request and turns it into a useful AI output. It's not one model doing magic — it's a <b>chain of components</b>, each of which can fail, cost money, or drift over time.<br><br>As a TPO, I need to understand pipelines because:<ul><li>Each step is a potential failure point I need to write fallback ACs for</li><li>Each step has latency and cost implications I need to estimate before the roadmap</li><li>Monitoring requirements apply at multiple stages — not just the final output</li><li>Data quality issues upstream destroy output quality downstream</li></ul>The pipeline is the system. I need to own product requirements at every stage of it.`,
+   example:`When a PM asked me to scope an "AI session note" feature, my first question wasn't about the model — it was: "Walk me through the full pipeline from the therapist ending a session to a draft note appearing in the UI." That question revealed four distinct stages the team hadn't fully documented: audio transcription, transcript chunking, LLM generation, and the post-processing that stripped PHI from the raw output before display. Each stage had its own latency budget, failure mode, and compliance requirement. Without understanding the pipeline, I would have written one story. Understanding it, I wrote six — properly scoped, properly sequenced, each with its own Definition of Done.`,
+   tip:"If someone asks what pipeline you'd use for a feature, describe the stages — not just the model. That's what shows pipeline fluency.",
+   learn:[{label:"AI feature lifecycle",key:"ai_lifecycle"},{label:"RAG explained",key:"rag"}]},
+
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"What is a RAG pipeline and what does a TPO need to know about each stage?",
+   a:"RAG stands for Retrieval-Augmented Generation. The pipeline has two main phases. The first is the ingestion phase — this is where you take your source documents, split them into chunks, convert those chunks into vector embeddings, and store them in a vector database. This runs offline whenever your knowledge base updates. The second is the query phase — this is real-time: when a user asks a question, the system embeds the query, searches the vector database for the most similar chunks, injects those chunks into an LLM prompt as context, and the LLM generates an answer grounded in your actual documents. As a TPO, I care about three things in a RAG pipeline: retrieval quality, which I test separately from generation quality; knowledge base freshness, which means the ingestion pipeline needs to run on a schedule I define as a product requirement; and audit traceability, because in healthcare every answer needs to be traceable back to its source document.",
+   ah:`RAG has two phases:<br><br><b>Phase 1 — Ingestion (offline):</b><ul><li>Load source documents (PDFs, policies, clinical notes)</li><li>Split into chunks (size and overlap are product decisions — too big misses detail, too small loses context)</li><li>Convert chunks to vector embeddings using an embedding model</li><li>Store embeddings in a vector database (Pinecone, Weaviate, pgvector)</li><li>Re-run whenever the knowledge base updates</li></ul><b>Phase 2 — Query (real-time):</b><ul><li>User asks a question</li><li>Embed the query using the same embedding model</li><li>Retrieve the top-k most similar document chunks from the vector DB</li><li>Inject retrieved chunks into the LLM prompt as context</li><li>LLM generates an answer grounded in those chunks</li></ul><b>TPO requirements at each stage:</b> retrieval quality tested independently, ingestion frequency defined as a product SLA, audit trail from answer back to source document.`,
+   example:`We were building a payer policy Q&A assistant using RAG. The first version gave confident but wrong answers. When I ran a retrieval evaluation — 50 known questions with known correct source documents — the retrieval accuracy was only 58%. The LLM was answering from the wrong context. Root cause: our chunk size was too large (full policy sections), so the embedding model couldn't distinguish between similar-looking policy clauses. We reduced chunk size to 300 tokens with 50-token overlap. Retrieval accuracy jumped to 87%. The lesson for me as TPO: chunk size is a product decision, not just an engineering parameter. It directly determines the quality of every answer the user sees.`,
+   tip:"'Retrieval quality and generation quality are two separate problems' — say this. It shows you understand RAG failure modes.",
+   learn:[{label:"RAG explained",key:"rag"},{label:"Embeddings & vector search",key:"embeddings_vectors"}]},
+
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"What is an LLM inference pipeline and what are the TPO's responsibilities across it?",
+   a:"An LLM inference pipeline is the sequence of steps that happens in real-time every time a user triggers an AI feature. It typically goes: the user's input arrives, gets preprocessed and validated, a prompt is assembled by combining the user input with system instructions and any retrieved context, that prompt is sent to the LLM API, the model generates a response, the response gets post-processed and validated, and the final output is displayed to the user. As a TPO, I'm responsible for defining the product requirements at each stage: what input validation happens before we even call the model, what the prompt structure is and who owns prompt versioning, what the latency SLA is at the API call stage, what post-processing rules apply to the output, and what the fallback behavior is at any stage that can fail.",
+   ah:`The LLM inference pipeline in real-time:<br><br><b>1. Input → Preprocessing:</b> Validate and sanitize user input. Strip or mask PHI before it leaves your system if needed. Enforce input length limits (token budget).<br><b>2. Prompt assembly:</b> Combine system prompt + user input + retrieved context (if RAG). This is where prompt versioning matters — a changed prompt changes behavior.<br><b>3. LLM API call:</b> Send assembled prompt to the model. This is your latency and cost bottleneck. Track p95 response time and tokens per call.<br><b>4. Output post-processing:</b> Parse the model's response. Validate format (is it the JSON structure we expected?). Apply confidence thresholds. Strip any PHI that leaked into the output.<br><b>5. Delivery to user:</b> Display output with appropriate UI affordances (AI-generated label, edit capability, human review prompt).<br><br><b>TPO owns:</b> input validation rules, prompt versioning policy, latency SLA, post-processing logic, fallback at every stage.`,
+   example:`On a session documentation feature, the LLM was occasionally returning responses in the wrong format — plain prose instead of the structured JSON we needed to populate the four SOAP note fields. This wasn't caught until a therapist reported that their note interface was blank. The root cause was that our output post-processing had no validation step — we were passing the raw LLM response directly to the UI. I added an AC to our Definition of Done: "If the LLM response does not conform to the expected JSON schema, the system must fall back to a blank template with an error indicator — never a blank screen." That one AC prevented a class of silent failures.`,
+   tip:"Knowing the pipeline stages lets you write ACs for each one — not just the happy path end state. That's what separates a TPO from a PO.",
+   learn:[{label:"LLMs explained in depth",key:"llm_deep"},{label:"Tokens & context windows",key:"tokens_context"}]},
+
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"What is a fine-tuning pipeline and when would a TPO recommend it over prompting or RAG?",
+   a:"A fine-tuning pipeline is the process of taking a pretrained model and continuing to train it on your own labeled examples so it learns your domain's specific patterns, vocabulary, and output style. The pipeline has seven stages: collect and curate your domain-specific data, clean and label it, split it into training and validation sets, select and load a base pretrained model, configure the training environment and hyperparameters, run the fine-tuning job, evaluate the fine-tuned model on a holdout test set, and deploy it. As a TPO, I think of fine-tuning as a significant investment decision — not a default. I'd recommend it over prompting when prompt engineering has plateaued and quality still isn't acceptable, and over RAG when the problem isn't about knowledge but about consistent output style or format.",
+   ah:`A fine-tuning pipeline adapts a pretrained model on your specific domain data. The stages:<br><br><b>1. Data collection & curation:</b> Gather high-quality domain-specific examples (input + expected output pairs). This is usually the bottleneck.<br><b>2. Data cleaning & labeling:</b> Remove noise, fix inconsistencies. For healthcare: ensure PHI is handled correctly — BAA required for any annotation service.<br><b>3. Train/validation/test split:</b> Divide data so you can evaluate fairly on data the model never saw.<br><b>4. Base model selection:</b> Choose a pretrained model appropriate for your task size and domain.<br><b>5. Training configuration:</b> Set hyperparameters (learning rate, batch size). Use parameter-efficient methods like LoRA to reduce cost.<br><b>6. Fine-tuning run:</b> Train the model on your labeled data. Monitor for overfitting.<br><b>7. Evaluation & deployment:</b> Evaluate on holdout test set. Compare to your baseline. Deploy only if it beats the baseline by a meaningful margin.<br><br><b>TPO decision rule:</b> Try prompting first → then RAG → then fine-tuning. Each step increases cost and complexity.`,
+   example:`We were building a feature that generated session progress notes in a very specific clinical format required by our payer network. Prompt engineering got us to 70% accuracy — therapists were still editing heavily. We tried RAG to retrieve similar historical notes as examples — accuracy improved to 79% but the format was still inconsistent. The ML team proposed fine-tuning on 2,000 clinician-approved example notes. I approved it, but before we started I asked two TPO questions: "Who owns the labeled data, and what's our retraining plan when formats change?" We discovered we had no data annotation workflow and no compliance sign-off for using historical session notes for training. Those two gaps added 6 weeks to the project — weeks I was glad we caught before the fine-tuning job started rather than after.`,
+   tip:"The two questions to always ask before approving fine-tuning: 'Where is the labeled data coming from?' and 'What's the retraining plan?' They expose hidden work every time.",
+   learn:[{label:"Fine-tuning vs prompting",key:"fine_tuning"},{label:"Training data & labeling",key:"data_labeling"}]},
+
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"What is a prompt engineering pipeline and how does a TPO manage it?",
+   a:"A prompt engineering pipeline is the structured process of designing, testing, versioning, and iterating on the instructions you give an LLM to get reliable outputs. Most teams treat prompts as an afterthought — someone writes a prompt, it goes in the code, and nobody touches it again. As a TPO, I treat prompts as a managed artifact: they're written collaboratively between product, engineering, and domain experts; they're stored in version control alongside code; changes go through a review and regression testing process; and there's a clear escalation path when prompt improvements plateau. The pipeline stages are: define the task and output format, write an initial prompt, test against a representative sample of real inputs, measure output quality against defined criteria, iterate, and only ship when the quality threshold is met.",
+   ah:`A prompt engineering pipeline manages prompts as production artifacts — not one-time configurations.<br><br><b>Stages:</b><br><b>1. Task definition:</b> Define exactly what the prompt must produce — format, tone, constraints, edge cases to handle.<br><b>2. Prompt drafting:</b> Write the initial prompt collaboratively — product defines the output requirements, domain experts validate clinical accuracy, engineering defines format constraints.<br><b>3. Test set evaluation:</b> Run the prompt against a representative test set of real inputs. Score outputs against defined quality criteria.<br><b>4. Iteration:</b> Refine the prompt based on failure patterns. Add few-shot examples for edge cases. Add output format constraints. Add chain-of-thought instructions for complex reasoning tasks.<br><b>5. Regression testing:</b> Before any prompt change ships, it must pass all existing test cases — not just the new ones.<br><b>6. Version control & deployment:</b> Prompt changes are code changes. They go through PR review, merge, and deployment like any other code change.<br><br><b>TPO owns:</b> the test set definition, the quality threshold, and the escalation criteria from prompting to fine-tuning.`,
+   example:`Our LLM-generated billing code suggestions were working well for adult outpatient therapy. When we expanded to child and adolescent services, suggestion quality dropped significantly. A developer's instinct was to immediately jump to fine-tuning. I asked to run the prompt engineering pipeline first: we added 30 pediatric session examples to our test set, identified that the prompt had no instructions about age-specific coding modifiers, and added two sentences to the system prompt addressing pediatric billing context. Quality improved from 61% to 84% on the pediatric test set in two days of prompt iteration — no fine-tuning needed, no new training data, no model changes. Total cost: a developer's two days versus six weeks of fine-tuning work. Always exhaust the prompt engineering pipeline before escalating.`,
+   tip:"'Prompts are code — they need version control, review, and regression testing' is your north star for this topic. Use it word for word.",
+   learn:[{label:"Prompt engineering techniques",key:"prompt_engineering"},{label:"Fine-tuning vs prompting",key:"fine_tuning"}]},
+
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"What is an NLP pipeline and how does it differ from an LLM pipeline?",
+   a:"An NLP pipeline is a sequence of traditional text processing steps that transform raw text into structured, meaningful data. It typically goes: text comes in, gets cleaned and normalized, is split into tokens or sentences, gets analyzed for grammar and linguistic structure, and then one or more specialized models extract specific information — entities, sentiment, intent, or classifications. Each step is deterministic and purpose-built for a specific task. An LLM pipeline, by contrast, collapses most of those steps into a single model that handles everything probabilistically from a natural language instruction. The key difference is precision versus flexibility: NLP pipelines are faster, cheaper, more accurate for narrow well-defined tasks, and fully auditable. LLM pipelines are more flexible, handle ambiguous inputs better, and can generate new text — but they're more expensive, slower, and less predictable. In a healthcare product like Ensora's, I'd use an NLP pipeline to extract structured clinical data from notes and an LLM pipeline to generate new narrative text from that structured data.",
+   ah:`An NLP pipeline processes raw text through a sequence of <b>deterministic, specialized steps</b>:<br><ul><li><b>Text ingestion & cleaning:</b> Normalize whitespace, fix encoding, remove noise</li><li><b>Tokenization:</b> Split text into words, subwords, or sentences</li><li><b>POS tagging:</b> Label each token's grammatical role (noun, verb, etc.)</li><li><b>Named Entity Recognition (NER):</b> Identify and classify entities — diagnoses, medications, dates, names</li><li><b>Classification/extraction:</b> Label the text or extract specific structured data</li></ul>An LLM pipeline by contrast handles all of this probabilistically in one model call.<br><br><b>When to use each:</b><br><em>NLP pipeline:</em> narrow, well-defined extraction tasks; high accuracy required; cost and latency sensitive; full auditability needed.<br><em>LLM pipeline:</em> open-ended generation; ambiguous or variable inputs; multi-step reasoning; output needs to be human-readable prose.`,
+   example:`At a behavioral health platform we had two separate pipelines running on session transcripts. The NLP pipeline ran first: a BERT-based NER model extracted clinical entities — diagnoses, medications, treatment goals, and CPT codes mentioned in the session. It ran in under 100ms, cost fractions of a cent per transcript, and was 94% accurate. The results fed into the LLM pipeline: the extracted entities, plus the session structure, were assembled into a prompt and sent to an LLM which generated the narrative SOAP note. The LLM saw clean, structured inputs — not raw unprocessed transcript text. Using NLP first made the LLM's job dramatically easier and the output quality significantly better. The lesson: NLP and LLM pipelines are not competitors. They're teammates.`,
+   tip:"'NLP and LLM pipelines are teammates, not competitors' — use this framing. It shows architectural maturity.",
+   learn:[{label:"NLP explained in depth",key:"nlp_deep"},{label:"LLMs explained in depth",key:"llm_deep"}]},
+
+  {sec:"AI Pipelines — What a TPO Must Understand",tags:["pipelines"],
+   q:"How do you think about monitoring and maintenance across all these AI pipelines as a TPO?",
+   a:"Every AI pipeline degrades over time. The world changes — new billing codes appear, clinical documentation styles evolve, payer policies update — and your pipeline doesn't automatically update with it. My rule as a TPO is that monitoring is not an afterthought: it ships with the feature, not after it. For every pipeline I own, I define three things upfront. First, the baseline: what does good performance look like at launch, measured across each stage. Second, the alert thresholds: what numbers trigger an investigation rather than waiting for a user complaint. Third, the remediation path: is this a prompt fix, a knowledge base re-index, a retraining cycle, or a rules update? Knowing the remediation path before the problem happens means we respond in hours, not weeks.",
+   ah:`Every AI pipeline degrades over time. My rule: monitoring ships <em>with</em> the feature, not after.<br><br><b>What I define upfront for every pipeline:</b><br><br><b>RAG pipeline monitoring:</b><ul><li>Retrieval accuracy (recall@k) — are we returning the right documents?</li><li>Knowledge base freshness — when was the index last updated?</li><li>Answer groundedness — is the LLM citing retrieved documents or hallucinating?</li></ul><b>LLM inference pipeline monitoring:</b><ul><li>p95 latency per stage</li><li>Token cost per call (and trend over time)</li><li>Output format validation pass rate</li><li>Human acceptance rate — are users editing or rejecting AI outputs?</li></ul><b>Fine-tuned model monitoring:</b><ul><li>Accuracy on holdout test set — run weekly, not just at launch</li><li>Distribution shift — are incoming inputs starting to look different from training data?</li></ul><b>NLP pipeline monitoring:</b><ul><li>Entity extraction precision and recall on sampled outputs</li><li>Processing latency</li><li>Error rate on malformed or unusual inputs</li></ul>Alert threshold → investigation → remediation path. Define all three before launch.`,
+   example:`Three weeks after launching our RAG-based payer policy assistant, user satisfaction scores dropped noticeably. Our monitoring dashboard showed that knowledge base freshness had slipped — the ingestion pipeline had failed silently for 11 days after a schema change in how payer PDFs were formatted. The retrieval was returning outdated policy sections from the old index. Because we had monitoring in place, we caught this in 3 days rather than discovering it from escalating user complaints. The fix was a re-index with an updated PDF parser. But the real fix was adding an alert: "If the knowledge base has not been successfully re-indexed in more than 48 hours, send a Slack alert to the ML on-call." That alert would have caught the failure in hours. Monitoring tells you what broke. Alerts tell you before users do.`,
+   tip:"'Monitoring tells you what broke. Alerts tell you before users do.' Use this contrast — it shows operational maturity.",
+   learn:[{label:"Model drift explained",key:"model_drift"},{label:"Definition of Done for AI",key:"definition_of_done"}]},
+
 ];
 
 // ─── AUDIO ENGINE ─────────────────────────────────────────────────────────────
@@ -1011,8 +1290,8 @@ const playSVG=`<svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l8 4.
 const clist=document.getElementById('clist');
 let activeFilter='all';
 
-function tagClass(t){return {ai:'t-ai',story:'t-story',trans:'t-trans',collab:'t-collab',process:'t-process'}[t]||'t-ai';}
-function tagLabel(t){return {ai:'AI/ML',story:'User Stories',trans:'Vision↔Tech',collab:'Collaboration',process:'Process'}[t]||t;}
+function tagClass(t){return {role:'t-role',dev:'t-dev',ai:'t-ai',collab:'t-collab',growth:'t-growth',concepts:'t-concepts',tech:'t-tech',daily:'t-daily',pipelines:'t-pipelines',story:'t-story',trans:'t-trans',process:'t-process'}[t]||'t-ai';}
+function tagLabel(t){return {role:'TPO Role',dev:'Traditional Dev',ai:'AI Product',collab:'Collaboration',growth:'Self-Awareness',concepts:'AI Concepts',tech:'APIs/DB/Cloud',daily:'Daily Work',pipelines:'AI Pipelines',story:'User Stories',trans:'Vision↔Tech',process:'Process'}[t]||t;}
 
 function sectionDiv(title){
   const d=document.createElement('div');d.className='sdiv';
@@ -1032,6 +1311,7 @@ function buildCard(card,idx){
     </div>`:'';
   const tipHtml=card.tip?`<div class="tip"><span class="tip-lbl">⚡ Interview tip</span>${card.tip}</div>`:'';
   const exHtml=card.example?`<div class="card-example"><div class="ex-lbl">💼 Example you can use</div><div class="ex-body">${card.example}</div></div>`:'';
+  const clHtml=card.checklist?buildChecklist(card.checklist,idx):'';
 
   div.innerHTML=`
     <div class="ch">
@@ -1045,7 +1325,7 @@ function buildCard(card,idx){
     </div>
     <div class="ca">
       <div class="a-label">// Model Answer</div>
-      <div class="a-text">${card.ah}${exHtml}${learnHtml}${tipHtml}</div>
+      <div class="a-text">${card.ah}${exHtml}${clHtml}${learnHtml}${tipHtml}</div>
     </div>
     <div class="cf">
       <button class="mbtn m-mastered">✓ Mastered</button>
@@ -1104,6 +1384,70 @@ function applyFilter(f){
     while(s&&!s.classList.contains('sdiv')){if(s.style.display!=='none')has=true;s=s.nextElementSibling;}
     d.style.display=has?'':'none';
   });
+}
+
+
+function buildChecklist(cl, cardIdx){
+  const panels = cl.sections.map((sec, si) => {
+    const groups = sec.groups.map((g, gi) => {
+      const items = g.items.map((item, ii) => {
+        const key = `cl-${cardIdx}-${si}-${gi}-${ii}`;
+        const checked = localStorage.getItem ? (localStorage.getItem(key)==='1') : false;
+        return `<div class="cl-item" data-key="${key}">
+          <div class="cl-checkbox${checked?' checked':''}" style="color:${sec.color}" onclick="toggleCheck(this,'${key}',${si})"></div>
+          <span class="cl-item-text">${item}</span>
+        </div>`;
+      }).join('');
+      return `<div class="cl-group">
+        <div class="cl-group-label" style="color:${sec.color}">${g.label}</div>
+        <div class="cl-items">${items}</div>
+      </div>`;
+    }).join('');
+
+    const total = sec.groups.reduce((s,g)=>s+g.items.length,0);
+    const progId = `clprog-${cardIdx}-${si}`;
+    const ptxtId = `clptxt-${cardIdx}-${si}`;
+
+    return `<div class="cl-section" id="cls-${cardIdx}-${si}">
+      <div class="cl-section-header" style="background:${sec.bg};color:${sec.color}" onclick="toggleSection(this)">
+        <span class="cl-section-icon">${sec.icon}</span>
+        <span class="cl-section-title">${sec.title}</span>
+        <span class="cl-section-arrow">▶</span>
+      </div>
+      <div class="cl-body" style="background:${sec.bg}">
+        ${groups}
+        <div class="cl-progress">
+          <div class="cl-prog-bar"><div class="cl-prog-fill" id="${progId}" style="background:${sec.color};width:0%"></div></div>
+          <span class="cl-prog-txt" id="${ptxtId}">0 / ${total}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<div class="cl-panel">${panels}</div>`;
+}
+
+function toggleSection(header){
+  const sec = header.closest('.cl-section');
+  sec.classList.toggle('open');
+}
+
+function toggleCheck(box, key, si){
+  box.classList.toggle('checked');
+  try { localStorage.setItem(key, box.classList.contains('checked') ? '1' : '0'); } catch(e){}
+  // Update progress for this section
+  const section = box.closest('.cl-section');
+  if(!section) return;
+  const allBoxes = section.querySelectorAll('.cl-checkbox');
+  const checkedBoxes = section.querySelectorAll('.cl-checkbox.checked');
+  const total = allBoxes.length;
+  const done = checkedBoxes.length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  // find prog bar — it's in the same section
+  const prog = section.querySelector('.cl-prog-fill');
+  const ptxt = section.querySelector('.cl-prog-txt');
+  if(prog) prog.style.width = pct + '%';
+  if(ptxt) ptxt.textContent = `${done} / ${total}`;
 }
 
 function render(){
