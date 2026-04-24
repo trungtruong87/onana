@@ -1168,10 +1168,39 @@ function speak(text, label) {
 function speakFullTopic(topicId) {
   const topic = DATA.find(t => t.id === topicId);
   if (!topic) return;
-  const texts = topic.questions.map((q, i) =>
-    `Question ${i + 1}: ${stripHtml(q.q)}. Answer: ${stripHtml(q.a)}. ${q.recall ? 'Quick recall: ' + q.recall : ''}`
-  ).join('. ');
-  speak(texts, topic.name);
+
+  // Build one chunk per question — browsers silently fail on very long single utterances
+  const chunks = topic.questions.map((q, i) =>
+    `Question ${i + 1}: ${stripHtml(q.q)}. Answer: ${stripHtml(q.a)}. ${q.recall ? 'Quick recall: ' + q.recall + '.' : ''}`
+  );
+
+  synth.cancel();
+  ttsPaused = false;
+
+  const bar = document.getElementById('ttsBar');
+  const statusEl = document.getElementById('ttsStatusText');
+  bar.classList.add('visible');
+  document.getElementById('btnPauseTts').textContent = '⏸ Pause';
+
+  let currentIdx = 0;
+
+  function speakChunk(idx) {
+    if (idx >= chunks.length) {
+      bar.classList.remove('visible');
+      ttsPaused = false;
+      return;
+    }
+    const utt = new SpeechSynthesisUtterance(chunks[idx]);
+    utt.voice = getBestVoice();
+    utt.rate = getSpeed();
+    utt.pitch = 1.0;
+    statusEl.innerHTML = `<span class="tts-label">Reading:</span> ${topic.name} — Q${idx + 1} of ${chunks.length}`;
+    utt.onend = () => { speakChunk(idx + 1); };
+    utt.onerror = () => { bar.classList.remove('visible'); ttsPaused = false; };
+    synth.speak(utt);
+  }
+
+  speakChunk(0);
 }
 
 function stopTts() {
@@ -1181,6 +1210,7 @@ function stopTts() {
 }
 
 document.getElementById('btnPauseTts').onclick = () => {
+  if (!synth.speaking && !synth.pending) return;
   if (ttsPaused) {
     synth.resume();
     ttsPaused = false;
