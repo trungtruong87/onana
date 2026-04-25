@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ensora Health — TPO Interview Prep</title>
 <style>
-  /* =============================================
-     DESIGN SYSTEM — Dark editorial / clinical precision
-     ============================================= */
   :root {
     --bg:          #0d1117;
     --bg2:         #131920;
@@ -18,588 +15,270 @@
     --accent:      #3ecfb2;
     --accent2:     #2ab09a;
     --accent-dim:  rgba(62,207,178,.12);
-    --accent-glow: rgba(62,207,178,.25);
     --gold:        #e8c97a;
     --gold-dim:    rgba(232,201,122,.12);
     --text:        #e2eaf3;
     --text2:       #8fa5bb;
     --text3:       #4d6070;
-    --danger:      #f06575;
-    --warn:        #f0a040;
     --r:           10px;
     --r2:          6px;
-    --shadow:      0 4px 24px rgba(0,0,0,.4);
     --shadow2:     0 2px 10px rgba(0,0,0,.3);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html, body {
     height: 100%; overflow: hidden;
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg); color: var(--text);
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 15px; line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* =============================================
-     LAYOUT
-     ============================================= */
   .app {
     display: grid;
     grid-template-rows: 58px 1fr;
     grid-template-columns: 300px 1fr;
     height: 100vh;
-    grid-template-areas:
-      "header header"
-      "sidebar main";
+    grid-template-areas: "header header" "sidebar main";
   }
 
-  /* =============================================
-     HEADER
-     ============================================= */
+  /* HEADER */
   header {
     grid-area: header;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    display: flex; align-items: center; gap: 16px;
     padding: 0 24px;
     background: var(--panel);
     border-bottom: 1px solid var(--border);
-    z-index: 10;
-    position: relative;
+    z-index: 10; position: relative;
   }
   header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity: .4;
   }
-
   .logo-mark {
-    width: 32px; height: 32px;
-    background: var(--accent);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700; letter-spacing: -.5px;
-    color: #0d1117;
-    flex-shrink: 0;
-    font-family: monospace;
+    width: 32px; height: 32px; background: var(--accent);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #0d1117; flex-shrink: 0; font-family: monospace;
   }
-
-  .header-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: .01em;
-  }
+  .header-title { font-size: 16px; font-weight: 600; color: var(--text); }
   .header-title span { color: var(--accent); }
-
-  .header-meta {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
+  .header-meta { margin-left: auto; display: flex; align-items: center; gap: 10px; }
   .progress-pill {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 12px;
-    font-family: monospace;
-    color: var(--text2);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    background: var(--bg3); border: 1px solid var(--border2); border-radius: 20px;
+    padding: 5px 14px; font-size: 12px; font-family: monospace; color: var(--text2);
+    display: flex; align-items: center; gap: 8px;
   }
   .progress-pill .dot {
-    width: 7px; height: 7px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
+    width: 7px; height: 7px; background: var(--accent);
+    border-radius: 50%; animation: pulse 2s ease-in-out infinite;
   }
-  @keyframes pulse {
-    0%,100% { opacity:1; transform:scale(1); }
-    50% { opacity:.5; transform:scale(.8); }
-  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);} }
   .progress-count { color: var(--accent); font-weight: 600; }
-
   .tts-global { display: flex; align-items: center; gap: 6px; }
-
   .speed-select {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    color: var(--text2);
-    border-radius: var(--r2);
-    padding: 5px 8px;
-    font-family: monospace;
-    font-size: 12px;
-    cursor: pointer;
-    outline: none;
+    background: var(--bg3); border: 1px solid var(--border2); color: var(--text2);
+    border-radius: var(--r2); padding: 5px 8px; font-family: monospace;
+    font-size: 12px; cursor: pointer; outline: none;
   }
   .speed-select:focus { border-color: var(--accent); }
 
-  /* =============================================
-     SIDEBAR
-     ============================================= */
+  /* SIDEBAR */
   .sidebar {
-    grid-area: sidebar;
-    display: flex;
-    flex-direction: column;
-    background: var(--panel);
-    border-right: 1px solid var(--border);
-    overflow: hidden;
+    grid-area: sidebar; display: flex; flex-direction: column;
+    background: var(--panel); border-right: 1px solid var(--border); overflow: hidden;
   }
-
-  .search-wrap {
-    padding: 12px 12px 10px;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-
+  .search-wrap { padding: 12px 12px 10px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
   .search-input {
-    width: 100%;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: var(--r2);
-    color: var(--text);
-    font-family: inherit;
-    font-size: 13px;
-    padding: 8px 12px 8px 34px;
-    outline: none;
-    transition: border-color .2s;
+    width: 100%; background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: var(--r2); color: var(--text); font-family: inherit; font-size: 13px;
+    padding: 8px 12px 8px 34px; outline: none; transition: border-color .2s;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%234d6070'%3E%3Cpath fill-rule='evenodd' d='M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z' clip-rule='evenodd'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: 9px center;
-    background-size: 15px;
+    background-repeat: no-repeat; background-position: 9px center; background-size: 15px;
   }
   .search-input::placeholder { color: var(--text3); }
   .search-input:focus { border-color: var(--accent); }
-
   .sidebar-label {
-    padding: 10px 14px 6px;
-    font-size: 10px;
-    font-family: monospace;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--text3);
-    flex-shrink: 0;
+    padding: 10px 14px 6px; font-size: 10px; font-family: monospace;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--text3); flex-shrink: 0;
   }
-
   .topic-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 4px 8px 16px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border2) transparent;
+    flex: 1; overflow-y: auto; padding: 4px 8px 16px;
+    scrollbar-width: thin; scrollbar-color: var(--border2) transparent;
   }
   .topic-list::-webkit-scrollbar { width: 4px; }
-  .topic-list::-webkit-scrollbar-track { background: transparent; }
   .topic-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-
   .topic-card {
-    padding: 10px 12px;
-    border-radius: var(--r);
-    cursor: pointer;
-    margin-bottom: 3px;
-    border: 1px solid transparent;
-    transition: all .18s ease;
-    position: relative;
-    overflow: hidden;
+    padding: 10px 12px; border-radius: var(--r); cursor: pointer; margin-bottom: 3px;
+    border: 1px solid transparent; transition: all .18s ease; position: relative; overflow: hidden;
   }
   .topic-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent);
-    border-radius: 0 2px 2px 0;
-    transform: scaleY(0);
-    transition: transform .2s ease;
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); border-radius: 0 2px 2px 0;
+    transform: scaleY(0); transition: transform .2s ease;
   }
   .topic-card:hover { background: var(--bg3); border-color: var(--border2); }
   .topic-card.active { background: var(--accent-dim); border-color: rgba(62,207,178,.3); }
   .topic-card.active::before { transform: scaleY(1); }
-
   .topic-card-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.35;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 13px; font-weight: 600; color: var(--text);
+    line-height: 1.35; display: flex; align-items: center; gap: 8px;
   }
   .topic-card.active .topic-card-name { color: var(--accent); }
   .topic-icon { font-size: 15px; flex-shrink: 0; }
-
-  .topic-card-meta {
-    font-size: 11px;
-    color: var(--text3);
-    margin-top: 3px;
-    font-family: monospace;
-  }
-
+  .topic-card-meta { font-size: 11px; color: var(--text3); margin-top: 3px; font-family: monospace; }
   .topic-badge {
-    margin-left: auto;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    padding: 1px 7px;
-    font-size: 10px;
-    font-family: monospace;
-    color: var(--text3);
-    flex-shrink: 0;
+    margin-left: auto; background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: 10px; padding: 1px 7px; font-size: 10px; font-family: monospace; color: var(--text3); flex-shrink: 0;
   }
-  .topic-card.active .topic-badge {
-    background: var(--accent-dim);
-    border-color: rgba(62,207,178,.3);
-    color: var(--accent);
-  }
+  .topic-card.active .topic-badge { background: var(--accent-dim); border-color: rgba(62,207,178,.3); color: var(--accent); }
 
-  /* =============================================
-     MAIN PANEL
-     ============================================= */
-  .main {
-    grid-area: main;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: var(--bg2);
-  }
-
+  /* MAIN */
+  .main { grid-area: main; display: flex; flex-direction: column; overflow: hidden; background: var(--bg2); }
   .main-toolbar {
-    padding: 12px 22px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-    background: var(--bg2);
+    padding: 12px 22px; display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border); flex-shrink: 0; background: var(--bg2);
   }
-
   .toolbar-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-    flex: 1;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 17px; font-weight: 600; color: var(--text);
+    flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 6px 13px;
-    border-radius: var(--r2);
-    border: 1px solid var(--border2);
-    background: var(--bg3);
-    color: var(--text2);
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all .15s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 13px; border-radius: var(--r2); border: 1px solid var(--border2);
+    background: var(--bg3); color: var(--text2); font-family: inherit; font-size: 12px;
+    font-weight: 500; cursor: pointer; transition: all .15s ease; white-space: nowrap; flex-shrink: 0;
   }
   .btn:hover { background: var(--border2); color: var(--text); }
-  .btn.btn-accent {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #0d1117;
-    font-weight: 700;
-  }
+  .btn.btn-accent { background: var(--accent); border-color: var(--accent); color: #0d1117; font-weight: 700; }
   .btn.btn-accent:hover { background: var(--accent2); border-color: var(--accent2); }
   .btn.btn-ghost { background: transparent; border-color: transparent; }
   .btn.btn-ghost:hover { background: var(--bg3); border-color: var(--border2); }
-  .btn.btn-all {
-    background: var(--bg3);
-    border-color: var(--gold);
-    color: var(--gold);
-  }
+  .btn.btn-all { background: var(--bg3); border-color: var(--gold); color: var(--gold); }
   .btn.btn-all:hover { background: var(--gold-dim); }
-
+  .btn.btn-repeat { background: var(--bg3); border-color: var(--border2); color: var(--text3); }
+  .btn.btn-repeat.on { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
   .icon-btn {
-    width: 28px; height: 28px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border-radius: var(--r2);
-    border: 1px solid var(--border2);
-    background: var(--bg3);
-    color: var(--text2);
-    cursor: pointer;
-    transition: all .15s;
-    flex-shrink: 0;
-    font-size: 13px;
+    width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;
+    border-radius: var(--r2); border: 1px solid var(--border2); background: var(--bg3);
+    color: var(--text2); cursor: pointer; transition: all .15s; flex-shrink: 0; font-size: 13px;
   }
   .icon-btn:hover { background: var(--border2); color: var(--text); }
 
-  /* =============================================
-     Q&A CONTENT AREA
-     ============================================= */
+  /* Q&A AREA */
   .qa-area {
-    flex: 1;
-    overflow-y: auto;
-    padding: 18px 22px 40px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border2) transparent;
+    flex: 1; overflow-y: auto; padding: 18px 22px 40px;
+    scrollbar-width: thin; scrollbar-color: var(--border2) transparent;
   }
   .qa-area::-webkit-scrollbar { width: 5px; }
-  .qa-area::-webkit-scrollbar-track { background: transparent; }
   .qa-area::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-
   .topic-intro {
-    background: var(--accent-dim);
-    border: 1px solid rgba(62,207,178,.2);
-    border-radius: var(--r);
-    padding: 13px 17px;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    background: var(--accent-dim); border: 1px solid rgba(62,207,178,.2);
+    border-radius: var(--r); padding: 13px 17px; margin-bottom: 18px;
+    display: flex; align-items: flex-start; gap: 12px;
   }
   .topic-intro-icon { font-size: 20px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
   .topic-intro-text { font-size: 13px; color: var(--text2); line-height: 1.65; }
   .topic-intro-text strong { color: var(--accent); }
-
   .qa-item {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    margin-bottom: 8px;
-    overflow: hidden;
-    transition: border-color .2s, box-shadow .2s;
+    background: var(--bg3); border: 1px solid var(--border); border-radius: var(--r);
+    margin-bottom: 8px; overflow: hidden; transition: border-color .2s, box-shadow .2s;
   }
   .qa-item:hover { border-color: var(--border2); }
-  .qa-item.open {
-    border-color: rgba(62,207,178,.25);
-    box-shadow: 0 0 0 1px rgba(62,207,178,.06);
-  }
+  .qa-item.open { border-color: rgba(62,207,178,.25); box-shadow: 0 0 0 1px rgba(62,207,178,.06); }
   .qa-item.reviewed { border-left: 3px solid rgba(62,207,178,.5); }
-
+  .qa-item.tts-active { border-color: rgba(62,207,178,.6); box-shadow: 0 0 0 2px rgba(62,207,178,.15); }
   .qa-q {
-    padding: 13px 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
-    position: relative;
-    user-select: none;
-    transition: background .15s;
+    padding: 13px 16px; cursor: pointer; display: flex; align-items: flex-start;
+    gap: 11px; position: relative; user-select: none; transition: background .15s;
   }
   .qa-q:hover { background: rgba(255,255,255,.02); }
-
   .qa-q-number {
-    font-family: monospace;
-    font-size: 11px;
-    color: var(--text3);
-    flex-shrink: 0;
-    margin-top: 3px;
-    width: 20px;
-    text-align: right;
+    font-family: monospace; font-size: 11px; color: var(--text3);
+    flex-shrink: 0; margin-top: 3px; width: 20px; text-align: right;
   }
   .qa-item.open .qa-q-number { color: var(--accent); }
-
-  .qa-q-text {
-    flex: 1;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.5;
-  }
+  .qa-q-text { flex: 1; font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; }
   .qa-item.open .qa-q-text { color: var(--accent); }
-
-  .qa-q-actions {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
+  .qa-q-actions { display: flex; align-items: center; gap: 5px; flex-shrink: 0; margin-top: 1px; }
   .qa-chevron {
-    color: var(--text3);
-    font-size: 14px;
-    transition: transform .25s ease;
-    line-height: 1;
-    margin-left: 3px;
+    color: var(--text3); font-size: 14px; transition: transform .25s ease;
+    line-height: 1; margin-left: 3px;
   }
   .qa-item.open .qa-chevron { transform: rotate(180deg); color: var(--accent); }
-
-  .qa-a-wrap {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .35s cubic-bezier(.4,0,.2,1);
-  }
+  .qa-a-wrap { max-height: 0; overflow: hidden; transition: max-height .35s cubic-bezier(.4,0,.2,1); }
   .qa-item.open .qa-a-wrap { max-height: 9999px; }
-
   .qa-a {
-    padding: 14px 16px 16px 47px;
-    font-size: 13.5px;
-    color: var(--text2);
-    line-height: 1.75;
-    border-top: 1px solid var(--border);
+    padding: 14px 16px 16px 47px; font-size: 13.5px; color: var(--text2);
+    line-height: 1.75; border-top: 1px solid var(--border);
   }
   .qa-a p { margin-bottom: 10px; }
   .qa-a p:last-child { margin-bottom: 0; }
   .qa-a strong { color: var(--text); font-weight: 600; }
   .qa-a em { color: var(--accent); font-style: normal; font-weight: 500; }
-
   .recall-card {
-    background: var(--bg);
-    border: 1px solid var(--border2);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 var(--r2) var(--r2) 0;
-    padding: 10px 14px;
-    margin-top: 14px;
-    font-size: 12.5px;
-    color: var(--text2);
-    line-height: 1.7;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-left: 3px solid var(--gold); border-radius: 0 var(--r2) var(--r2) 0;
+    padding: 10px 14px; margin-top: 14px; font-size: 12.5px; color: var(--text2); line-height: 1.7;
   }
   .recall-card-label {
-    font-family: monospace;
-    font-size: 10px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 5px;
-    font-weight: 600;
+    font-family: monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 5px; font-weight: 600;
   }
-
   .tpo-note {
-    background: var(--bg);
-    border: 1px solid var(--border2);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 var(--r2) var(--r2) 0;
-    padding: 10px 14px;
-    margin-top: 8px;
-    font-size: 12.5px;
-    color: var(--text2);
-    line-height: 1.65;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-left: 3px solid var(--accent); border-radius: 0 var(--r2) var(--r2) 0;
+    padding: 10px 14px; margin-top: 8px; font-size: 12.5px; color: var(--text2); line-height: 1.65;
   }
   .tpo-note-label {
-    font-family: monospace;
-    font-size: 10px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 4px;
-    font-weight: 600;
+    font-family: monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 4px; font-weight: 600;
   }
-
   .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: 14px;
-    color: var(--text3);
-    text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100%; gap: 14px; color: var(--text3); text-align: center;
   }
   .empty-state-icon { font-size: 44px; opacity: .5; }
   .empty-state-title { font-size: 20px; font-weight: 600; color: var(--text2); }
   .empty-state-sub { font-size: 13px; max-width: 280px; line-height: 1.6; }
 
-  /* =============================================
-     TTS STATUS BAR
-     ============================================= */
+  /* TTS BAR */
   .tts-bar {
-    flex-shrink: 0;
-    background: var(--panel);
-    border-top: 1px solid var(--border);
-    padding: 9px 22px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    flex-shrink: 0; background: var(--panel); border-top: 1px solid var(--border);
+    padding: 9px 22px; display: flex; align-items: center; gap: 12px;
     transition: opacity .3s, max-height .3s;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    pointer-events: none;
+    opacity: 0; max-height: 0; overflow: hidden; pointer-events: none;
   }
-  .tts-bar.visible {
-    opacity: 1;
-    max-height: 60px;
-    pointer-events: auto;
-  }
-
+  .tts-bar.visible { opacity: 1; max-height: 60px; pointer-events: auto; }
   .tts-status-text {
-    flex: 1;
-    font-size: 12px;
-    font-family: monospace;
-    color: var(--text2);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    flex: 1; font-size: 12px; font-family: monospace; color: var(--text2);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tts-label { color: var(--accent); font-weight: 600; }
-
-  .tts-wave {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    flex-shrink: 0;
-  }
+  .tts-wave { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
   .tts-wave span {
-    display: block;
-    width: 3px;
-    background: var(--accent);
-    border-radius: 2px;
-    animation: wave 0.8s ease-in-out infinite;
+    display: block; width: 3px; background: var(--accent);
+    border-radius: 2px; animation: wave 0.8s ease-in-out infinite;
   }
-  .tts-wave span:nth-child(1) { height: 6px; animation-delay: 0s; }
-  .tts-wave span:nth-child(2) { height: 12px; animation-delay: .1s; }
-  .tts-wave span:nth-child(3) { height: 8px; animation-delay: .2s; }
-  .tts-wave span:nth-child(4) { height: 14px; animation-delay: .3s; }
-  .tts-wave span:nth-child(5) { height: 6px; animation-delay: .4s; }
-  @keyframes wave {
-    0%,100% { transform: scaleY(1); opacity: .7; }
-    50% { transform: scaleY(1.8); opacity: 1; }
-  }
+  .tts-wave span:nth-child(1){height:6px;animation-delay:0s;}
+  .tts-wave span:nth-child(2){height:12px;animation-delay:.1s;}
+  .tts-wave span:nth-child(3){height:8px;animation-delay:.2s;}
+  .tts-wave span:nth-child(4){height:14px;animation-delay:.3s;}
+  .tts-wave span:nth-child(5){height:6px;animation-delay:.4s;}
+  @keyframes wave{0%,100%{transform:scaleY(1);opacity:.7;}50%{transform:scaleY(1.8);opacity:1;}}
 
-  /* vocab table */
-  .vocab-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 6px;
-  }
+  /* VOCAB TABLE */
+  .vocab-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
   .vocab-table th {
-    text-align: left;
-    padding: 8px 12px;
-    background: var(--bg);
-    border-bottom: 2px solid var(--border2);
-    font-family: monospace;
-    font-size: 10px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--text3);
+    text-align: left; padding: 8px 12px; background: var(--bg);
+    border-bottom: 2px solid var(--border2); font-family: monospace; font-size: 10px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--text3);
   }
-  .vocab-table td {
-    padding: 9px 12px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-    line-height: 1.6;
-  }
+  .vocab-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
   .vocab-table tr:last-child td { border-bottom: none; }
   .vocab-table tr:hover td { background: rgba(255,255,255,.02); }
   .vocab-table td:first-child {
-    font-family: monospace;
-    color: var(--accent);
-    font-size: 12px;
-    white-space: nowrap;
-    width: 140px;
-    font-weight: 600;
+    font-family: monospace; color: var(--accent); font-size: 12px;
+    white-space: nowrap; width: 140px; font-weight: 600;
   }
   .vocab-table td:last-child { color: var(--text2); }
 </style>
@@ -614,10 +293,12 @@
     <div class="header-meta">
       <div class="tts-global">
         <select class="speed-select" id="speedSelect" title="Playback speed">
-          <option value="0.75">0.75×</option>
-          <option value="1.0" selected>1.0×</option>
+          <option value="0.7">0.7×</option>
+          <option value="0.8">0.8×</option>
+          <option value="0.85" selected>0.85×</option>
+          <option value="0.9">0.9×</option>
+          <option value="1.0">1.0×</option>
           <option value="1.1">1.1×</option>
-          <option value="1.25">1.25×</option>
         </select>
         <button class="btn btn-ghost" id="btnStopAll" title="Stop audio">⏹ Stop</button>
       </div>
@@ -644,21 +325,20 @@
       <button class="btn" id="btnExpandAll">Expand All</button>
       <button class="btn" id="btnCollapseAll">Collapse All</button>
       <button class="btn btn-accent" id="btnReadTopic">&#9654; Read Topic</button>
-      <button class="btn btn-all" id="btnReadAll" title="Read all topics from start to finish">&#9654;&#9654; Read All</button>
+      <button class="btn btn-all" id="btnReadAll">&#9654;&#9654; Read All</button>
+      <button class="btn btn-repeat" id="btnRepeat" title="Loop repeat">&#8635; Repeat</button>
     </div>
 
     <div class="qa-area" id="qaArea">
       <div class="empty-state">
         <div class="empty-state-icon">🩺</div>
         <div class="empty-state-title">Ready to prepare?</div>
-        <div class="empty-state-sub">Choose a topic from the left panel to load questions and answers.</div>
+        <div class="empty-state-sub">Choose a topic from the left to begin. Use Read All for hands-free listening.</div>
       </div>
     </div>
 
     <div class="tts-bar" id="ttsBar">
-      <div class="tts-wave">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
+      <div class="tts-wave"><span></span><span></span><span></span><span></span><span></span></div>
       <div class="tts-status-text" id="ttsStatusText"><span class="tts-label">Reading:</span> idle</div>
       <button class="btn" id="btnPauseTts">&#9208; Pause</button>
       <button class="btn btn-ghost" id="btnStopTts">&#9209;</button>
@@ -668,7 +348,10 @@
 
 <script>
 /* =============================================
-   DATA — concise answers optimized for memorization
+   DATA
+   Each question has two text fields:
+     a       — displayed on screen (can use HTML formatting)
+     audio   — read aloud (plain English, ESL-friendly, no symbols)
    ============================================= */
 const DATA = [
   {
@@ -676,14 +359,22 @@ const DATA = [
     icon: "🎤",
     name: "Opening Statement",
     subtitle: "60-second intro",
-    intro: "Your polished, confident 60-second opening. Memorize this cold — it sets the tone for everything that follows.",
+    intro: "Your polished, confident 60-second opening. Memorize this cold.",
     questions: [
       {
-        q: "Tell me about yourself / Walk me through your background.",
+        q: "Tell me about yourself.",
+        audio_q: "Tell me about yourself.",
         a: `<p>My strongest suit as a TPO is backlog and story work — nothing enters a sprint with an open question attached. Acceptance criteria are unambiguous, engineers can start coding the next morning without another meeting.</p>
-<p>On AI: I haven't shipped ML models myself, but I understand the concepts that drive product decisions — how LLMs fail, why RAG matters for healthcare auditability, how to write ACs for probabilistic systems.</p>
-<p>What I'm looking forward to here is the hands-on depth: your real training pipelines, how the ML team runs evaluation cycles, and when you retrain versus prompt-engineer. I can only build that by doing it alongside your engineers.</p>
-<p><strong>Strong foundations, honest about the gap, fast learner. That's what I'm bringing in.</strong></p>`,
+<p>On AI: I haven't shipped machine learning models myself, but I understand the concepts that drive product decisions — how large language models fail, why RAG matters for healthcare auditability, how to write acceptance criteria for systems that are not always one hundred percent correct.</p>
+<p>What I'm looking forward to here is the hands-on depth: your real training pipelines, how the machine learning team runs evaluation cycles, and when you retrain versus improve the prompt. I can only build that by doing it alongside your engineers.</p>
+<p><strong>Strong foundations, honest about the gap, fast learner. That is what I am bringing in.</strong></p>`,
+        audio_a: `My strongest skill as a Technical Product Owner is backlog and story work. I make sure nothing enters a sprint with an open question. Acceptance criteria are clear, and engineers can start coding the next morning without needing another meeting.
+
+On the AI side — I want to be honest. I have not built or shipped machine learning models myself. But I have learned the concepts that drive product decisions. I understand how large language models can fail. I know why a technique called RAG — Retrieval Augmented Generation — matters for healthcare auditing. And I know how to write acceptance criteria for systems that are not always one hundred percent correct.
+
+What I am looking forward to learning here, if I join, is the hands-on depth. Your real training pipelines. How your machine learning team runs evaluation cycles. And how you decide when to retrain the model versus when to improve the prompt.
+
+Strong foundations, honest about the gap, and a fast learner. That is what I am bringing in.`,
         recall: "Lead with TPO strength → honest about AI gap → name what you DO know → what you'll learn → close punchy",
         tpo: "Confident, not defensive. Reframes the gap as managed risk."
       }
@@ -698,98 +389,240 @@ const DATA = [
     questions: [
       {
         q: "What is an LLM and what are its core limitations?",
+        audio_q: "What is a large language model, and what are its core limitations?",
         a: `<p>An LLM learns language from massive text data — it predicts and generates, but it can confidently fabricate facts.</p>
 <p><strong>Four core limits:</strong> hallucination (confident but wrong), knowledge cutoff (blind after training), no memory (each call starts fresh), and context window (hard token cap per call).</p>
 <p>At Ensora, every product decision around the Session Assistant flows from understanding these four limits.</p>`,
+        audio_a: `A large language model — or LLM — is trained on a massive amount of text. It learns to predict what word comes next, which means it can write, summarize, and reason. But it has four important limitations you must understand.
+
+The first limitation is called hallucination. This means the model can generate text that sounds very confident, but is completely wrong. It does not know when it is wrong.
+
+The second limitation is the knowledge cutoff. The model is blind to anything that happened after it was trained. If a billing policy changed last month, the model does not know.
+
+The third limitation is no memory. Each time you call the model, it starts completely fresh. It does not remember the previous conversation.
+
+The fourth limitation is the context window. This is the maximum amount of text the model can read in one call. If the text is too long, you must break it into smaller pieces.
+
+At Ensora, every product decision around the session note assistant comes from understanding these four limitations.`,
         recall: "4 limits: hallucination · knowledge cutoff · no memory · context window",
         tpo: "Never let LLM output touch clinical data without a therapist review gate."
       },
       {
-        q: "What's the difference between NLP and LLMs, and when do you use each?",
+        q: "What's the difference between NLP and LLMs?",
+        audio_q: "What is the difference between traditional NLP tools and large language models, and when do you use each?",
         a: `<p>NLP tools are deterministic specialists — fast, cheap, fully auditable, accurate for narrow tasks. LLMs are flexible generalists — great for open-ended generation, but expensive and probabilistic.</p>
 <p><strong>The rule:</strong> structured fact output → NLP. Generated narrative text → LLM.</p>
 <p>At Ensora: NLP extracts billing codes and diagnoses. LLM writes session notes and summaries.</p>`,
+        audio_a: `Traditional NLP tools — that stands for Natural Language Processing — are like specialists. They do one specific job very well. They are fast, they are cheap, and you can fully explain why they gave a certain output. This is called being auditable, which is very important in healthcare.
+
+Large language models are like generalists. They are flexible and can handle many different types of tasks. But they are expensive to run, and their output is not always predictable.
+
+Here is the simple rule. If you need to extract a specific fact — like a billing code or a diagnosis — use a traditional NLP tool. If you need to generate a natural paragraph of text — like a session note or a summary — use a large language model.
+
+At Ensora, NLP extracts the codes. The language model writes the notes.`,
         recall: "NLP = specialist (fast, auditable) · LLM = generalist (flexible, can hallucinate) · Ensora: NLP extracts, LLM writes",
         tpo: "Don't default to LLMs because they sound impressive. A specialist NLP tool is more defensible in a healthcare audit."
       },
       {
-        q: "Explain RAG — what is it and why does it matter for healthcare?",
+        q: "Explain RAG and why it matters for healthcare.",
+        audio_q: "Can you explain RAG — Retrieval Augmented Generation — and why it matters specifically in healthcare?",
         a: `<p>RAG fixes the LLM's core problem: it only knows what it was trained on. At query time, RAG searches a vector database and injects current documents into the prompt — so the model answers from live content, not stale training memory.</p>
 <p><strong>Two phases:</strong> Ingestion (embed docs → vector DB) and Query (search → inject → generate).</p>
 <p>In healthcare, payer policies and billing codes change constantly. RAG keeps answers current and every answer traces back to a source document — exactly what audits require.</p>`,
+        audio_a: `RAG stands for Retrieval Augmented Generation. Let me explain what problem it solves.
+
+A large language model only knows information from when it was trained. If you ask it about a billing rule that changed three months ago, it will give you the old answer. And you cannot trace where that answer came from.
+
+RAG fixes both of these problems. Here is how it works in two steps.
+
+Step one is called ingestion. You take your real documents — like payer policies or billing codes — and you convert them into a special format that can be searched quickly. These are stored in a database.
+
+Step two is called the query. When a user asks a question, the system first searches that database and finds the most relevant documents. Then it gives those documents to the language model as context. So the model answers using real, current information instead of old training memory.
+
+In healthcare, this is critically important. Billing policies change frequently. Clinical guidelines are updated. And in a regulated environment, you need to show exactly where your answer came from. RAG gives you that traceability. Every answer can be linked back to a specific source document.`,
         recall: "RAG = live docs at query time · 2 phases: Ingestion + Query · Healthcare: current + traceable = audit-ready",
         tpo: "Prefer RAG over fine-tuning for knowledge-heavy features. Cheaper, updatable, auditable."
       },
       {
-        q: "What is fine-tuning, when would you use it, and what's the escalation path?",
+        q: "What is fine-tuning and what's the escalation path?",
+        audio_q: "What is fine-tuning, when would you use it, and what is the correct escalation path?",
         a: `<p>Fine-tuning continues training a model on your own examples — it changes how the model writes, not just what it knows. Expensive, slow, treat it as a quarterly investment decision.</p>
 <p><strong>Always ask:</strong> is this a knowledge gap (use RAG) or a style gap (use fine-tuning)?</p>
 <p><strong>Escalation order:</strong> prompt engineering → RAG → fine-tuning. Never skip steps.</p>`,
+        audio_a: `Fine-tuning means you take an existing language model and continue training it using your own specific examples. This changes how the model writes and behaves — not just what it knows.
+
+Think of it this way. If you want the model to know new information — like updated billing codes — that is a knowledge problem. You should use RAG, not fine-tuning. But if you want the model to consistently write in a specific style — like a clinical note format — that might be a style problem. Fine-tuning could help there.
+
+Fine-tuning is expensive and slow. It can take weeks and a lot of computing power. As a Technical Product Owner, you should treat it as a serious investment decision, not a quick sprint task.
+
+The correct escalation order is this. First, try improving the prompt. This is free and fast. If that does not work, try RAG to add better knowledge. If that still does not work, then consider fine-tuning.
+
+Never skip steps. Always try the cheaper option first.`,
         recall: "Fine-tune = changes style · RAG = adds knowledge · Escalation: prompt → RAG → fine-tune",
         tpo: "Confirm prompt engineering is exhausted before recommending fine-tuning."
       },
       {
-        q: "What is hallucination in AI and how do you mitigate it in a clinical context?",
+        q: "What is hallucination and how do you mitigate it clinically?",
+        audio_q: "What is hallucination in AI, and how do you protect against it in a clinical healthcare product?",
         a: `<p>Hallucination is when an LLM generates confident, fluent text that is factually wrong. The model doesn't know it's wrong — it's pattern-matching.</p>
 <p>In healthcare, a hallucinated dosage or fabricated diagnosis code is a patient safety issue — not just a quality issue.</p>
 <p><strong>Mitigation:</strong> human review gates on all clinical output, RAG grounding, hallucination rate tracked as a production metric, rollback trigger defined before launch.</p>`,
+        audio_a: `Hallucination is one of the most important concepts to understand. It happens when a language model generates text that sounds very confident and fluent — but is completely factually wrong. The model does not know it is wrong. It is simply matching patterns from its training data.
+
+In a consumer app, this is annoying. In healthcare, this is a patient safety issue. Imagine the model inventing a medication dosage or creating a diagnosis code that does not exist. That could directly harm a patient.
+
+As a Technical Product Owner, here is how you protect against this. There are four layers.
+
+The first layer is a human review gate. No clinical output should be shown to a patient or used in a record without a therapist reviewing it first.
+
+The second layer is RAG. By grounding the model's answers in real documents, you reduce the chance that it will invent information.
+
+The third layer is monitoring. You track the hallucination rate as a metric in production — meaning you measure it continuously after the feature goes live.
+
+The fourth layer is a rollback trigger. Before you launch the feature, you define a specific number. If the hallucination rate crosses that number, you turn the feature off immediately.`,
         recall: "Confident + wrong = hallucination · Healthcare = patient safety risk · Mitigation: review gate, RAG, production metric, rollback trigger",
-        tpo: "'No clinical output displayed without therapist review' — this is a safety AC, not a nice-to-have."
+        tpo: "No clinical output displayed without therapist review — this is a safety requirement, not a nice-to-have."
       },
       {
-        q: "What are embeddings and vector databases, and how do they power RAG?",
+        q: "What are embeddings and vector databases?",
+        audio_q: "What are embeddings and vector databases, and how do they power the RAG system?",
         a: `<p>An embedding converts text into numbers — similar meanings produce similar vectors. 'Patient feels anxious' and 'client reports persistent worry' land close together even with no shared words.</p>
 <p>A vector database stores those embeddings and enables semantic search — by meaning, not keyword. This is the retrieval engine inside every RAG system.</p>
 <p>Poor RAG retrieval? Check the embedding model or chunking strategy first — not the LLM.</p>`,
+        audio_a: `Let me explain embeddings with a simple example.
+
+When you convert text into an embedding, you are converting it into a long list of numbers. The key insight is this — text that has similar meaning will produce similar numbers, even if the actual words are completely different.
+
+For example, the sentence "the patient feels anxious" and the sentence "the client reports persistent worry" have very different words. But their embeddings — their number representations — will be very close together, because the meaning is similar.
+
+A vector database stores all these number representations and lets you search through them very quickly. Instead of searching by keywords, you search by meaning. This is called semantic search.
+
+This is the engine inside every RAG system. When a user asks a question, the system converts the question into an embedding and finds the most meaningfully similar documents in the database.
+
+If the RAG system is giving poor answers, the problem is usually not the language model. The problem is usually in the embedding quality or in how the documents were broken up — which is called chunking. As a Technical Product Owner, you define the chunking strategy as a product requirement.`,
         recall: "Embedding = text → numbers · Similar meaning → similar vectors · Vector DB = semantic search engine inside RAG",
         tpo: "Chunk size, overlap, and embedding model choice are product requirements — not implementation details."
       },
       {
-        q: "What is prompt engineering and what's its role in AI product development?",
+        q: "What is prompt engineering?",
+        audio_q: "What is prompt engineering, and what is its role in AI product development?",
         a: `<p>Prompt engineering crafts the instructions that get an LLM to produce reliable, consistent outputs — without changing the model. It's the fastest and cheapest quality lever available.</p>
 <p>As a TPO, prompts are product artifacts: version-controlled, regression-tested before shipping, reviewed by clinicians, monitored in production.</p>
 <p>A prompt change that isn't tested is a bug waiting to happen. Always try prompt engineering before RAG or fine-tuning.</p>`,
+        audio_a: `Prompt engineering means crafting the instructions you give to a large language model to get reliable and consistent outputs — without changing the model itself.
+
+Think of it like this. The model is a very capable person. Prompt engineering is how you give that person clear, detailed instructions so they do exactly what you need.
+
+This is the fastest and cheapest quality improvement you can make. You do not need to retrain the model. You do not need extra data. You just improve the instructions.
+
+As a Technical Product Owner, you should treat prompts as product artifacts — meaning they are just as important as code. They should be version-controlled, which means you track every change. They should be tested before you ship them. They should be reviewed by clinicians, not just engineers. And they should be monitored in production to make sure they keep working over time.
+
+If you change a prompt without testing it, you are introducing a bug. Always try prompt engineering first, before you consider RAG or fine-tuning.`,
         recall: "Fastest + cheapest quality lever · Prompts = product artifacts (version-controlled, tested, monitored) · Try first, always",
         tpo: "Every prompt change is a product change. Involve clinicians in prompt review — not just engineers."
       },
       {
-        q: "How do you think about model tradeoffs — accuracy, latency, and cost?",
+        q: "How do you think about model tradeoffs?",
+        audio_q: "How do you think about the tradeoffs between accuracy, latency, and cost when choosing an AI model?",
         a: `<p>Every AI model is a three-way tradeoff: accuracy, latency, and cost. Bigger models are more accurate but slower and more expensive. Smaller models are faster and cheaper but less capable.</p>
 <p>As a TPO, I define where a feature must sit on this tradeoff — engineering picks the model to match.</p>
-<p><strong>Examples:</strong> real-time session assistant → latency wins. Overnight billing audit → accuracy wins. Don't over-engineer low-stakes features.</p>`,
+<p><strong>Examples:</strong> real-time session assistant → latency wins. Overnight billing audit → accuracy wins.</p>`,
+        audio_a: `Every AI model involves a three-way tradeoff. The three factors are accuracy, latency, and cost.
+
+Latency means how fast the model responds. Cost means how much money it takes to run. Accuracy means how correct the output is.
+
+Here is the challenge. Bigger, more powerful models are more accurate — but they are slower and more expensive. Smaller models are faster and cheaper — but they are less capable.
+
+As a Technical Product Owner, your job is to define where a specific feature must sit on this tradeoff. The engineering team then selects the right model to match your requirements.
+
+Let me give you two examples. If you are building a real-time session assistant that helps a therapist during a live session, speed is the most important factor. The therapist cannot wait ten seconds for a response. So you choose a faster, perhaps slightly less accurate model.
+
+But if you are running an overnight billing audit — where the results are not needed until the next morning — accuracy is the most important factor. Speed does not matter as much. So you choose a more powerful, more accurate model.
+
+Always match the model to the use case. And do not over-engineer features that are low-stakes.`,
         recall: "3-way tradeoff: accuracy vs latency vs cost · TPO defines requirements, eng picks the model · Match model to use case",
-        tpo: "Spec all three dimensions: 'must respond in 2s at p95' and 'must not exceed $X per 1,000 calls' both belong in the AC."
+        tpo: "Specify all three dimensions in requirements. Response time, error rate tolerance, and cost per call all belong in the acceptance criteria."
       },
       {
-        q: "What are tokens and context windows, and why do they matter for product decisions?",
+        q: "What are tokens and context windows?",
+        audio_q: "What are tokens and context windows, and why do they matter for product decisions?",
         a: `<p>Tokens are roughly 3/4 of a word — LLMs process and charge per token. The context window is the hard limit on tokens per call (input + output combined).</p>
 <p>Long session transcripts can exceed the limit — requiring chunking. As a TPO, model cost at scale before scoping any AI feature.</p>
-<p><strong>Example:</strong> 10,000 notes/day × 2,000 tokens = 20M tokens/day. That math belongs on the roadmap before the story is written.</p>`,
-        recall: "Token ≈ 3/4 word · Pay per token · Context window = hard cap · Long docs need chunking → product requirement",
+<p><strong>Example:</strong> 10,000 notes/day × 2,000 tokens = 20 million tokens/day. That math belongs on the roadmap.</p>`,
+        audio_a: `A token is approximately three quarters of a word. Language models process text in these small units called tokens, and you pay for each one.
+
+The context window is the maximum number of tokens the model can handle in a single call. This includes both the text you send in — called the input — and the text the model sends back — called the output. Combined, they cannot exceed the context window limit.
+
+Why does this matter for product decisions? Two reasons.
+
+First, cost. If you have ten thousand session notes per day, and each note is two thousand tokens, that is twenty million tokens per day. You need to calculate this cost before you commit to building the feature. Otherwise you may build something that is too expensive to run at scale.
+
+Second, length. A long session transcript — maybe a one hour therapy session — might be too long to fit in a single context window. In that case, you need to break it into smaller pieces. This is called chunking. As a Technical Product Owner, the chunking strategy is your product requirement to define — not an implementation detail to leave to engineering.
+
+Always model the cost at realistic production scale before the feature goes on the roadmap.`,
+        recall: "Token = about 3/4 of a word · Pay per token · Context window = hard cap · Long docs need chunking → product requirement",
         tpo: "Always model cost at realistic production scale before committing to a feature."
       },
       {
-        q: "What are AI bias risks and how do they apply in healthcare?",
+        q: "What are AI bias risks in healthcare?",
+        audio_q: "What are the bias risks of AI models, and how do they apply specifically in a healthcare product?",
         a: `<p>AI models inherit the biases of their training data. A model trained on skewed data may underperform for underrepresented demographics — in healthcare, that's a fairness and safety issue.</p>
-<p>Other risks: PHI leakage (model memorizes training data), adversarial prompts, and HIPAA non-compliance when patient data hits a third-party API without a BAA.</p>
+<p>Other risks: PHI leakage, adversarial prompts, and HIPAA non-compliance when patient data hits a third-party API without a BAA.</p>
 <p>Require demographic fairness analysis before launch. PHI must never reach an external LLM API without a signed BAA.</p>`,
-        recall: "Bias = inherited from training data · PHI + 3rd-party API = BAA required · Pre-launch: bias audit + fairness metrics in DoD",
-        tpo: "Demographic fairness analysis is a DoD item, not a post-launch nice-to-have."
+        audio_a: `AI models learn from data. And they inherit whatever biases exist in that data.
+
+Here is a concrete example. If a model was trained mostly on data from one demographic group, it may work much less well for people from a different group. In healthcare, this is not just a quality problem — it is a fairness and safety problem. Different patients could receive different quality of care because of how the model was trained.
+
+There are also other important risks.
+
+The first is PHI leakage. PHI stands for Protected Health Information — this means any data that can identify a patient. If the model was trained on patient data, it might accidentally reproduce parts of that data in its outputs.
+
+The second risk is HIPAA compliance. HIPAA is the main privacy law in American healthcare. If you send patient data to an external language model API — like OpenAI or Anthropic — you must have a signed legal agreement called a Business Associate Agreement, or BAA. Without this agreement, you are violating HIPAA.
+
+As a Technical Product Owner, you must require a demographic fairness analysis before any AI feature launches. And you must ensure that patient data never reaches an external API without a signed BAA.`,
+        recall: "Bias = inherited from training data · PHI = Protected Health Information · BAA required for third-party APIs · Bias audit is a DoD item",
+        tpo: "Demographic fairness analysis is a Definition of Done item, not a post-launch nice-to-have."
       },
       {
-        q: "What's the difference between training and inference, and what does a TPO own?",
+        q: "Training vs. inference — what does a TPO own?",
+        audio_q: "What is the difference between training and inference, and what does a Technical Product Owner own in each phase?",
         a: `<p>Training is when the model learns — slow, expensive, periodic. Inference is when it runs in production — fast, real-time, thousands of times per day.</p>
-<p>As a TPO, you live in inference: defining latency SLAs, cost-per-call budgets, and fallback behavior. Training decisions — retraining frequency and data cutoffs — are roadmap items prioritized by drift signals.</p>
-<p>Monitoring ships with the feature. A model that worked at launch can silently degrade — your job is to catch it before users do.</p>`,
-        recall: "Training = learns (slow, periodic) · Inference = runs in prod (fast, real-time) · TPO owns: latency, cost, fallback, drift monitoring",
-        tpo: "Monitoring is in the DoD. A model that worked at launch can silently degrade."
+<p>As a TPO, you live in inference: defining latency SLAs, cost-per-call budgets, and fallback behavior. Training decisions are roadmap items prioritized by drift signals.</p>
+<p>Monitoring ships with the feature. A model that worked at launch can silently degrade.</p>`,
+        audio_a: `There are two very different phases in an AI system's life. Training and inference.
+
+Training is when the model learns from data. It is slow, expensive, and happens periodically — maybe every few months. During training, engineers feed the model large amounts of data and adjust its internal settings.
+
+Inference is when the model is actually used in production. Every time a therapist asks for a session note summary, that is an inference call. It is fast, happens in real time, and can occur thousands of times per day.
+
+As a Technical Product Owner, you live primarily in the inference world. Your job is to define three things. First, the latency requirement — how fast must the system respond? Second, the cost budget — how much can each call cost at scale? Third, the fallback behavior — what should the system do if the model is unavailable or gives a low-confidence response?
+
+Training decisions — like when to retrain the model and on what data — are roadmap items that you prioritize. You decide when to invest in retraining based on signals that the model is getting worse over time.
+
+One critical rule: monitoring must ship with the feature. A model that worked perfectly at launch can silently get worse over time. Your job is to catch that degradation before the users experience it.`,
+        recall: "Training = learns (slow, periodic) · Inference = runs in production (fast, real-time) · TPO owns: latency, cost, fallback, drift monitoring",
+        tpo: "Monitoring is in the Definition of Done. A model that worked at launch can silently degrade."
       },
       {
-        q: "What is model drift and how do you manage it as a TPO?",
+        q: "What is model drift and how do you manage it?",
+        audio_q: "What is model drift, and how do you manage it as a Technical Product Owner?",
         a: `<p>Model drift is when performance degrades because the real world changed but the model didn't. In healthcare this is constant: new ICD codes, updated payer policies, evolving documentation styles.</p>
-<p><strong>Manage it with three things:</strong> baseline metrics defined at launch, alert thresholds that trigger investigation, and retraining on the roadmap as a recurring item — not a reactive fire drill.</p>
+<p><strong>Manage it with three things:</strong> baseline metrics at launch, alert thresholds that trigger investigation, and retraining on the roadmap as a recurring item.</p>
 <p>Monitoring ships with the feature. It's in the DoD or the feature is not done.</p>`,
-        recall: "Drift = world changed, model didn't · 3 responses: baseline metrics + alert threshold + retraining schedule · Monitoring = DoD item",
+        audio_a: `Model drift happens when the model's performance gets worse over time — not because the model changed, but because the real world changed.
+
+In healthcare, this happens constantly. New diagnosis codes get added. Payer policies get updated. The way therapists write their notes evolves over time. But the model was trained on old data, so it slowly becomes less accurate.
+
+As a Technical Product Owner, you manage drift with three things.
+
+The first thing is baseline metrics. When the feature launches, you measure its performance carefully and record those numbers. This is your reference point.
+
+The second thing is alert thresholds. You define specific numbers that, if crossed, trigger an investigation. For example, if the therapist acceptance rate drops below seventy-five percent, someone gets alerted and investigates why.
+
+The third thing is a retraining schedule. You put model retraining on the roadmap as a regular, recurring item — not something you only do when there is a crisis.
+
+And the most important rule: monitoring must ship with the feature. If you cannot observe the model's performance in production, the feature is not done. This belongs in the Definition of Done, every time.`,
+        recall: "Drift = world changed, model didn't · 3 responses: baseline metrics + alert threshold + retraining schedule · Monitoring = Definition of Done item",
         tpo: "Monitoring is not a post-launch add-on. It ships with the feature or the feature is not done."
       }
     ]
@@ -799,18 +632,29 @@ const DATA = [
     icon: "💬",
     name: "Core Interview Q&As",
     subtitle: "15 high-impact answers",
-    intro: "The 15 highest-probability questions for this role — concise, confident answers that show technical depth and product leadership.",
+    intro: "The 15 highest-probability questions for this role — confident answers that show technical depth and product leadership.",
     questions: [
       {
-        q: "Q1 — How do you describe the difference between a PO and a Technical Product Owner?",
+        q: "Q1 — PO vs. Technical Product Owner?",
+        audio_q: "Question one. How do you describe the difference between a Product Owner and a Technical Product Owner?",
         a: `<p>A PO owns the what and why. A TPO does that plus speaks the how.</p>
 <p>I write ACs engineers don't need to decode, deliver a backlog that's technically sound before sprint planning — not a wish list that becomes a negotiation.</p>
-<p>On AI: "Precision 91%, recall 68%" becomes "missing 32% of cases is worse than false alarms in our context — optimize for recall." That translation is what separates a TPO from a PM.</p>`,
-        recall: "PO = what + why · TPO = what + why + how · AI extension: translate model metrics into product decisions",
-        tpo: "Ground this immediately with a real example from your experience."
+<p>On AI: "Precision 91%, recall 68%" becomes "missing 32% of cases is worse than false alarms — optimize for recall." That translation is what separates a TPO from a PM.</p>`,
+        audio_a: `A Product Owner owns the what and the why. They decide what to build and why it matters.
+
+A Technical Product Owner does all of that, but also speaks the language of how. This means I can write acceptance criteria that engineers do not need to interpret or ask follow-up questions about. I can deliver a backlog that is technically sound before sprint planning — not a wishlist that becomes a negotiation in the planning meeting.
+
+Here is a concrete example from the AI world. A machine learning engineer might say — our model has a precision of 91 percent but a recall of 68 percent. A regular Product Manager might not know what to do with that information.
+
+But as a Technical Product Owner, I translate it into a product decision. I say — we are missing 32 percent of the positive cases. In a clinical context, missing a real case is worse than having a false alarm. So we should optimize for recall, not precision. The engineer decides how to do it. I decide which error is more acceptable for the business.
+
+That ability to translate between technical metrics and business decisions is what separates a Technical Product Owner from a regular Product Manager.`,
+        recall: "PO = what + why · TPO = what + why + how · Translate ML metrics into product decisions",
+        tpo: "Ground this with a real example from your experience immediately."
       },
       {
-        q: "Q2 — How do you scope an AI feature from end to end?",
+        q: "Q2 — How do you scope an AI feature end to end?",
+        audio_q: "Question two. How do you scope an AI feature from end to end?",
         a: `<p>I use <strong>SCOPE</strong>:</p>
 <p><strong>S — Problem:</strong> What user problem, and why AI over rules-based?<br>
 <strong>C — Capability:</strong> NLP (extraction), ML (prediction), or LLM (generation)?<br>
@@ -818,125 +662,317 @@ const DATA = [
 <strong>P — Feasibility:</strong> Acceptable accuracy? Cost at production scale?<br>
 <strong>E — Execution risks:</strong> Hallucination? Bias? Compliance exposure?</p>
 <p>Never start building without clear success criteria defined upfront.</p>`,
+        audio_a: `I use a framework I call SCOPE. Each letter stands for something important.
+
+S stands for the Problem. What specific user problem are we trying to solve? And why is AI the right solution here, rather than a simple rules-based approach? Not every problem needs AI.
+
+C stands for Capability fit. Is this a task that needs to extract specific facts from text? Then traditional NLP tools are probably right. Is it a task that needs to predict something? Then a machine learning model. Is it a task that needs to generate natural language text? Then a large language model.
+
+O stands for Operational readiness. Do we have enough clean, labeled data to train or evaluate the system? What are the HIPAA privacy constraints? Can we use this data legally?
+
+P stands for feasibility. What level of accuracy is acceptable? What is the cost to run this feature at realistic production scale — not just in testing?
+
+E stands for Execution risks. Where could this system hallucinate? Could it produce biased outputs? What are the compliance exposures?
+
+Never start building until you have clear success criteria defined upfront. That means you know exactly what good looks like before you write a single line of code.`,
         recall: "SCOPE: Problem · Capability fit · Ops readiness · Feasibility · Execution risks",
-        tpo: "SCOPE is your structure for any AI scoping question — use it consistently."
+        tpo: "Use SCOPE consistently for any AI scoping question."
       },
       {
-        q: "Q3 — How do you write acceptance criteria for AI features?",
+        q: "Q3 — How do you write ACs for AI features?",
+        audio_q: "Question three. How do you write acceptance criteria for AI features?",
         a: `<p>AI is probabilistic — replace 'correct' with a measurable threshold.</p>
-<p>Instead of 'summary is correct': <em>'Accepted by reviewing therapist without major edits in ≥85% of UAT cases.'</em></p>
-<p><strong>Three bands:</strong> Acceptable ≥85% · Alert threshold 75–85% (investigate, stay live) · Rollback trigger below 60% (disable, run RCA).</p>
-<p>Always add a fallback AC: low confidence → blank template, no degraded output shown. Monitoring ships with the feature — non-negotiable.</p>`,
-        recall: "Replace 'correct' with threshold · 3 bands: acceptable / alert / rollback · Fallback AC required · Monitoring in DoD",
+<p>Instead of 'summary is correct': <em>'Accepted by reviewing therapist without major edits in 85% or more of UAT cases.'</em></p>
+<p><strong>Three bands:</strong> Acceptable 85%+ · Alert threshold 75–85% (investigate, stay live) · Rollback below 60% (disable, run RCA).</p>
+<p>Always add a fallback AC: low confidence → blank template, no degraded output. Monitoring ships with the feature.</p>`,
+        audio_a: `Traditional acceptance criteria describe behavior that is either correct or not correct. The system either does the thing or it does not. This is called deterministic behavior.
+
+AI is different. AI is probabilistic — meaning it will not be correct one hundred percent of the time, and that is expected. So instead of writing "the summary is correct," you replace "correct" with a measurable threshold.
+
+For example, instead of "the session note is correct," I write: "The AI-generated note is accepted by the reviewing therapist without major edits in 85 percent or more of the test cases during user acceptance testing."
+
+I also define three performance bands for every AI feature.
+
+The first band is acceptable performance. If the therapist acceptance rate is 85 percent or higher, the feature is healthy.
+
+The second band is the alert threshold. If the rate drops to between 75 and 85 percent, the team investigates. But the feature stays live.
+
+The third band is the rollback trigger. If the rate drops below 60 percent, the feature is disabled immediately, and the team begins a root cause analysis.
+
+I also always add a fallback acceptance criterion. This means: if the model returns a low-confidence response, the system shows a blank template and asks the therapist to fill it in manually. You never show a degraded or uncertain AI output to a clinical user.
+
+And monitoring must ship with the feature. If you cannot observe the model's performance in production, the feature is not done.`,
+        recall: "Replace 'correct' with a threshold · 3 bands: acceptable / alert / rollback · Fallback AC required · Monitoring in Definition of Done",
         tpo: "A code bug fails loudly. A bad AI model fails quietly for months."
       },
       {
         q: "Q4 — How do you work with ML engineers?",
-        a: `<p>I bring three things: a clearly defined problem (not a solution), measurable success criteria agreed before training begins, and the business constraints they're optimizing for.</p>
+        audio_q: "Question four. How do you work effectively with machine learning engineers?",
+        a: `<p>I bring three things: a clearly defined problem, measurable success criteria agreed before training begins, and the business constraints they're optimizing for.</p>
 <p>I translate metrics into decisions: "Recall is 68%" becomes "we're missing 32% of positive cases — that's worse than false alarms in this context, optimize for recall."</p>
 <p>I decide which error is more acceptable. They decide how to minimize it.</p>`,
-        recall: "Bring: clear problem + success criteria + business constraints · Translate metrics → product decisions · I pick the error; they minimize it",
-        tpo: "The precision/recall tradeoff is what separates a TPO from a PM."
+        audio_a: `I bring three things to my relationship with machine learning engineers.
+
+The first thing is a clearly defined problem. Not a solution — a problem. I tell them what user outcome we need to achieve, not how to achieve it technically.
+
+The second thing is measurable success criteria, agreed before any training begins. This means we agree upfront on what "good enough" looks like — before the team spends weeks building and training a model.
+
+The third thing is the business constraints they are optimizing for. For example, how fast must the response be? How much can each inference call cost? What is the acceptable error rate?
+
+And critically — I translate technical metrics into product decisions. Here is an example. A machine learning engineer might say the model has a recall of 68 percent. That means the model is missing 32 percent of the actual positive cases.
+
+My job is to translate that into a business decision. In a clinical context, missing a real case — a false negative — is often worse than a false alarm — a false positive. So I would say: we need to optimize for recall, not precision. The engineer decides how to technically improve recall. I decide that recall is the more important error to minimize.`,
+        recall: "Bring: clear problem + success criteria + business constraints · Translate metrics → product decisions · I pick the acceptable error; they minimize it",
+        tpo: "The precision versus recall tradeoff is what separates a Technical Product Owner from a regular Product Manager."
       },
       {
-        q: "Q5 — How do you mitigate AI risks in a healthcare product?",
+        q: "Q5 — How do you mitigate AI risks in healthcare?",
+        audio_q: "Question five. How do you mitigate AI risks when building a healthcare product?",
         a: `<p><strong>Five layers:</strong></p>
 <p>1. Human review gates on all clinical and financial AI output.<br>
 2. RAG grounding over open-ended generation.<br>
 3. Bias audit before launch — performance across demographic groups.<br>
 4. Hallucination rate tracked as a production metric.<br>
 5. HIPAA compliance — PHI must never reach third-party APIs without a signed BAA.</p>`,
-        recall: "1. Review gates · 2. RAG grounding · 3. Bias audit · 4. Hallucination metric · 5. BAA for PHI",
+        audio_a: `There are five layers of protection I build into every AI feature in a healthcare product.
+
+The first layer is human review gates. No clinical or financial output from an AI system should be used autonomously. A therapist must review and approve it. No exceptions for high-stakes decisions.
+
+The second layer is RAG — Retrieval Augmented Generation. Rather than letting the model generate answers from its training memory, you ground its answers in verified, current documents. This reduces the chance of hallucination.
+
+The third layer is a bias audit before launch. Before releasing any AI feature, you evaluate whether the model performs equally well for different demographic groups — different ages, genders, ethnicities. In healthcare, unequal performance is a patient safety issue.
+
+The fourth layer is tracking the hallucination rate as a production metric. After launch, you measure how often the model produces incorrect or fabricated information. This must be monitored continuously.
+
+The fifth layer is HIPAA compliance. HIPAA is the main privacy law in American healthcare. Any Protected Health Information — meaning any data that can identify a patient — must never be sent to a third-party API without a signed legal agreement called a Business Associate Agreement, or BAA.
+
+Knowing what a BAA is, and mentioning it specifically, shows healthcare awareness even if you are new to the domain.`,
+        recall: "5 layers: Review gates · RAG grounding · Bias audit · Hallucination metric · BAA for patient data",
         tpo: "Naming BAAs specifically shows HIPAA knowledge even without prior healthcare experience."
       },
       {
         q: "Q6 — How do you measure success for an AI feature?",
+        audio_q: "Question six. How do you measure success for an AI feature?",
         a: `<p><strong>Three layers, defined before building:</strong></p>
 <p><strong>Technical:</strong> Precision, recall, F1 on a held-out test set.<br>
 <strong>Product:</strong> User acceptance rate — what % of AI-drafted notes a therapist accepts without major edits.<br>
 <strong>Business:</strong> Time saved per session, documentation burden reduction, satisfaction scores.</p>
-<p>Plus a rollback trigger: the specific metric value that turns the feature off. Defined before launch — not after.</p>`,
-        recall: "Layer 1: precision/recall · Layer 2: user acceptance rate · Layer 3: time saved · Rollback trigger = defined pre-launch",
+<p>Plus a rollback trigger defined before launch — not after.</p>`,
+        audio_a: `I define success in three layers, and all three must be agreed before development begins.
+
+The first layer is technical success. This means evaluating the model's performance on a test dataset before it goes live. I look at metrics like precision — which measures how often the model's positive predictions are actually correct. And recall — which measures how many of the actual positive cases the model finds. And F1, which is a single number that balances both of these together.
+
+The second layer is product success. This means measuring how real users respond to the AI's output in production. For the session note assistant at Ensora, I would measure what percentage of AI-generated notes a therapist accepts without making major edits. This is the most honest signal of real-world quality.
+
+The third layer is business success. This means measuring the impact on the business. How much time is each therapist saving per session? How much has the documentation burden reduced? What do satisfaction scores look like?
+
+And then there is a fourth element that most people forget — the rollback trigger. Before you launch, you define the specific metric value that would cause you to turn the feature off. For example, if therapist acceptance drops below 60 percent, the feature is disabled. You define this number before launch — not after you are in a crisis.`,
+        recall: "Layer 1: technical metrics · Layer 2: user acceptance rate · Layer 3: time saved and satisfaction · Rollback trigger defined before launch",
         tpo: "The rollback trigger shows operational maturity. Most candidates only mention launch metrics."
       },
       {
-        q: "Q7 — When would you NOT use AI for a feature?",
-        a: `<p>When a rules-based system is sufficient and more auditable — in healthcare, traceable logic often beats a model you can't fully inspect.</p>
-<p>When training data is insufficient. When wrong outputs are catastrophically costly and human review isn't feasible. When the team has no production monitoring capability — you shouldn't run probabilistic features you can't observe.</p>
+        q: "Q7 — When would you NOT use AI?",
+        audio_q: "Question seven. When would you decide NOT to use AI for a feature?",
+        a: `<p>When a rules-based system is sufficient and more auditable. When training data is insufficient. When wrong outputs are catastrophically costly and human review isn't feasible. When the team has no production monitoring capability.</p>
 <p>The question isn't can we use AI — it's should we.</p>`,
-        recall: "No AI when: rules-based is sufficient · insufficient data · catastrophic error + no review · no monitoring capability",
+        audio_a: `There are four situations where I would recommend against using AI.
+
+The first situation is when a rules-based system is sufficient and more auditable. In healthcare, being able to fully explain why a system gave a specific output is very important. A simple set of rules is much easier to explain and defend in an audit than a machine learning model. If rules can solve the problem, use rules.
+
+The second situation is when you do not have enough good training data. AI systems need large amounts of high-quality, labeled data to work well. If that data does not exist, or would take too long to collect, you cannot build a reliable model.
+
+The third situation is when the cost of a wrong output is catastrophically high and you cannot add a human review step. If the AI makes a mistake and no human catches it before it causes harm, you should not use AI at all.
+
+The fourth situation is when the team does not yet have production monitoring capability. If you cannot observe the model's performance after it goes live, you should not deploy a probabilistic system. You would have no way to know when it starts failing.
+
+The key insight is this. The question is never simply "can we use AI here?" The question is always "should we use AI here?" Showing this kind of restraint demonstrates product maturity, not a knowledge gap.`,
+        recall: "No AI when: rules-based is sufficient · not enough data · catastrophic error with no review · no monitoring capability",
         tpo: "Showing restraint demonstrates product maturity — not a knowledge gap."
       },
       {
-        q: "Q8 — What do you know about Ensora's AI Session Assistant and how would you improve it?",
+        q: "Q8 — Ensora's AI Session Assistant — what and how to improve?",
+        audio_q: "Question eight. What do you know about Ensora's AI Session Assistant, and how would you improve it?",
         a: `<p>The Session Assistant generates structured clinical notes to reduce documentation burden so therapists focus on patient care.</p>
-<p>I'd investigate four areas: accuracy against clinical standards · therapist editing patterns (where they correct the AI = where the model gaps are) · latency — is generation fast enough for the workflow? · HIPAA architecture — what stays on-premise vs. reaches an external LLM API?</p>
+<p>Four improvement areas: accuracy against clinical standards · therapist editing patterns (where they correct = where model gaps are) · latency — is generation fast enough? · HIPAA architecture — what stays on-premise vs. external API?</p>
 <p>Editing patterns are the most honest signal of model quality.</p>`,
-        recall: "Product: AI session notes → reduce documentation burden · Improve: accuracy · editing patterns · latency · HIPAA architecture",
+        audio_a: `Ensora's AI Session Assistant generates structured clinical notes automatically. The goal is to reduce the documentation burden on therapists, so they can spend more of their time focused on their patients instead of on paperwork.
+
+If I were the Technical Product Owner for this feature, I would investigate four areas for improvement.
+
+The first area is accuracy against clinical standards. Are the generated notes clinically appropriate? Do they include all the required elements? Are they consistent with what a licensed therapist would write?
+
+The second area is therapist editing patterns. This is the most honest signal of model quality. Every time a therapist edits an AI-generated note, they are telling you something is wrong. I would analyze exactly which parts of the note therapists edit most frequently. Those patterns point directly to gaps in the prompt or in the training data.
+
+The third area is latency. Even if the note is accurate, if the therapist has to wait too long for it to generate during a session, they will not use it. Speed matters.
+
+The fourth area is HIPAA architecture. I would want to understand exactly how the session content flows through the system. What data stays on Ensora's own servers? What data, if any, is sent to an external language model API? If patient data leaves the system, there must be a signed Business Associate Agreement in place.
+
+Always connect your improvements back to the therapist's actual workflow — not just abstract AI quality metrics.`,
+        recall: "Product: AI session notes reduce documentation burden · Improve: accuracy · editing patterns · latency · HIPAA architecture",
         tpo: "Showing product knowledge about their specific product is a major differentiator."
       },
       {
-        q: "Q9 — How do you handle an AI model underperforming after launch?",
-        a: `<p>Step 1: verify monitoring exists — that's why it's always in my DoD.</p>
-<p>Step 2: root cause — data distribution shift, specific user segment underperforming, or prompt degradation?</p>
-<p>Step 3: reopen as a production defect, not a new feature. Prompt tuning first (cheapest), retrain if deeper.</p>
-<p>Step 4: honest stakeholder comms — what degraded, why, and the remediation timeline. Silence destroys trust.</p>`,
-        recall: "1. Verify monitoring · 2. Root cause · 3. Defect not feature (prompt → retrain) · 4. Honest comms",
+        q: "Q9 — AI model underperforming after launch?",
+        audio_q: "Question nine. How do you handle an AI model that is underperforming after it has launched?",
+        a: `<p>Step 1: verify monitoring exists — that's why it's always in my DoD.<br>
+Step 2: root cause — data drift, specific user segment, or prompt degradation?<br>
+Step 3: reopen as a production defect. Prompt tuning first, retrain if deeper.<br>
+Step 4: honest stakeholder comms — what degraded, why, and the timeline. Silence destroys trust.</p>`,
+        audio_a: `There are four steps I follow when an AI model starts underperforming after launch.
+
+Step one is to verify that monitoring exists. This is why I always include monitoring in the Definition of Done. If we do not have monitoring, we might not even know the model is underperforming. Good monitoring is the foundation.
+
+Step two is to find the root cause. There are three common causes. The first is data drift — the real world has changed and the model's training data is now out of date. The second is a specific user segment — maybe the model works well for most therapists but fails for a specific type of practice or patient population. The third is prompt degradation — the prompt that was working before is now producing worse results, possibly because the underlying model was updated by the vendor.
+
+Step three is remediation. I reopen the issue as a production defect — not as a new feature. The first thing to try is prompt tuning, because it is the fastest and cheapest fix. If the problem is deeper — like training data being outdated — then retraining may be necessary.
+
+Step four is honest communication with stakeholders. I tell them what degraded, why it happened, and the timeline for fixing it. Silence about performance problems destroys trust. Even if the news is bad, transparent communication is always the right approach.
+
+Treat a underperforming AI model like a production bug — with a clear, defined response process. Not as a crisis.`,
+        recall: "1. Verify monitoring · 2. Root cause: drift, segment, or prompt · 3. Defect not feature, prompt first then retrain · 4. Honest communication",
         tpo: "Treat underperforming AI as a production defect with a defined response process."
       },
       {
-        q: "Q10 — How do you explain RAG vs. fine-tuning to a non-technical stakeholder?",
-        a: `<p>Fine-tuning is like sending your AI to school — you train it to think and write differently. Expensive, takes weeks, permanently changes the model.</p>
-<p>RAG is like giving your AI a library card — before answering, it checks relevant documents. Doesn't change how the AI thinks, just gives it current information. Faster, cheaper, and auditable — you can show exactly which document the answer came from.</p>
+        q: "Q10 — Explain RAG vs. fine-tuning to a non-technical person.",
+        audio_q: "Question ten. How do you explain RAG versus fine-tuning to someone who is not technical?",
+        a: `<p>Fine-tuning is like sending your AI to school — it changes how the model thinks and writes. Expensive, takes weeks.</p>
+<p>RAG is like giving your AI a library card — before answering, it checks relevant documents. Faster, cheaper, auditable.</p>
 <p>For healthcare where policies change constantly, RAG is almost always the better starting point.</p>`,
-        recall: "Fine-tuning = AI school (changes behavior) · RAG = library card (adds knowledge, auditable) · RAG wins when info changes frequently",
-        tpo: "The library card analogy is memorable and non-technical. Good analogies are a core TPO skill."
+        audio_a: `I use two simple analogies to explain this to non-technical stakeholders.
+
+Fine-tuning is like sending your AI to school. You give the model many examples of the specific behavior you want, and it learns to think and write differently. This is a permanent change to the model itself. It is expensive, it takes weeks to complete, and once it is done, the model's behavior is fundamentally different.
+
+RAG — which stands for Retrieval Augmented Generation — is like giving your AI a library card. Instead of changing how the model thinks, you give it access to relevant documents before it answers. When someone asks a question, the system first goes to the library, finds the most relevant documents, and then gives those to the model to help it answer. The model itself has not changed — it just has better information available.
+
+Why does this matter for healthcare? Two reasons.
+
+First, speed. RAG can be implemented in days or weeks. Fine-tuning takes months.
+
+Second, auditability. With RAG, every answer can be traced back to a specific document in the library. You can show exactly where the information came from. Fine-tuning cannot give you that.
+
+In healthcare, where policies and guidelines change frequently, RAG is almost always the better starting point. It is faster to update — you just add new documents to the library. Fine-tuning would require retraining the entire model.`,
+        recall: "Fine-tuning = AI school, changes behavior, expensive · RAG = library card, adds current knowledge, auditable · RAG wins when information changes frequently",
+        tpo: "The library card analogy is memorable and easy for non-technical people to understand."
       },
       {
-        q: "Q11 — How do you prioritize AI features against traditional features?",
-        a: `<p>Same board, same criteria — AI doesn't get a separate lane because it sounds impressive.</p>
-<p>But AI effort includes invisible costs: data readiness time and evaluation cycles, not just dev time. And AI risk is higher — a high-hallucination-risk feature in a clinical context starts lower on the board than a rules-based feature that achieves 90% of the goal with much lower risk.</p>
+        q: "Q11 — How do you prioritize AI vs. traditional features?",
+        audio_q: "Question eleven. How do you prioritize AI features against traditional features on your roadmap?",
+        a: `<p>Same board, same criteria — AI doesn't get a separate lane.</p>
+<p>But AI effort includes invisible costs: data readiness time and evaluation cycles, not just dev time. And high-hallucination-risk clinical features start lower until safety is proven.</p>
 <p>AI earns its roadmap position. It doesn't get it by default.</p>`,
-        recall: "Same board · AI effort = dev + data prep + eval cycle · Risk factor: high-stakes AI starts lower · Earn the roadmap slot",
+        audio_a: `AI features compete on the same roadmap with the same criteria as traditional features. AI does not get a special priority lane just because it sounds impressive.
+
+However, there are two important adjustments I make when evaluating AI features.
+
+The first adjustment is effort estimation. Traditional features have one main cost — development time. AI features have additional invisible costs that are easy to forget. How much time is needed to collect and clean the training data? How long will the model evaluation cycle take? These costs are real and must be included in the estimate.
+
+The second adjustment is risk scoring. A high-risk AI feature — for example, one that has a significant chance of hallucinating in a clinical context — starts lower on the priority list than a rules-based feature that achieves ninety percent of the same goal with much lower risk. In healthcare, risk matters a lot.
+
+The bottom line is this. AI features must earn their position on the roadmap through the same value-versus-effort-versus-risk analysis as every other feature. They do not get priority by default because they are exciting or modern.
+
+Applying the same standards to AI and traditional features signals strategic maturity. It shows you will not be swayed by hype.`,
+        recall: "Same board · AI effort = development + data preparation + evaluation · High-risk clinical AI starts lower · AI earns the roadmap slot",
         tpo: "Applying the same standards to AI and traditional features signals strategic maturity."
       },
       {
         q: "Q12 — How do you define 'done' for an AI feature?",
+        audio_q: "Question twelve. How do you define done for an AI feature?",
         a: `<p>Standard DoD plus five AI-specific additions:</p>
-<p>1. Evaluation report shows offline metrics hit the pre-agreed threshold — not 'close enough.'<br>
+<p>1. Evaluation report meets pre-agreed threshold — not 'close enough.'<br>
 2. Clinician sign-off on a representative output sample.<br>
-3. Monitoring instrumentation live at launch — not scheduled for later.<br>
-4. Fallback behavior explicitly tested.<br>
-5. HIPAA compliance sign-off on all data handling paths.</p>`,
-        recall: "Standard DoD + 5: eval report · clinician sign-off · monitoring live · fallback tested · HIPAA cleared",
+3. Monitoring live at launch — not scheduled for later.<br>
+4. Fallback behavior tested.<br>
+5. HIPAA compliance sign-off on all data paths.</p>`,
+        audio_a: `My Definition of Done for an AI feature includes everything in a standard Definition of Done — plus five additional requirements specific to AI.
+
+The first requirement is that the model evaluation report shows the offline metrics have met the pre-agreed threshold. Not "close enough." Not "almost there." The exact threshold that was agreed before development began.
+
+The second requirement is clinician sign-off. A clinical expert — in Ensora's case, a licensed therapist — must review a representative sample of the model's outputs and formally approve them. You cannot launch a clinical AI feature without clinical expert validation.
+
+The third requirement is that monitoring is live at launch. Not scheduled for the next sprint. Not planned for later. Live on the day the feature ships.
+
+The fourth requirement is that the fallback behavior has been explicitly tested. You need to know that when the model fails or gives a low-confidence response, the system behaves correctly — for example, showing a blank template instead of a bad AI output.
+
+The fifth requirement is a compliance sign-off. Every data path that involves patient information must be reviewed and approved from a HIPAA compliance perspective.
+
+A code bug fails loudly and is quickly noticed. A bad AI model fails quietly and may go unnoticed for months — unless you build these protections in from the start.`,
+        recall: "Standard Definition of Done plus 5: eval report · clinician sign-off · monitoring live · fallback tested · HIPAA cleared",
         tpo: "A code bug fails loudly. A bad AI model fails quietly for months."
       },
       {
-        q: "Q13 — How do you approach HIPAA compliance when building AI features?",
-        a: `<p>PHI must never reach a third-party LLM API without a signed BAA and proper data controls.</p>
-<p>In practice: document every pipeline stage where patient data touches an AI component, verify BAAs with all vendors (OpenAI, Anthropic, Azure AI), write explicit ACs for data handling — not just feature behavior — and ensure audit logging on every PHI access.</p>
-<p>Mental health records have additional protections beyond standard HIPAA. This is especially critical at Ensora.</p>`,
-        recall: "PHI + 3rd-party = signed BAA · Document every data touchpoint · Data handling in ACs · Mental health = extra protections",
-        tpo: "Knowing BAA by name and mental health's extra protections will set you apart."
+        q: "Q13 — HIPAA compliance for AI features?",
+        audio_q: "Question thirteen. How do you approach HIPAA compliance when building AI features?",
+        a: `<p>PHI must never reach a third-party LLM API without a signed BAA.</p>
+<p>In practice: document every pipeline stage, verify BAAs with all vendors, write explicit ACs for data handling — not just feature behavior — and ensure audit logging on every PHI access.</p>
+<p>Mental health records have additional protections beyond standard HIPAA.</p>`,
+        audio_a: `HIPAA is the Health Insurance Portability and Accountability Act — the main privacy law in American healthcare. It protects patient data.
+
+The most important rule is this: Protected Health Information — any data that can identify a patient — must never be sent to a third-party AI API without a signed legal agreement called a Business Associate Agreement, or BAA.
+
+If you send patient session notes to an external language model API — like OpenAI or Anthropic — without a BAA, you are violating HIPAA. This is a serious legal risk.
+
+In practice, I approach HIPAA compliance in four ways.
+
+First, I document every stage of the data pipeline. I map out exactly where patient data travels — from the therapist's input, through any processing steps, to the AI model, and back to the user.
+
+Second, I verify that Business Associate Agreements are in place with every vendor that touches patient data. This includes AI providers, cloud platforms, and any other third-party services.
+
+Third, I write acceptance criteria that explicitly cover data handling — not just the feature's functionality. The acceptance criteria must address what data is processed, how it is protected, and where it goes.
+
+Fourth, I ensure that every access to patient data is logged — meaning there is a complete audit trail that can be reviewed if needed.
+
+There is one more thing specific to Ensora. Mental health records have additional legal protections beyond standard HIPAA. This makes data handling requirements even stricter in this context.
+
+Knowing the term BAA, and knowing that mental health records have extra protections, will immediately set you apart from other candidates.`,
+        recall: "PHI must not reach third-party APIs without a BAA · Document every data touchpoint · Data handling in acceptance criteria · Mental health records have extra protections",
+        tpo: "Knowing BAA by name and knowing mental health records have extra protections will set you apart."
       },
       {
-        q: "Q14 — How do you evaluate AI feasibility before committing to a sprint?",
+        q: "Q14 — How do you evaluate AI feasibility before a sprint?",
+        audio_q: "Question fourteen. How do you evaluate AI feasibility before committing to a sprint?",
         a: `<p><strong>Four dimensions:</strong></p>
-<p><strong>Data readiness:</strong> sufficient, clean, labeled data — or how long to get it?<br>
-<strong>Technical fit:</strong> can AI realistically hit the accuracy we need?<br>
-<strong>Cost model:</strong> token/compute cost at production scale — does the business case hold?<br>
-<strong>Risk exposure:</strong> consequences of wrong outputs and required review process.</p>
-<p>If any dimension is unclear, recommend a time-boxed spike before committing. Protects engineering from building the wrong thing.</p>`,
-        recall: "4 dimensions: data · technical fit · cost model · risk exposure · Unclear = spike first",
+<p>Data readiness — sufficient, clean, labeled data — or how long to get it?<br>
+Technical fit — can AI hit the accuracy we need?<br>
+Cost model — token cost at production scale, does the business case hold?<br>
+Risk exposure — consequences of wrong outputs and required review process.</p>
+<p>If any dimension is unclear, recommend a time-boxed spike first.</p>`,
+        audio_a: `Before I commit any AI work to a sprint, I evaluate four dimensions of feasibility.
+
+The first dimension is data readiness. Do we have enough data? Is it clean and labeled correctly? If the data is not ready, the feature cannot be built yet. And I estimate how long it would take to get the data ready, so we can plan accordingly.
+
+The second dimension is technical fit. Can AI actually achieve the level of accuracy we need for this use case? Some problems are very well suited to AI. Others are not. I want to confirm before we invest that this is a problem AI can realistically solve.
+
+The third dimension is the cost model. I calculate the total cost of running this feature at realistic production scale. Not just in testing, but with real usage numbers. How many tokens will be processed per day? What is the cost per inference call? Does the business case support this cost?
+
+The fourth dimension is risk exposure. What happens when the model gets it wrong? How serious is that mistake? And what review process is in place to catch mistakes before they cause harm?
+
+If any of these four dimensions is unclear or unresolved, I do not commit the feature to a sprint. Instead, I recommend a time-boxed spike — a short investigation of typically two to five days — to answer the open questions before we commit to building.
+
+This approach protects the engineering team from spending weeks building something that turns out to be technically infeasible or economically unviable.`,
+        recall: "4 dimensions: data readiness · technical fit · cost model · risk exposure · Unclear = spike first",
         tpo: "Recommending a spike before committing shows you protect engineering from building the wrong thing."
       },
       {
-        q: "Q15 — How do you approach system design discussions without making architecture decisions?",
+        q: "Q15 — System design discussions without making architecture decisions?",
+        audio_q: "Question fifteen. How do you approach system design discussions without making architecture decisions?",
         a: `<p>I bring the constraints — engineering brings the design.</p>
-<p>I translate product needs into their required inputs: latency targets, scale expectations, consistency requirements, compliance constraints. Then I ask for two or three architecture options with tradeoffs explained.</p>
-<p>I ask follow-up questions until I understand which tradeoffs matter for the product — then explicitly defer the technical decision to the team while owning the product implications.</p>`,
-        recall: "Bring constraints · Ask for options with tradeoffs · Ask Qs until you understand · Defer technical, own product implications",
-        tpo: "Confidence without overstepping — exactly what a TPO should do."
+<p>I translate product needs into inputs engineering requires: latency targets, scale expectations, consistency requirements, compliance constraints. Then I ask for two or three options with tradeoffs explained.</p>
+<p>I ask questions until I understand which tradeoffs matter — then defer the technical decision while owning the product implications.</p>`,
+        audio_a: `My role in system design discussions is to bring the constraints. The engineering team brings the design.
+
+Here is how this works in practice.
+
+I start by translating product needs into the specific inputs that engineers need to make good technical decisions. For example, I tell them: the system must respond within two seconds at the 95th percentile of requests. It must handle ten thousand concurrent sessions at peak. The output must be consistent — meaning two users asking the same question should get the same answer. And all patient data must stay within our own infrastructure for HIPAA compliance.
+
+Then, rather than asking for a single recommended architecture, I ask for two or three options with the tradeoffs of each one clearly explained.
+
+Then I ask follow-up questions until I fully understand which tradeoffs matter most for the product. For example — one option might be faster but more expensive. Another might be cheaper but has higher latency. I ask questions until I can make an informed decision about which tradeoff is most acceptable for the business.
+
+Then I explicitly defer the technical decision to the engineering team — while I own the product implications of that decision.
+
+Engineers decide how to build it. My job is to make sure that whatever they build actually serves the product goals. That boundary — confidence without overstepping — is exactly what a Technical Product Owner should demonstrate.`,
+        recall: "Bring constraints · Ask for options with tradeoffs · Ask questions until you understand · Defer technical decision, own product implications",
+        tpo: "Confidence without overstepping — exactly what a Technical Product Owner should do."
       }
     ]
   },
@@ -948,29 +984,59 @@ const DATA = [
     intro: "They will push on your limited hands-on AI experience. Turn it into a demonstration of self-awareness and strategic thinking.",
     questions: [
       {
-        q: "Can you really be effective from day one without hands-on AI experience?",
+        q: "Can you be effective from day one without hands-on AI experience?",
+        audio_q: "Can you really be effective from day one without hands-on AI experience?",
         a: `<p>Effective on day one — yes, in the ways that matter most for a TPO.</p>
 <p>I can write technically sound stories, run backlog refinement, and set measurable acceptance criteria immediately. The AI domain-specific depth — your pipeline, vendor choices, model baselines — I'll build in the first few weeks by pairing with your ML engineers.</p>
 <p>Core skills transfer on day one. Domain specifics are learnable.</p>`,
-        recall: "Day 1: stories, refinement, measurable ACs · Domain ramp: pair with ML engineers · Core skills = immediate; domain = learnable",
-        tpo: "Don't apologize. Redirect to what you bring immediately."
+        audio_a: `Yes — effective from day one, in the ways that matter most for a Technical Product Owner.
+
+Here is what I can do immediately on day one. I can write technically sound user stories that engineers can act on without needing clarification meetings. I can run backlog refinement sessions and ensure every item that enters a sprint has clear, measurable acceptance criteria. I can facilitate sprint planning and ensure the team is protected from vague requirements.
+
+These core skills transfer directly, regardless of the specific AI domain.
+
+What I will build in the first few weeks is the domain-specific depth. I will pair with your machine learning engineers to understand your specific pipeline, your vendor choices, your model performance baselines, and how your evaluation cycles work.
+
+Think of it this way. Core skills transfer on day one. Domain specifics are learnable within weeks. The combination of strong foundational skills plus fast domain learning is exactly what you need at this stage.`,
+        recall: "Day one: stories, refinement, measurable acceptance criteria · Domain ramp: pair with ML engineers · Core skills transfer immediately",
+        tpo: "Do not apologize. Redirect immediately to what you bring."
       },
       {
         q: "How do you write ACs for something you don't fully understand technically?",
+        audio_q: "How can you write acceptance criteria for something you do not fully understand technically?",
         a: `<p>I write what the feature must achieve — engineering defines the approach.</p>
-<p>I don't need to know how the model works to specify: 90% accuracy on expert review, response within 2 seconds at p95, and no output shown without a therapist review step. Those are product requirements, not implementation details.</p>
+<p>I don't need to know how the model works to specify: 90% accuracy on expert review, response within 2s at p95, and no output without therapist review. Those are product requirements, not implementation details.</p>
 <p>When I don't understand a technical constraint, I ask until I do. Admitting what I don't know is how you get the right ACs.</p>`,
-        recall: "Write what it must achieve · Product requirements don't require implementation knowledge · Ask until constraints are clear",
-        tpo: "Admitting knowledge gaps is how you get the right ACs — not a weakness."
+        audio_a: `I write what the feature must achieve. The engineering team defines how to achieve it technically.
+
+Let me give you a concrete example. I do not need to understand the internal mathematics of a machine learning model to write the following acceptance criteria.
+
+The model must achieve 90 percent accuracy when evaluated by a clinical expert on a representative test set. The system must respond within two seconds for 95 percent of all requests — what engineers call P95 latency. And no AI-generated output may be displayed to a user without a therapist review and approval step.
+
+These are product requirements. They describe what the system must achieve. They do not describe how to achieve it. And I can write them accurately without knowing the internal technical details.
+
+When I encounter a technical constraint that I do not understand — for example, if an engineer says the chunking strategy affects retrieval quality — I ask questions until I fully understand the implication. I keep asking until I can translate that technical constraint into a product requirement.
+
+Admitting what I do not know and asking questions until I do understand — that is actually how you get the most accurate acceptance criteria. Pretending to understand something you do not leads to wrong requirements.`,
+        recall: "Write what it must achieve · Product requirements do not require implementation knowledge · Ask until you understand the constraint",
+        tpo: "Admitting knowledge gaps and asking questions is how you get the right acceptance criteria."
       },
       {
-        q: "What's your plan to ramp up on the AI-specific depth you're missing?",
+        q: "What's your plan to ramp up on AI-specific depth?",
+        audio_q: "What is your specific plan to ramp up on the AI domain depth that you are currently missing?",
         a: `<p>Systematic and tied to the work itself.</p>
-<p>Weeks one and two: pair with ML engineers on active features to understand your specific pipeline, vendor choices, and evaluation framework. Read every evaluation report as a product artifact.</p>
-<p>Week three onward: own the AI-specific AC writing for a feature end-to-end, with engineers as reviewers.</p>
-<p>Foundation is already built. The hands-on depth comes from doing the work alongside your team — not from a training course.</p>`,
-        recall: "Wk 1-2: pair with ML engineers, read eval reports · Wk 3+: own AI ACs end-to-end · Foundation built: LLM failures, RAG, probabilistic ACs",
-        tpo: "Concrete ramp plan beats vague 'I'll learn fast.'"
+<p>Weeks 1–2: pair with ML engineers on active features, understand your pipeline, vendor choices, and evaluation framework. Read every eval report as a product artifact.</p>
+<p>Week 3+: own the AI-specific AC writing end-to-end, with engineers as reviewers.</p>
+<p>Foundation is already built. Hands-on depth comes from doing the work.</p>`,
+        audio_a: `My ramp-up plan is systematic and tied directly to the work itself — not to a training course.
+
+In weeks one and two, I focus on learning by doing. I pair with your machine learning engineers on whatever features are currently active. I ask them to walk me through your specific pipeline — how data flows, what vendors you use, how the model evaluation cycle works, and what your current performance baselines look like. I treat every evaluation report as a product artifact — something I read carefully, ask questions about, and learn from.
+
+From week three onward, I take ownership. I write the acceptance criteria for AI features end-to-end, with the machine learning engineers reviewing my work and correcting any technical misunderstandings. This is the fastest way to build accurate domain knowledge — by doing the real work and getting feedback from experts.
+
+The conceptual foundation is already in place. I understand how large language models fail, why RAG matters for healthcare, how to write probabilistic acceptance criteria, and what HIPAA requires. What I need to build now is the hands-on knowledge of your specific systems, your specific vendors, and your specific evaluation methods. And the fastest path to that is through the work itself.`,
+        recall: "Weeks 1 to 2: pair with ML engineers, read evaluation reports · Week 3 onward: own AI acceptance criteria · Foundation built: LLM failures, RAG, probabilistic acceptance criteria",
+        tpo: "A specific, concrete ramp plan beats a vague promise to learn fast."
       }
     ]
   },
@@ -979,43 +1045,103 @@ const DATA = [
     icon: "🔬",
     name: "Backing Your Claims",
     subtitle: "Deep-dive proof points",
-    intro: "Three specific claims from your opening — how to defend each one in depth when the panel presses.",
+    intro: "Three claims from your opening — how to defend each one when the panel presses you.",
     questions: [
       {
-        q: "CLAIM 1 — 'I understand how LLMs fail.' What exactly?",
-        a: `<p><strong>Four failure modes — each one is a product decision:</strong></p>
-<p><strong>Hallucination:</strong> Confident and wrong. Doesn't know it's wrong. In healthcare, hallucinated dosage = patient safety issue → human review gate in every clinical AC.</p>
-<p><strong>Knowledge cutoff:</strong> Blind after training ended — payer policy changes, new ICD codes. Fix: RAG.</p>
-<p><strong>No memory:</strong> Each call starts fresh unless you inject context → shapes multi-turn feature requirements.</p>
-<p><strong>Context window:</strong> Hard token cap — long transcripts require chunking, which is a product requirement I define.</p>`,
-        recall: "Hallucination → review gate · Cutoff → RAG · No memory → inject context · Window → chunking = product req",
+        q: "CLAIM 1 — 'I understand how LLMs fail.' How exactly?",
+        audio_q: "You said you understand how large language models fail. What exactly do you mean by that?",
+        a: `<p><strong>Four failure modes — each is a product decision:</strong></p>
+<p><strong>Hallucination:</strong> Confident and wrong → human review gate in every clinical AC.<br>
+<strong>Knowledge cutoff:</strong> Blind after training → fix with RAG.<br>
+<strong>No memory:</strong> Each call starts fresh → specify what context to inject.<br>
+<strong>Context window:</strong> Long transcripts need chunking → product requirement I define.</p>`,
+        audio_a: `When I say I understand how large language models fail, I mean I understand the four specific failure modes — and more importantly, I know what product decision each one requires.
+
+The first failure mode is hallucination. The model generates text that sounds confident and authoritative — but is completely wrong. It does not know it is wrong. In a consumer application, this is annoying. In healthcare, this is a patient safety issue. A hallucinated medication dosage or a fabricated diagnosis code could directly harm someone. My product decision: I build a human review gate into every clinical acceptance criterion. No output goes to a patient record without therapist approval.
+
+The second failure mode is the knowledge cutoff. The model is blind to everything that happened after it was trained. Billing policies change. Clinical guidelines are updated. My product decision: I use RAG — Retrieval Augmented Generation — to give the model access to current documents at the time of each query.
+
+The third failure mode is no memory. Each time you call the model, it starts completely fresh. It does not remember the previous conversation. My product decision: for multi-turn features, I specify exactly what historical context must be injected into each call as a product requirement.
+
+The fourth failure mode is the context window limit. There is a maximum amount of text the model can process in a single call. Long therapy session transcripts may exceed this limit. My product decision: I define the document chunking strategy as a product requirement — not an implementation detail left to engineering.
+
+Each failure mode is a product decision. Not just a technical curiosity.`,
+        recall: "Hallucination → review gate · Knowledge cutoff → RAG · No memory → inject context · Context window → chunking is a product requirement",
         tpo: "Each failure mode is a product decision — not just a technical curiosity."
       },
       {
-        q: "CLAIM 2 — 'I know why RAG matters for healthcare auditability.' Explain.",
-        a: `<p>A plain LLM has two problems painful in healthcare.</p>
-<p><strong>Can't be current:</strong> Payer policies change constantly. A model trained months ago doesn't know. Stale billing answer = claim denial = compliance issue.</p>
-<p><strong>Can't be traced:</strong> In a regulated environment, 'the AI said so' is not a source. Auditors need to know where information came from.</p>
-<p>RAG fixes both: live documents at query time (current) plus source citations on every answer (traceable). As TPO: require source citation, define knowledge base freshness SLA, flag answers without a retrievable source.</p>`,
-        recall: "Plain LLM: stale + untraceable · RAG: current + source-cited · TPO reqs: citation, freshness SLA, flag unanswered",
-        tpo: "In healthcare, 'the AI said so' is not a source. RAG gives you a source."
+        q: "CLAIM 2 — 'RAG matters for healthcare auditability.' Explain.",
+        audio_q: "You mentioned that RAG matters for healthcare auditability. Can you explain exactly why?",
+        a: `<p>A plain LLM has two problems in healthcare: it can't be current and it can't be traced.</p>
+<p>RAG fixes both: live docs at query time (current) + source citations on every answer (traceable).</p>
+<p>As TPO: require source citation, define freshness SLA, flag answers without a retrievable source.</p>`,
+        audio_a: `A plain large language model — used without RAG — has two critical problems in a healthcare context.
+
+The first problem is that it cannot be current. The model was trained on data up to a certain date. After that date, it knows nothing. In healthcare, billing codes change every year. Clinical practice guidelines are updated regularly. Payer policies evolve. If a therapist asks the AI about a billing requirement and the answer is based on data from two years ago, that stale answer could lead to a claim denial or a compliance problem.
+
+The second problem is that it cannot be traced. In a regulated healthcare environment, when you make a clinical or billing decision, you need to be able to show where that information came from. A compliance officer, a payer auditor, or a legal review might ask — why did the system give this answer? With a plain language model, the answer is — it learned it somewhere during training. That is not an acceptable audit trail.
+
+RAG fixes both problems. Because the system retrieves real documents at the moment of each query, the answers are based on current information. And because every answer comes from a specific retrieved document, you can show exactly where it came from. Every answer has a source citation.
+
+As a Technical Product Owner, this means three specific requirements. First, every answer that cites guidelines or policies must include a source citation. Second, the knowledge base — the library of documents RAG searches — must have a freshness SLA, meaning it must be updated on a defined schedule. Third, if the system cannot find a relevant source document, it must flag that gap rather than attempting to answer from memory.`,
+        recall: "Plain LLM: stale + untraceable · RAG: current + source-cited · Requirements: source citation, freshness schedule, flag unanswered queries",
+        tpo: "In healthcare, the AI said so is not a source. RAG gives you a traceable source."
       },
       {
         q: "CLAIM 3 — 'I can write ACs for probabilistic systems.' Show me.",
-        a: `<p>Traditional ACs are binary. AI is probabilistic — replace 'correct' with a measurable threshold agreed before development starts.</p>
-<p>Not: 'the system generates a correct note.' Instead: <em>'AI-drafted note accepted by reviewing therapist without major edits in ≥85% of UAT cases.'</em></p>
-<p>Three bands: Acceptable ≥85% · Alert threshold 75–85% · Rollback trigger below 60%.</p>
-<p>Fallback AC: low-confidence output → blank template, prompt manual entry, no degraded AI shown. Monitoring ships with the feature — if you can't observe it, you can't call it done.</p>`,
-        recall: "Replace 'correct' with threshold · 3 bands · Fallback AC · Monitoring in DoD",
-        tpo: "A code bug fails loudly. A bad AI model fails quietly for months — unless you build detection in upfront."
+        audio_q: "You said you can write acceptance criteria for probabilistic AI systems. Can you show me what that actually looks like?",
+        a: `<p>Traditional ACs are binary. AI is probabilistic — replace 'correct' with a measurable threshold.</p>
+<p>Not 'generates a correct note.' Instead: <em>'Accepted by reviewing therapist without major edits in 85% or more of UAT cases.'</em></p>
+<p>Three bands: Acceptable 85%+ · Alert 75–85% · Rollback below 60%.<br>
+Fallback AC: low confidence → blank template, no degraded AI output.<br>
+Monitoring in DoD — non-negotiable.</p>`,
+        audio_a: `Let me walk you through exactly what this looks like.
+
+Traditional acceptance criteria are binary. Either the system produces the correct output or it does not. This works for deterministic systems like a login form or a database query.
+
+AI is different. It is probabilistic. You expect it to be correct most of the time, but not all of the time. So you cannot write "the system generates a correct session note" because there is no such thing as guaranteed correctness for an AI.
+
+Instead, I replace the word "correct" with a specific, measurable threshold. Here is what I would write for the session note assistant.
+
+The AI-generated session note is accepted by the reviewing therapist without requiring major edits in 85 percent or more of the user acceptance testing cases.
+
+That is a measurable, testable criterion. Then I define three performance bands.
+
+If the acceptance rate is 85 percent or higher, the feature is performing well. No action needed.
+
+If the acceptance rate falls between 75 and 85 percent, this triggers an investigation. The team looks at why therapists are editing the notes. But the feature stays live while the investigation happens.
+
+If the acceptance rate falls below 60 percent, the feature is disabled immediately. The team begins a root cause analysis.
+
+I also add a fallback acceptance criterion. If the model returns a low-confidence score on a particular note, the system must show a blank template and prompt the therapist to fill it in manually. You never show a low-quality or uncertain AI output to a clinical user.
+
+And finally — monitoring ships with the feature. This is always in the Definition of Done. If you cannot observe the model's performance in production, you will not know when these bands are crossed.`,
+        recall: "Replace correct with a threshold · 3 bands: acceptable, alert, rollback · Fallback acceptance criterion · Monitoring in Definition of Done",
+        tpo: "A code bug fails loudly. A bad AI model fails quietly for months — unless you build detection in from the start."
       },
       {
-        q: "PRACTICE — Walk me through how you'd scope and validate the AI Session Assistant.",
-        a: `<p><strong>Failure modes first:</strong> Where can this LLM fail us? Hallucination is the top risk — fabricated clinical detail is a safety issue. So the AC is built around a human review gate: no note output shown without therapist review.</p>
-<p><strong>RAG for guidelines:</strong> If the feature references billing codes or clinical guidelines, recommend RAG — not training data. Policies change, audits require traceability. Product requirement: every guideline output cites its source, knowledge base has a freshness SLA.</p>
-<p><strong>Close with ACs:</strong> Not 'note is correct' — instead: ≥85% therapist acceptance in UAT, defined alert threshold and rollback trigger, monitoring ships with the feature. Not in a follow-up sprint.</p>`,
-        recall: "Failure modes → RAG for guidelines → probabilistic ACs → monitoring in DoD",
-        tpo: "This weaves all three claims. Your synthesis answer."
+        q: "PRACTICE — Scope and validate the AI Session Assistant as TPO.",
+        audio_q: "Practice question. Walk me through how you would scope and validate the AI Session Assistant as a Technical Product Owner.",
+        a: `<p><strong>Failure modes first:</strong> Hallucination → human review gate in every AC. No note shown without therapist review.</p>
+<p><strong>RAG for guidelines:</strong> Policies change, audits need traceability. Every guideline output cites its source. Knowledge base has a freshness SLA.</p>
+<p><strong>ACs:</strong> 85% therapist acceptance in UAT. Alert threshold. Rollback trigger. Monitoring ships with the feature.</p>`,
+        audio_a: `Let me walk through this in three parts.
+
+The first part is identifying the failure modes. My first question as a Technical Product Owner is always — where can this system fail us, and what is the cost of that failure?
+
+For the session note assistant, the highest risk is hallucination. If the model invents a clinical detail that did not happen in the session, and that detail gets into a patient record, that is a patient safety issue. It could affect treatment decisions. It could also create legal liability.
+
+So the core acceptance criterion is built around a human review gate. No AI-generated session note is displayed or saved to a patient record without the therapist explicitly reviewing and approving it. This is non-negotiable.
+
+The second part is the architecture for knowledge-based content. If the session assistant references clinical guidelines, billing codes, or payer policies — I would recommend RAG, not training data. Here is why. Policies change. What was correct six months ago may not be correct today. And in a healthcare audit, you need to show exactly where the information came from. RAG provides both currency and traceability.
+
+As a product requirement, I would specify: every output that cites a guideline or policy must include a source citation. The knowledge base must be updated on a defined schedule. And if no relevant source document is found, the system must flag that rather than attempting to answer from memory.
+
+The third part is the acceptance criteria. I would not write "the note is correct." I would write: the AI-generated note is accepted by the reviewing therapist without major edits in 85 percent or more of user acceptance testing cases. Alert threshold at 75 percent. Rollback trigger at 60 percent. Fallback behavior explicitly tested. And monitoring live on the day of launch — not scheduled for a later sprint.
+
+This answer brings together all three of my opening claims: I understand how language models fail, I know why RAG matters for auditability, and I know how to write acceptance criteria for probabilistic systems.`,
+        recall: "Failure modes first → RAG for guidelines → probabilistic acceptance criteria → monitoring in Definition of Done",
+        tpo: "This weaves all three claims together. Practice this synthesis answer until it feels natural."
       }
     ]
   },
@@ -1024,42 +1150,96 @@ const DATA = [
     icon: "❓",
     name: "Smart Questions to Ask",
     subtitle: "5 high-signal questions",
-    intro: "Always have smart questions ready. These signal you understand the role and will add value from day one.",
+    intro: "Always have smart questions ready. These show you understand the role and will contribute from day one.",
     questions: [
       {
-        q: "Q to Ask 1 — AI Product Development Lifecycle",
+        q: "Q1 — AI Product Development Lifecycle",
+        audio_q: "Smart question one — about the AI product development lifecycle.",
         a: `<p><em>"What does the current AI product development lifecycle look like at Ensora — and where does the TPO role have the most influence?"</em></p>
-<p>Shows you understand the lifecycle and want to add value to it, not just observe it. Their answer reveals engineering maturity and where your actual leverage is.</p>`,
-        recall: "Signals: lifecycle awareness, value-add orientation, role clarity",
-        tpo: "Listen for: where the bottlenecks are, how much TPO influence exists on model decisions."
+<p>Shows you understand the lifecycle and want to add value — not just observe. Their answer reveals engineering maturity and your actual leverage.</p>`,
+        audio_a: `The question to ask is this. "What does the current AI product development lifecycle look like at Ensora — and where does the Technical Product Owner role have the most influence?"
+
+Why does this question work well?
+
+It shows that you understand that AI product development has a specific lifecycle — not just a standard software development cycle. It signals that you want to understand where you can add the most value, not just observe or execute tasks.
+
+When they answer, listen carefully for two things. First, how mature is the engineering process? Do they have formal model evaluation cycles, or is it more informal? Second, where does the Technical Product Owner genuinely influence decisions — just at the story-writing level, or also at the model selection and evaluation level?
+
+Their answer tells you a lot about what the job will actually be like day to day.`,
+        recall: "Shows: lifecycle awareness, value-add orientation, role clarity",
+        tpo: "Listen for where the bottlenecks are and how much influence the TPO has on model decisions."
       },
       {
-        q: "Q to Ask 2 — Measuring AI Quality",
+        q: "Q2 — Measuring AI Quality",
+        audio_q: "Smart question two — about how the team currently measures AI quality.",
         a: `<p><em>"How does the team currently measure quality of AI-generated session notes — and where are the known gaps?"</em></p>
-<p>Shows metrics-first thinking from day one. Asking about 'known gaps' signals confidence and honesty — you're not pretending the product is perfect. The gaps they describe are your first backlog priorities.</p>`,
-        recall: "Signals: metrics-first, intellectual honesty, day-one contribution mindset",
+<p>Shows metrics-first thinking. Asking about known gaps signals honesty. The gaps they describe are your first backlog priorities.</p>`,
+        audio_a: `The question to ask is this. "How does the team currently measure the quality of AI-generated session notes — and where are the known gaps?"
+
+Why does this question work well?
+
+It shows that you think about success measurement from the very beginning — before you even start the job. This is a metrics-first mindset, which is exactly what a Technical Product Owner should have.
+
+Asking specifically about the "known gaps" is a strong move. It shows confidence and intellectual honesty. You are not pretending the product is perfect. You are acknowledging that every AI system has areas for improvement, and you are curious about where to focus.
+
+The gaps they describe in their answer are also practically useful. They are telling you directly what your first backlog priorities should be if you get the job. Pay close attention.`,
+        recall: "Shows: metrics-first thinking, intellectual honesty, day-one contribution mindset",
         tpo: "The gaps they describe are your first backlog priorities."
       },
       {
-        q: "Q to Ask 3 — Prompt Engineering vs. Retraining",
+        q: "Q3 — Prompt Engineering vs. Retraining Balance",
+        audio_q: "Smart question three — about the balance between prompt engineering and model retraining.",
         a: `<p><em>"What's the current balance between prompt engineering improvements and retraining in how you improve AI quality?"</em></p>
-<p>Shows genuine technical vocabulary and curiosity about their approach. Demonstrates you understand these are distinct levers with different cost profiles — exactly what a TPO should know.</p>`,
-        recall: "Signals: technical vocabulary, understanding of AI improvement levers",
-        tpo: "If they can't answer this, prompt engineering discipline may be a gap you can fill."
+<p>Shows genuine technical vocabulary. Demonstrates you understand these are distinct levers with very different cost profiles.</p>`,
+        audio_a: `The question to ask is this. "What is the current balance between prompt engineering improvements and model retraining in how you improve AI quality over time?"
+
+Why does this question work well?
+
+It demonstrates that you understand the difference between two very different improvement strategies. Prompt engineering is fast and cheap — you improve the instructions you give the model. Retraining is slow and expensive — you actually change the model itself.
+
+The fact that you know these are distinct levers with very different cost profiles shows genuine technical vocabulary. This is not a question a non-technical Product Manager would typically ask.
+
+When they answer, listen for how mature their improvement process is. Do they have a systematic approach to trying prompt improvements first before committing to retraining? Or is their process more reactive? If there is a gap in prompt engineering discipline, that might be an area where you can add significant value quickly.`,
+        recall: "Shows: technical vocabulary, understanding of distinct improvement levers with different costs",
+        tpo: "If they cannot answer this clearly, prompt engineering discipline may be a gap you can help fill."
       },
       {
-        q: "Q to Ask 4 — HIPAA and Data Governance",
+        q: "Q4 — HIPAA and Data Governance",
+        audio_q: "Smart question four — about HIPAA compliance and data governance for AI features.",
         a: `<p><em>"How does the team handle HIPAA compliance when clinical data touches LLM APIs — what's the data governance framework?"</em></p>
-<p>Shows healthcare awareness as a newcomer. 'Data governance framework' signals you think systematically — not checkbox. Also shows you know PHI flowing to external APIs is a real risk.</p>`,
-        recall: "Signals: HIPAA awareness, PHI risk knowledge, systematic compliance thinking",
-        tpo: "Their answer tells you how mature their compliance posture is."
+<p>Shows healthcare awareness. 'Data governance framework' signals systematic thinking — not checkbox compliance.</p>`,
+        audio_a: `The question to ask is this. "How does the team handle HIPAA compliance when clinical data touches large language model APIs — and what does the data governance framework look like?"
+
+Why does this question work well?
+
+First, it shows that you are aware of the specific risk where patient data might flow to external AI systems. Many candidates would not know to ask about this at all.
+
+Second, using the phrase "data governance framework" signals that you think about compliance systematically — as an ongoing process with policies, documentation, and oversight — rather than as a one-time checkbox activity.
+
+Third, the fact that you know HIPAA — the Health Insurance Portability and Accountability Act — is relevant here shows healthcare domain awareness, even if you are new to the industry.
+
+When they answer, listen for how mature their compliance posture is. Do they have clear documentation of every data flow? Have they formally established Business Associate Agreements with all their AI vendors? Or is this still an evolving area? Their answer tells you how much compliance risk exists in the current setup.`,
+        recall: "Shows: HIPAA awareness, understanding of patient data risk in external APIs, systematic compliance thinking",
+        tpo: "Their answer tells you how mature their compliance posture is and where the risks may be."
       },
       {
-        q: "Q to Ask 5 — First 90 Days",
+        q: "Q5 — First 90 Days Success",
+        audio_q: "Smart question five — about what success looks like in the first ninety days.",
         a: `<p><em>"What would make the first 90 days a clear success — and what does the ramp-up typically look like?"</em></p>
-<p>Shows initiative and gives you clarity on expectations before you start. Framing around success criteria — not tasks — signals a product mindset. Also gives you the information you actually need to succeed in the role.</p>`,
-        recall: "Signals: initiative, goal orientation, product mindset, practical intelligence",
-        tpo: "Their answer is a gift — it tells you exactly what to focus on."
+<p>Shows initiative. Framing around success criteria — not just tasks — signals a product mindset. Their answer tells you exactly what to focus on.</p>`,
+        audio_a: `The question to ask is this. "What would make the first ninety days a clear success — and what does the ramp-up typically look like for someone in this role?"
+
+Why does this question work well?
+
+It shows initiative. Most candidates wait to be told what to do. Asking this question signals that you are already thinking about how to deliver value quickly.
+
+More importantly, framing the question around "what would make it a clear success" — rather than "what tasks will I be doing" — signals a product mindset. You are thinking in terms of outcomes, not activities. This is exactly how a Technical Product Owner should think.
+
+Practically, their answer is also very useful for you. It tells you exactly what they value most in the early months. Are they looking for someone to immediately improve the backlog quality? Or to build relationships with the engineering team? Or to take ownership of a specific feature area? Whatever they say, that is your north star for the first ninety days.
+
+Their answer is a gift. Use it.`,
+        recall: "Shows: initiative, outcome-oriented mindset, practical intelligence gathering",
+        tpo: "Their answer is a gift — it tells you exactly what to focus on to succeed."
       }
     ]
   },
@@ -1072,25 +1252,49 @@ const DATA = [
     questions: [
       {
         q: "Core vocabulary reference",
+        audio_q: "Core vocabulary reference. These are the key terms to know and use naturally in your interview.",
         a: `<table class="vocab-table">
   <thead><tr><th>Term</th><th>Definition &amp; How to Use It</th></tr></thead>
   <tbody>
-    <tr><td>BAA</td><td>Business Associate Agreement — HIPAA contract required when a vendor handles PHI. "PHI must never reach a third-party API without a signed BAA."</td></tr>
-    <tr><td>PHI</td><td>Protected Health Information — any data that can identify a patient. Session content, clinical notes, records.</td></tr>
-    <tr><td>Precision</td><td>Of all positive predictions, % actually correct. Minimizes false positives — use when false alarms are costly.</td></tr>
-    <tr><td>Recall</td><td>Of all actual positives, % the model caught. Minimizes false negatives — use when missing cases is dangerous.</td></tr>
-    <tr><td>F1 Score</td><td>Harmonic mean of precision and recall. Single metric that balances both — use when referencing eval reports.</td></tr>
-    <tr><td>p95 Latency</td><td>95% of requests responded faster than this time. "Must respond within 2s at p95."</td></tr>
-    <tr><td>Token</td><td>≈ 3/4 of a word. Cost is per-token. Always model token volume before roadmapping an AI feature.</td></tr>
-    <tr><td>Context Window</td><td>Max tokens per LLM call (input + output). Long transcripts may exceed it — chunking strategy = product requirement.</td></tr>
-    <tr><td>Model Drift</td><td>Performance degrades as real-world data diverges from training data. Constant in healthcare.</td></tr>
-    <tr><td>DoD</td><td>Definition of Done. For AI: eval report + clinician sign-off + monitoring live + fallback tested + HIPAA cleared.</td></tr>
-    <tr><td>RBAC</td><td>Role-Based Access Control — users only see what their role permits. Critical for PHI data segmentation.</td></tr>
-    <tr><td>ICD Codes</td><td>Standardized diagnostic codes — change periodically. Key reason RAG beats static training data for clinical features.</td></tr>
+    <tr><td>BAA</td><td>Business Associate Agreement — the legal contract required under HIPAA when a vendor handles patient data. Say: "Patient data must never reach a third-party API without a signed BAA."</td></tr>
+    <tr><td>PHI</td><td>Protected Health Information — any data that can identify a patient. Session content, clinical notes, and patient records are all PHI.</td></tr>
+    <tr><td>Precision</td><td>Of all the cases the model predicted as positive, what percentage were actually positive? High precision means few false alarms.</td></tr>
+    <tr><td>Recall</td><td>Of all the actual positive cases, what percentage did the model find? High recall means few missed cases. In healthcare, missing a real case is often more dangerous than a false alarm.</td></tr>
+    <tr><td>F1 Score</td><td>A single number that balances both precision and recall. Use this when you need one metric to summarize model quality.</td></tr>
+    <tr><td>p95 Latency</td><td>The response time that 95 percent of all requests fall within. Your performance target. Say: "Must respond within 2 seconds at p95."</td></tr>
+    <tr><td>Token</td><td>Approximately three quarters of a word. Language models process text in tokens and charge per token. Always estimate token volume before committing to an AI feature.</td></tr>
+    <tr><td>Context Window</td><td>The maximum number of tokens a language model can process in one call, including both input and output. Long transcripts may exceed this limit and must be broken into smaller pieces.</td></tr>
+    <tr><td>Model Drift</td><td>When a model's performance gets worse over time because the real world has changed but the model has not been updated.</td></tr>
+    <tr><td>DoD</td><td>Definition of Done — the checklist that determines when a user story is complete. For AI features, this must include the evaluation report, clinician sign-off, monitoring live, fallback tested, and HIPAA compliance cleared.</td></tr>
+    <tr><td>RBAC</td><td>Role-Based Access Control — a security approach where users can only access the data and features permitted by their role. Critical for protecting patient data in a clinical system.</td></tr>
+    <tr><td>ICD Codes</td><td>International Classification of Diseases codes — the standardized codes used to classify diagnoses and medical conditions. These change periodically, which is one reason RAG is better than static training data for clinical features.</td></tr>
   </tbody>
 </table>`,
-        recall: "BAA · PHI · Precision · Recall · F1 · p95 · Token · Context Window · Model Drift · DoD · RBAC",
-        tpo: "Use naturally. Forcing them sounds worse than not using them."
+        audio_a: `Let me go through the most important vocabulary terms you should know for this interview.
+
+BAA stands for Business Associate Agreement. This is a legal contract required by HIPAA — the American healthcare privacy law — whenever a vendor handles patient data. Use it in a sentence like this: "Patient data must never reach a third-party API without a signed BAA."
+
+PHI stands for Protected Health Information. This means any data that can identify a patient — including session notes, clinical records, and patient contact information.
+
+Precision and recall are two metrics used to evaluate machine learning models. Precision measures how often the model's positive predictions are actually correct — it measures false alarm rate. Recall measures how many of the actual positive cases the model found — it measures missed cases. In healthcare, missing a real case is usually worse than a false alarm, so recall is often more important.
+
+F1 score is a single number that balances precision and recall together.
+
+P95 latency means the response time that 95 percent of all requests complete within. When you say "must respond within 2 seconds at P95," you mean that 95 out of every 100 requests must complete in under 2 seconds.
+
+A token is approximately three quarters of a word. Language models process text in tokens and charge per token.
+
+The context window is the maximum number of tokens a language model can handle in one call — including both the text you send and the text it returns.
+
+Model drift happens when a model's performance gets worse over time because the world has changed but the model has not been updated.
+
+DoD stands for Definition of Done — the checklist that determines when a feature is complete.
+
+RBAC stands for Role-Based Access Control — a security approach where each user can only access what their role permits.
+
+And ICD codes are the standardized codes used to classify medical diagnoses. These change periodically, which is one reason RAG is better than relying on static training data for clinical features.`,
+        recall: "BAA · PHI · Precision · Recall · F1 · p95 Latency · Token · Context Window · Model Drift · DoD · RBAC · ICD Codes",
+        tpo: "Use these naturally. Forcing them sounds worse than not using them."
       }
     ]
   }
@@ -1100,44 +1304,70 @@ const DATA = [
    STATE
    ============================================= */
 let activeTopicId = null;
-let openItems = new Set();
+let openItems     = new Set();
 let reviewedItems = new Set();
-let searchQuery = '';
-let ttsPaused = false;
+let searchQuery   = '';
+let ttsPaused     = false;
+let repeatMode    = false;
+let ttsAborted    = false;
 let totalQuestions = 0;
 const synth = window.speechSynthesis;
 
 /* =============================================
-   TTS SYSTEM
+   TTS ENGINE
    ============================================= */
 function getSpeed() {
-  return parseFloat(document.getElementById('speedSelect').value) || 1.0;
+  return parseFloat(document.getElementById('speedSelect').value) || 0.85;
 }
 
 function stripHtml(html) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return (d.textContent || d.innerText || '').replace(/\s+/g, ' ').trim();
 }
 
-/* Pick best voices — two distinct ones for Q vs A */
+/* Clean text for audio — convert symbols to spoken words */
+function audioClean(text) {
+  return text
+    .replace(/≥/g, 'at least ')
+    .replace(/≤/g, 'at most ')
+    .replace(/→/g, ', which means ')
+    .replace(/·/g, ', ')
+    .replace(/%/g, ' percent')
+    .replace(/\bQ(\d+)\b/g, 'Question $1')
+    .replace(/\bp(\d+)\b/g, 'P $1')
+    .replace(/\bDoD\b/g, 'Definition of Done')
+    .replace(/\bTPO\b/g, 'Technical Product Owner')
+    .replace(/\bPO\b/g, 'Product Owner')
+    .replace(/\bML\b/g, 'machine learning')
+    .replace(/\bLLM\b/g, 'large language model')
+    .replace(/\bLLMs\b/g, 'large language models')
+    .replace(/\bNLP\b/g, 'NLP')
+    .replace(/\bRAG\b/g, 'RAG')
+    .replace(/\bBAA\b/g, 'BAA')
+    .replace(/\bPHI\b/g, 'PHI')
+    .replace(/\bAC\b/g, 'acceptance criterion')
+    .replace(/\bACs\b/g, 'acceptance criteria')
+    .replace(/\bUAT\b/g, 'user acceptance testing')
+    .replace(/\bSLA\b/g, 'service level agreement')
+    .replace(/\bAPI\b/g, 'A P I')
+    .replace(/\bAPIs\b/g, 'A P Is')
+    .replace(/\bHIPAA\b/g, 'HIPAA')
+    .replace(/\s+/g, ' ').trim();
+}
+
+/* Pick two distinct English voices */
 function pickVoices() {
   const voices = synth.getVoices().filter(v => v.lang && v.lang.startsWith('en'));
 
-  // Priority lists — natural-sounding, human-like voices
-  // Question voice: female, warm
-  const qPref  = ['Samantha','Karen','Moira','Nicky','Tessa','Fiona',
-                   'Google UK English Female','Microsoft Aria','en-GB','en-AU'];
-  // Answer voice: male or different female, clear and calm
-  const aPref  = ['Daniel','Tom','Alex','Fred','Oliver','Arthur','Gordon',
-                   'Google UK English Male','Microsoft Guy','Microsoft David'];
+  const qPref = ['Google UK English Female','Samantha','Karen','Moira','Nicky','Microsoft Aria','Microsoft Zira'];
+  const aPref = ['Google UK English Male','Daniel','Tom','Microsoft David','Google US English','Alex'];
 
   function pick(prefs, exclude) {
     for (const p of prefs) {
       const v = voices.find(v => v.name.includes(p) && v !== exclude);
       if (v) return v;
     }
-    // fallback: any English voice that isn't the other one
     return voices.find(v => v !== exclude) || voices[0] || null;
   }
 
@@ -1146,50 +1376,66 @@ function pickVoices() {
   return { qVoice, aVoice };
 }
 
-/* Low-level: speak one utterance, call onDone when finished */
+/* Chrome keepAlive — prevents silent cutoff after ~15s */
+let _keepAliveTimer = null;
+function startKeepAlive() {
+  stopKeepAlive();
+  _keepAliveTimer = setInterval(() => {
+    if (synth.speaking && !ttsPaused) { synth.pause(); synth.resume(); }
+  }, 10000);
+}
+function stopKeepAlive() {
+  if (_keepAliveTimer) { clearInterval(_keepAliveTimer); _keepAliveTimer = null; }
+}
+
+/* Speak a single utterance, call onDone when finished */
 function utterOne(text, voice, rate, pitch, onDone) {
-  const clean = text.replace(/\s+/g, ' ').trim();
+  const clean = audioClean(text).replace(/\s+/g, ' ').trim();
   if (!clean) { onDone && onDone(); return; }
   const utt = new SpeechSynthesisUtterance(clean);
   utt.voice  = voice;
   utt.rate   = rate;
   utt.pitch  = pitch;
+  utt.volume = 1;
   utt.onend  = () => { onDone && onDone(); };
-  utt.onerror = () => { onDone && onDone(); };
+  utt.onerror = (e) => {
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    onDone && onDone();
+  };
   synth.speak(utt);
 }
 
-/* Expand a qa-item by its data-idx within the current topic */
+/* Silence gap between Q and A */
+function pauseMs(ms, onDone) {
+  setTimeout(onDone, ms);
+}
+
+/* Expand a qa-item visually and mark reviewed */
 function expandQAItem(topicId, idx) {
   const el = document.querySelector(`.qa-item[data-topic="${topicId}"][data-idx="${idx}"]`);
   if (!el) return;
   const key = el.dataset.key;
-  el.classList.add('open', 'reviewed');
-  openItems.add(key);
-  reviewedItems.add(key);
+  el.classList.add('open', 'reviewed', 'tts-active');
+  openItems.add(key); reviewedItems.add(key);
   updateProgress();
-  // Smooth scroll into view
   setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
 }
 
-/* Collapse all qa-items */
+function clearTtsActive() {
+  document.querySelectorAll('.qa-item.tts-active').forEach(el => el.classList.remove('tts-active'));
+}
+
 function collapseAll() {
-  document.querySelectorAll('.qa-item').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.qa-item').forEach(el => el.classList.remove('open', 'tts-active'));
   openItems.clear();
 }
 
-/* -----------------------------------------------
-   Core sequential reader
-   chunks = [{text, voice, pitch, label, topicId, idx}]
-   onTopicEnd(topicId) called when last chunk of a topic finishes
-   onAllDone() called when everything is done
-   ----------------------------------------------- */
-let ttsAborted = false;
-
-function runChunks(chunks, statusPrefix, onAllDone) {
+/* Core sequential runner — plays an array of chunks */
+function runChunks(chunks, onAllDone, noCancel) {
   ttsAborted = false;
-  synth.cancel();
+  if (!noCancel) synth.cancel();
   ttsPaused = false;
+  startKeepAlive();
 
   const bar    = document.getElementById('ttsBar');
   const status = document.getElementById('ttsStatusText');
@@ -1201,116 +1447,174 @@ function runChunks(chunks, statusPrefix, onAllDone) {
 
   let i = 0;
   function next() {
-    if (ttsAborted) { bar.classList.remove('visible'); return; }
+    if (ttsAborted) { clearTtsActive(); bar.classList.remove('visible'); stopKeepAlive(); return; }
     if (i >= chunks.length) {
-      bar.classList.remove('visible');
-      ttsPaused = false;
+      clearTtsActive(); bar.classList.remove('visible'); ttsPaused = false; stopKeepAlive();
       onAllDone && onAllDone();
       return;
     }
     const c = chunks[i++];
-    status.innerHTML = `<span class="tts-label">${statusPrefix}</span> ${c.label}`;
-    // auto-expand when reading answer
-    if (c.isAnswer && c.topicId !== undefined && c.idx !== undefined) {
+
+    if (c.type === 'pause') { pauseMs(c.ms, next); return; }
+
+    if (c.type === 'label') {
+      status.innerHTML = `<span class="tts-label">Now reading:</span> ${c.display}`;
+      utterOne(c.text, c.isAnswer ? aVoice : qVoice, rate * 0.95, 1.0, next);
+      return;
+    }
+
+    status.innerHTML = `<span class="tts-label">Reading:</span> ${c.display}`;
+
+    if (c.isAnswer && c.topicId && c.idx !== undefined) {
+      clearTtsActive();
       expandQAItem(c.topicId, c.idx);
     }
+
     const voice = c.isAnswer ? aVoice : qVoice;
-    const pitch = c.isAnswer ? 0.95 : 1.05;
+    const pitch = c.isAnswer ? 1.0 : 1.05;
     utterOne(c.text, voice, rate, pitch, next);
   }
   next();
 }
 
-/* Build chunks for a single topic — Q only, A only (no recall/tpo) */
-function buildTopicChunks(topic) {
+/* Build chunk list for one topic — with spoken cues and gaps */
+function buildTopicChunks(topic, topicNumber, totalTopics) {
   const chunks = [];
-  topic.questions.forEach((item, idx) => {
-    const qText = stripHtml(item.q);
-    const aText = stripHtml(item.a);
-    chunks.push({ text: qText, isAnswer: false, label: `${topic.name} — Q${idx+1}`, topicId: topic.id, idx });
-    chunks.push({ text: aText, isAnswer: true,  label: `${topic.name} — A${idx+1}`, topicId: topic.id, idx });
+  const qCount = topic.questions.length;
+
+  // Topic announcement
+  chunks.push({
+    type: 'label', display: topic.name,
+    text: `Starting topic ${topicNumber} of ${totalTopics}. ${topic.name}. There are ${qCount} question${qCount !== 1 ? 's' : ''} in this section.`,
+    isAnswer: false
   });
+  chunks.push({ type: 'pause', ms: 1200 });
+
+  topic.questions.forEach((item, idx) => {
+    const qText = item.audio_q || stripHtml(item.q);
+    const aText = item.audio_a || stripHtml(item.a);
+    const qNum  = `Question ${idx + 1} of ${qCount}`;
+
+    // Question label + question text
+    chunks.push({
+      type: 'label', display: `${topic.name} — Q${idx + 1}`,
+      text: qNum + '.',
+      isAnswer: false
+    });
+    chunks.push({
+      type: 'q', display: `${topic.name} — Q${idx + 1}`,
+      text: qText, isAnswer: false,
+      topicId: topic.id, idx
+    });
+    // Gap between Q and A
+    chunks.push({ type: 'pause', ms: 1400 });
+
+    // Answer label + answer text
+    chunks.push({
+      type: 'label', display: `${topic.name} — A${idx + 1}`,
+      text: 'Answer.',
+      isAnswer: true
+    });
+    chunks.push({
+      type: 'a', display: `${topic.name} — A${idx + 1}`,
+      text: aText, isAnswer: true,
+      topicId: topic.id, idx
+    });
+
+    // Gap between items (longer after last item)
+    chunks.push({ type: 'pause', ms: idx < qCount - 1 ? 2000 : 800 });
+  });
+
   return chunks;
 }
 
-function speakFullTopic(topicId, onDone) {
-  const topic = DATA.find(t => t.id === topicId);
+function speakFullTopic(topicId, onDone, noCancel) {
+  const idx   = DATA.findIndex(t => t.id === topicId);
+  const topic = DATA[idx];
   if (!topic) return;
   collapseAll();
-  runChunks(buildTopicChunks(topic), 'Reading:', onDone);
+  runChunks(buildTopicChunks(topic, idx + 1, DATA.length), onDone, noCancel);
 }
 
 function speakAllTopics() {
-  const topicIds = DATA.map(t => t.id);
+  synth.cancel();
+  const ids = DATA.map(t => t.id);
   let i = 0;
   ttsAborted = false;
+
   function nextTopic() {
-    if (i >= topicIds.length || ttsAborted) return;
-    const id = topicIds[i++];
-    selectTopic(id, true);   // true = don't kill audio
-    speakFullTopic(id, nextTopic);
+    if (ttsAborted) { stopKeepAlive(); return; }
+    if (i >= ids.length) {
+      if (repeatMode && !ttsAborted) { i = 0; nextTopic(); }
+      return;
+    }
+    const id = ids[i];
+    const isFirst = (i === 0);
+    i++;
+    selectTopic(id, true);
+    speakFullTopic(id, nextTopic, !isFirst);
   }
   nextTopic();
 }
 
-/* Speak only Q text (no expand needed) */
 function speakQuestion(topicId, idx) {
   const topic = DATA.find(t => t.id === topicId);
   if (!topic) return;
   const item = topic.questions[idx];
   const { qVoice } = pickVoices();
-  const rate = getSpeed();
-  synth.cancel();
-  ttsAborted = false;
+  synth.cancel(); ttsAborted = false;
   const bar = document.getElementById('ttsBar');
-  const status = document.getElementById('ttsStatusText');
   bar.classList.add('visible');
-  status.innerHTML = `<span class="tts-label">Reading:</span> Question`;
+  document.getElementById('ttsStatusText').innerHTML = `<span class="tts-label">Reading:</span> Question`;
   document.getElementById('btnPauseTts').textContent = '⏸ Pause';
-  utterOne(stripHtml(item.q), qVoice, rate, 1.05, () => bar.classList.remove('visible'));
+  const text = item.audio_q || stripHtml(item.q);
+  utterOne(text, qVoice, getSpeed(), 1.05, () => bar.classList.remove('visible'));
 }
 
-/* Speak only A text, auto-expand */
 function speakAnswer(topicId, idx) {
   const topic = DATA.find(t => t.id === topicId);
   if (!topic) return;
   const item = topic.questions[idx];
   const { aVoice } = pickVoices();
-  const rate = getSpeed();
-  synth.cancel();
-  ttsAborted = false;
+  synth.cancel(); ttsAborted = false;
   expandQAItem(topicId, idx);
   const bar = document.getElementById('ttsBar');
-  const status = document.getElementById('ttsStatusText');
   bar.classList.add('visible');
-  status.innerHTML = `<span class="tts-label">Reading:</span> Answer`;
+  document.getElementById('ttsStatusText').innerHTML = `<span class="tts-label">Reading:</span> Answer`;
   document.getElementById('btnPauseTts').textContent = '⏸ Pause';
-  utterOne(stripHtml(item.a), aVoice, rate, 0.95, () => bar.classList.remove('visible'));
+  const text = item.audio_a || stripHtml(item.a);
+  utterOne(text, aVoice, getSpeed() * 0.98, 1.0, () => { bar.classList.remove('visible'); clearTtsActive(); });
 }
 
 function stopTts() {
-  ttsAborted = true;
-  synth.cancel();
-  ttsPaused = false;
+  ttsAborted = true; synth.cancel(); ttsPaused = false;
+  stopKeepAlive(); clearTtsActive();
   document.getElementById('ttsBar').classList.remove('visible');
 }
 
+/* Pause / Resume */
 document.getElementById('btnPauseTts').onclick = () => {
   if (!synth.speaking && !synth.pending) return;
   if (ttsPaused) {
-    synth.resume();
-    ttsPaused = false;
+    synth.resume(); ttsPaused = false;
     document.getElementById('btnPauseTts').textContent = '⏸ Pause';
   } else {
-    synth.pause();
-    ttsPaused = true;
+    synth.pause(); ttsPaused = true;
     document.getElementById('btnPauseTts').textContent = '▶ Resume';
   }
 };
-document.getElementById('btnStopTts').onclick = stopTts;
-document.getElementById('btnStopAll').onclick  = stopTts;
+document.getElementById('btnStopTts').onclick  = stopTts;
+document.getElementById('btnStopAll').onclick   = stopTts;
 document.getElementById('btnReadTopic').onclick = () => { if (activeTopicId) speakFullTopic(activeTopicId); };
 document.getElementById('btnReadAll').onclick   = speakAllTopics;
+
+/* Repeat toggle */
+document.getElementById('btnRepeat').onclick = () => {
+  repeatMode = !repeatMode;
+  document.getElementById('btnRepeat').classList.toggle('on', repeatMode);
+  document.getElementById('btnRepeat').textContent = repeatMode ? '🔁 Repeat: ON' : '🔁 Repeat';
+};
+
 synth.addEventListener && synth.addEventListener('voiceschanged', () => {});
 
 /* =============================================
@@ -1318,7 +1622,7 @@ synth.addEventListener && synth.addEventListener('voiceschanged', () => {});
    ============================================= */
 function updateProgress() {
   totalQuestions = DATA.reduce((s, t) => s + t.questions.length, 0);
-  document.getElementById('totalCount').textContent = totalQuestions;
+  document.getElementById('totalCount').textContent    = totalQuestions;
   document.getElementById('reviewedCount').textContent = reviewedItems.size;
 }
 
@@ -1349,12 +1653,15 @@ function renderSidebar() {
    ============================================= */
 function renderQA(topicId, query) {
   const topic = DATA.find(t => t.id === topicId);
-  const area = document.getElementById('qaArea');
+  const area  = document.getElementById('qaArea');
   if (!topic) { area.innerHTML = ''; return; }
 
   const q = (query || '').toLowerCase().trim();
   const filtered = q
-    ? topic.questions.filter(item => item.q.toLowerCase().includes(q) || stripHtml(item.a).toLowerCase().includes(q))
+    ? topic.questions.filter(item =>
+        item.q.toLowerCase().includes(q) ||
+        stripHtml(item.a).toLowerCase().includes(q) ||
+        (item.audio_a || '').toLowerCase().includes(q))
     : topic.questions;
 
   let html = `<div class="topic-intro">
@@ -1366,11 +1673,11 @@ function renderQA(topicId, query) {
     html += `<div style="text-align:center;color:var(--text3);padding:40px;font-size:13px;">No questions match your search.</div>`;
   } else {
     filtered.forEach((item, idx) => {
-      const key = `${topicId}:${idx}`;
-      const isOpen = openItems.has(key);
+      const key        = `${topicId}:${idx}`;
+      const isOpen     = openItems.has(key);
       const isReviewed = reviewedItems.has(key);
       const recallHtml = item.recall ? `<div class="recall-card"><div class="recall-card-label">⚡ Quick Recall</div>${item.recall}</div>` : '';
-      const tpoHtml = item.tpo ? `<div class="tpo-note"><div class="tpo-note-label">★ As TPO</div>${item.tpo}</div>` : '';
+      const tpoHtml    = item.tpo    ? `<div class="tpo-note"><div class="tpo-note-label">★ As TPO</div>${item.tpo}</div>` : '';
 
       html += `<div class="qa-item${isOpen ? ' open' : ''}${isReviewed ? ' reviewed' : ''}" data-key="${key}" data-topic="${topicId}" data-idx="${idx}">
         <div class="qa-q">
@@ -1391,10 +1698,9 @@ function renderQA(topicId, query) {
 
   area.innerHTML = html;
 
-  // Attach events
   area.querySelectorAll('.qa-item').forEach(el => {
     const key = el.dataset.key;
-    const t = el.dataset.topic;
+    const t   = el.dataset.topic;
     const idx = parseInt(el.dataset.idx);
 
     el.querySelector('.qa-q').addEventListener('click', e => {
@@ -1402,24 +1708,13 @@ function renderQA(topicId, query) {
       const isOpen = el.classList.contains('open');
       el.classList.toggle('open', !isOpen);
       if (!isOpen) {
-        openItems.add(key);
-        reviewedItems.add(key);
-        el.classList.add('reviewed');
-        updateProgress();
-      } else {
-        openItems.delete(key);
-      }
+        openItems.add(key); reviewedItems.add(key);
+        el.classList.add('reviewed'); updateProgress();
+      } else { openItems.delete(key); }
     });
 
-    el.querySelector('.btn-read-q').addEventListener('click', e => {
-      e.stopPropagation();
-      speakQuestion(t, idx);
-    });
-
-    el.querySelector('.btn-read-a').addEventListener('click', e => {
-      e.stopPropagation();
-      speakAnswer(t, idx);
-    });
+    el.querySelector('.btn-read-q').addEventListener('click', e => { e.stopPropagation(); speakQuestion(t, idx); });
+    el.querySelector('.btn-read-a').addEventListener('click', e => { e.stopPropagation(); speakAnswer(t, idx); });
   });
 }
 
@@ -1444,8 +1739,7 @@ document.getElementById('btnExpandAll').onclick = () => {
   document.querySelectorAll('.qa-item').forEach(el => {
     const key = el.dataset.key;
     el.classList.add('open', 'reviewed');
-    openItems.add(key);
-    reviewedItems.add(key);
+    openItems.add(key); reviewedItems.add(key);
   });
   updateProgress();
 };
@@ -1462,9 +1756,12 @@ document.getElementById('searchInput').addEventListener('input', e => {
   if (activeTopicId) renderQA(activeTopicId, searchQuery);
   document.querySelectorAll('.topic-card').forEach(card => {
     if (!searchQuery) { card.style.opacity = '1'; return; }
-    const t = DATA.find(x => x.id === card.dataset.id);
-    const q = searchQuery.toLowerCase();
-    const hit = t.questions.some(item => item.q.toLowerCase().includes(q) || stripHtml(item.a).toLowerCase().includes(q));
+    const t   = DATA.find(x => x.id === card.dataset.id);
+    const q   = searchQuery.toLowerCase();
+    const hit = t.questions.some(item =>
+      item.q.toLowerCase().includes(q) ||
+      stripHtml(item.a).toLowerCase().includes(q) ||
+      (item.audio_a || '').toLowerCase().includes(q));
     card.style.opacity = hit ? '1' : '0.4';
   });
 });
@@ -1478,9 +1775,8 @@ function init() {
   selectTopic(DATA[0].id);
 }
 
-if (synth.getVoices().length) {
-  init();
-} else {
+if (synth.getVoices().length) { init(); }
+else {
   synth.addEventListener ? synth.addEventListener('voiceschanged', () => init(), { once: true }) : null;
   setTimeout(init, 600);
 }
