@@ -295,9 +295,9 @@
         <select class="speed-select" id="speedSelect" title="Playback speed">
           <option value="0.7">0.7×</option>
           <option value="0.8">0.8×</option>
-          <option value="0.85" selected>0.85×</option>
+          <option value="0.85">0.85×</option>
           <option value="0.9">0.9×</option>
-          <option value="1.0">1.0×</option>
+          <option value="1.0" selected>1.0×</option>
           <option value="1.1">1.1×</option>
         </select>
         <button class="btn btn-ghost" id="btnStopAll" title="Stop audio">⏹ Stop</button>
@@ -364,17 +364,14 @@ const DATA = [
       {
         q: "Tell me about yourself.",
         audio_q: "Tell me about yourself.",
-        a: `<p>I've been working as a Product Owner for more than five years. My job is to translate business requirements and objectives into actionable features and user stories — and to serve as the bridge between business stakeholders and the development team.</p>
-<p>I started my career as a Quality Assurance Engineer, and that shapes how I work today: detail-oriented, quality-focused, and always thinking about edge cases before they become bugs. It also gave me real exposure to the technical side — APIs, CI/CD pipelines, system design, and cloud services — so I can engage with engineers on their terms, not just hand over requirements and hope for the best.</p>
-<p>On AI: to be upfront, I've been using it heavily — both as a PO and as an Automation QA — but I haven't shipped an ML model myself. What I do understand are the AI concepts that drive product decisions: hallucination, model drift, RAG, probabilistic acceptance criteria, and HIPAA compliance.</p>
-<p>What I'm looking forward to, if I join this team, is the hands-on depth — learning your specific pipeline, your vendors, and how your team decides when to retrain versus improve the prompt. That layer I can only build by doing it alongside your engineers.</p>`,
-        audio_a: `I have been working as a Product Owner for more than five years. My job is to translate business requirements and objectives into actionable features and user stories — and to serve as the bridge between business stakeholders and the development team.
+        a: `<p>5+ years as a Product Owner, bridging business and engineering. I started in QA — detail-oriented, technically fluent, always thinking about edge cases.</p>
+<p>On AI: I haven't shipped an ML model, but I know what drives product decisions — hallucination, model drift, RAG, probabilistic acceptance criteria, and HIPAA compliance.</p>
+<p>What I'm looking forward to is the hands-on depth — your pipeline, your vendors, and how the team decides when to retrain versus improve the prompt.</p>`,
+        audio_a: `Five years as a Product Owner, bridging business and engineering. I started in QA — detail-oriented, technically fluent, and always thinking about edge cases.
 
-I started my career as a Quality Assurance Engineer, and that shapes how I work today. I am detail-oriented, quality-focused, and always thinking about edge cases before they become bugs. It also gave me real exposure to the technical side — APIs, CI/CD pipelines, system design, and cloud services — so I can engage with engineers on their terms, not just hand over requirements and hope for the best.
+On AI: I have not shipped a machine learning model, but I know what drives product decisions — hallucination, model drift, RAG, probabilistic acceptance criteria, and HIPAA compliance.
 
-On AI — to be upfront, I have been using it heavily, both as a Product Owner and as an Automation QA engineer. But I have not shipped a machine learning model myself. What I do understand are the AI concepts that drive product decisions. Hallucination and model drift. RAG — Retrieval Augmented Generation. Probabilistic acceptance criteria with thresholds and rollback triggers. And HIPAA compliance as it applies to patient data.
-
-What I am looking forward to, if I join this team, is the hands-on depth — learning your specific pipeline, your vendors, and how your team decides when to retrain versus when to improve the prompt. That layer I can only build by doing it alongside your engineers.`,
+What I want to build here is the hands-on depth — your pipeline, your vendors, and how the team decides when to retrain versus improve the prompt.`,
         recall: "5+ years PO → QA roots (detail-oriented, technical exposure) → honest about AI gap → name what you DO know → what you'll learn → close punchy",
         tpo: "The QA background explains WHY you're technical without overclaiming. 'Engage on their terms' is the bridge to TPO credibility."
       }
@@ -390,152 +387,82 @@ What I am looking forward to, if I join this team, is the hands-on depth — lea
       {
         q: "What is an LLM and what are its core limitations?",
         audio_q: "What is a large language model, and what are its core limitations?",
-        a: `<p>A large language model — or LLM — is trained on a massive amount of text. It learns to predict what word comes next, which means it can write, summarize, and reason. But it has four important limitations you must understand.</p>
-<p><strong>The first limitation is hallucination.</strong> The model can generate text that sounds very confident, but is completely wrong. It does not know when it is wrong.</p>
-<p><strong>The second limitation is the knowledge cutoff.</strong> The model is blind to anything that happened after it was trained. If a billing policy changed last month, the model does not know.</p>
-<p><strong>The third limitation is no memory.</strong> Each time you call the model, it starts completely fresh. It does not remember the previous conversation.</p>
-<p><strong>The fourth limitation is the context window.</strong> This is the maximum amount of text the model can read in one call. If the text is too long, you must break it into smaller pieces.</p>
-<p>At Ensora, every product decision around the session note assistant comes from understanding these four limitations.</p>`,
-        audio_a: `A large language model — or LLM — is trained on a massive amount of text. It learns to predict what word comes next, which means it can write, summarize, and reason. But it has four important limitations you must understand.
+        a: `<p>An LLM is trained on massive text and predicts the next word — it can write, summarize, and reason. Four limits:</p>
+<p><strong>Hallucination</strong> — confident but factually wrong. <strong>Knowledge cutoff</strong> — blind after training date. <strong>No memory</strong> — each call starts fresh. <strong>Context window</strong> — maximum text per call; long docs must be chunked.</p>
+<p>Every product decision at Ensora flows from these four.</p>`,
+        audio_a: `A large language model is trained on massive text and learns to predict the next word. It can write, summarize, and reason. But it has four limits.
 
-The first limitation is called hallucination. This means the model can generate text that sounds very confident, but is completely wrong. It does not know when it is wrong.
+Hallucination — generates confident text that is factually wrong. Knowledge cutoff — blind to anything after its training date. No memory — each call starts completely fresh. Context window — maximum text per call; long documents must be chunked.
 
-The second limitation is the knowledge cutoff. The model is blind to anything that happened after it was trained. If a billing policy changed last month, the model does not know.
-
-The third limitation is no memory. Each time you call the model, it starts completely fresh. It does not remember the previous conversation.
-
-The fourth limitation is the context window. This is the maximum amount of text the model can read in one call. If the text is too long, you must break it into smaller pieces.
-
-At Ensora, every product decision around the session note assistant comes from understanding these four limitations.`,
+Every product decision at Ensora flows from these four.`,
         recall: "4 limits: hallucination · knowledge cutoff · no memory · context window",
         tpo: "Never let LLM output touch clinical data without a therapist review gate."
       },
       {
         q: "What is hallucination and how do you mitigate it clinically?",
         audio_q: "What is hallucination in AI, and how do you protect against it in a clinical healthcare product?",
-        a: `<p>Hallucination is one of the most important concepts to understand. It happens when a language model generates text that sounds very confident and fluent — but is completely factually wrong. The model does not know it is wrong. It is simply matching patterns from its training data.</p>
-<p>In a consumer app, this is annoying. In healthcare, this is a patient safety issue. Imagine the model inventing a medication dosage or creating a diagnosis code that does not exist. That could directly harm a patient.</p>
-<p>As a Technical Product Owner, there are four layers of protection. <strong>The first layer</strong> is a human review gate — no clinical output should be shown to a patient or used in a record without a therapist reviewing it first. <strong>The second layer</strong> is RAG — grounding the model's answers in real documents reduces the chance it will invent information. <strong>The third layer</strong> is monitoring — track the hallucination rate as a metric in production continuously after the feature goes live. <strong>The fourth layer</strong> is a rollback trigger — before launch, define a specific threshold; if the hallucination rate crosses it, the feature turns off immediately.</p>`,
-        audio_a: `Hallucination is one of the most important concepts to understand. It happens when a language model generates text that sounds very confident and fluent — but is completely factually wrong. The model does not know it is wrong. It is simply matching patterns from its training data.
+        a: `<p>The model generates confident text that is factually wrong — and does not know it. In healthcare, that is a patient safety risk: an invented dosage or fabricated diagnosis could directly harm someone.</p>
+<p><strong>Four protections:</strong> human review gate (no clinical output without therapist approval) · RAG grounding (real docs reduce invented content) · monitor hallucination rate in production · pre-defined rollback trigger (rate crosses threshold → feature turns off).</p>`,
+        audio_a: `Hallucination means the model generates confident text that is factually wrong — and does not know it. In healthcare, that is a patient safety risk. An invented dosage or fabricated diagnosis could directly harm someone.
 
-In a consumer app, this is annoying. In healthcare, this is a patient safety issue. Imagine the model inventing a medication dosage or creating a diagnosis code that does not exist. That could directly harm a patient.
-
-As a Technical Product Owner, here is how you protect against this. There are four layers.
-
-The first layer is a human review gate. No clinical output should be shown to a patient or used in a record without a therapist reviewing it first.
-
-The second layer is RAG. By grounding the model's answers in real documents, you reduce the chance that it will invent information.
-
-The third layer is monitoring. You track the hallucination rate as a metric in production — meaning you measure it continuously after the feature goes live.
-
-The fourth layer is a rollback trigger. Before you launch the feature, you define a specific number. If the hallucination rate crosses that number, you turn the feature off immediately.`,
+Four protections. One: human review gate — no clinical output without therapist approval. Two: RAG grounding — real documents reduce invented content. Three: monitor the hallucination rate in production continuously. Four: define a rollback trigger before launch — rate crosses the threshold, feature turns off immediately.`,
         recall: "Confident + wrong = hallucination · Healthcare = patient safety risk · Mitigation: review gate, RAG, production metric, rollback trigger",
         tpo: "No clinical output displayed without therapist review — this is a safety requirement, not a nice-to-have."
       },
       {
         q: "What are embeddings and vector databases?",
         audio_q: "What are embeddings and vector databases, and how do they power the RAG system?",
-        a: `<p>When you convert text into an embedding, you are converting it into a long list of numbers. The key insight is this — text that has similar meaning will produce similar numbers, even if the actual words are completely different.</p>
-<p>For example, "the patient feels anxious" and "the client reports persistent worry" have very different words. But their embeddings — their number representations — will be very close together, because the meaning is similar.</p>
-<p>A vector database stores all these number representations and lets you search through them very quickly. Instead of searching by keywords, you search by meaning. This is called semantic search — and it is the engine inside every RAG system.</p>
-<p>If a RAG system is giving poor answers, the problem is usually not the language model. The problem is usually in the embedding quality or in how the documents were broken up — which is called chunking. As a Technical Product Owner, you define the chunking strategy as a product requirement.</p>`,
-        audio_a: `Let me explain embeddings with a simple example.
+        a: `<p>An embedding converts text into numbers. Similar meaning → similar numbers, even with different words. A vector database searches those numbers by meaning — called semantic search — the engine inside every RAG system.</p>
+<p>If RAG gives poor answers, the problem is usually the embedding quality or chunking strategy — not the model. The chunking strategy is your product requirement to define.</p>`,
+        audio_a: `An embedding converts text into a list of numbers. Similar meaning produces similar numbers, even if the words are completely different.
 
-When you convert text into an embedding, you are converting it into a long list of numbers. The key insight is this — text that has similar meaning will produce similar numbers, even if the actual words are completely different.
-
-For example, the sentence "the patient feels anxious" and the sentence "the client reports persistent worry" have very different words. But their embeddings — their number representations — will be very close together, because the meaning is similar.
-
-A vector database stores all these number representations and lets you search through them very quickly. Instead of searching by keywords, you search by meaning. This is called semantic search.
-
-This is the engine inside every RAG system. When a user asks a question, the system converts the question into an embedding and finds the most meaningfully similar documents in the database.
-
-If the RAG system is giving poor answers, the problem is usually not the language model. The problem is usually in the embedding quality or in how the documents were broken up — which is called chunking. As a Technical Product Owner, you define the chunking strategy as a product requirement.`,
+A vector database searches those numbers by meaning — called semantic search — and it is the engine inside every RAG system. If RAG gives poor answers, the problem is usually the embedding quality or the chunking strategy, not the model. The chunking strategy is your product requirement to define.`,
         recall: "Embedding = text → numbers · Similar meaning → similar vectors · Vector DB = semantic search engine inside RAG",
         tpo: "Chunk size, overlap, and embedding model choice are product requirements — not implementation details."
       },
       {
         q: "How do you think about model tradeoffs?",
         audio_q: "How do you think about the tradeoffs between accuracy, latency, and cost when choosing an AI model?",
-        a: `<p>Every AI model involves a three-way tradeoff. The three factors are accuracy, latency, and cost. Latency means how fast the model responds. Cost means how much money it takes to run. Accuracy means how correct the output is.</p>
-<p>Bigger, more powerful models are more accurate — but they are slower and more expensive. Smaller models are faster and cheaper — but they are less capable.</p>
-<p>As a Technical Product Owner, your job is to define where a specific feature must sit on this tradeoff. The engineering team then selects the right model to match your requirements.</p>
-<p><strong>Two examples:</strong> if you are building a real-time session assistant, speed is the most important factor — the therapist cannot wait ten seconds. But if you are running an overnight billing audit, accuracy is the most important factor — speed does not matter as much. Always match the model to the use case, and do not over-engineer low-stakes features.</p>`,
-        audio_a: `Every AI model involves a three-way tradeoff. The three factors are accuracy, latency, and cost.
+        a: `<p>Three-way tradeoff: <strong>accuracy, latency, cost</strong>. Bigger models are more accurate but slower and more expensive. Smaller models are faster and cheaper but less capable.</p>
+<p>TPO defines the requirements — speed, error tolerance, cost per call. Engineering picks the model. Real-time session assistant → optimize speed. Overnight billing audit → optimize accuracy. Match the model to the use case.</p>`,
+        audio_a: `Every AI model is a three-way tradeoff: accuracy, latency, and cost. Bigger models are more accurate but slower and more expensive. Smaller models are faster and cheaper but less capable.
 
-Latency means how fast the model responds. Cost means how much money it takes to run. Accuracy means how correct the output is.
-
-Here is the challenge. Bigger, more powerful models are more accurate — but they are slower and more expensive. Smaller models are faster and cheaper — but they are less capable.
-
-As a Technical Product Owner, your job is to define where a specific feature must sit on this tradeoff. The engineering team then selects the right model to match your requirements.
-
-Let me give you two examples. If you are building a real-time session assistant that helps a therapist during a live session, speed is the most important factor. The therapist cannot wait ten seconds for a response. So you choose a faster, perhaps slightly less accurate model.
-
-But if you are running an overnight billing audit — where the results are not needed until the next morning — accuracy is the most important factor. Speed does not matter as much. So you choose a more powerful, more accurate model.
-
-Always match the model to the use case. And do not over-engineer features that are low-stakes.`,
+Your job as TPO is to define the requirements — speed, error tolerance, cost per call. Engineering picks the model. Real-time session assistant needs speed above all. Overnight billing audit needs accuracy above all. Always match the model to the use case.`,
         recall: "3-way tradeoff: accuracy vs latency vs cost · TPO defines requirements, eng picks the model · Match model to use case",
         tpo: "Specify all three dimensions in requirements. Response time, error rate tolerance, and cost per call all belong in the acceptance criteria."
       },
       {
         q: "What are tokens and context windows?",
         audio_q: "What are tokens and context windows, and why do they matter for product decisions?",
-        a: `<p>A token is approximately three quarters of a word. Language models process text in these small units called tokens, and you pay for each one. The context window is the maximum number of tokens the model can handle in a single call — including both what you send in and what the model sends back. Combined, they cannot exceed the context window limit.</p>
-<p>This matters for two reasons. <strong>First, cost.</strong> If you have ten thousand session notes per day and each note is two thousand tokens, that is twenty million tokens per day. You need to calculate this cost before committing to build the feature — otherwise you may build something too expensive to run at scale.</p>
-<p><strong>Second, length.</strong> A long session transcript might be too long to fit in a single context window. In that case, you need to break it into smaller pieces — this is called chunking. As a Technical Product Owner, the chunking strategy is your product requirement to define, not an implementation detail to leave to engineering.</p>`,
-        audio_a: `A token is approximately three quarters of a word. Language models process text in these small units called tokens, and you pay for each one.
+        a: `<p>A token is roughly ¾ of a word. You pay per token. The context window is the maximum tokens per call — input plus output combined.</p>
+<p><strong>Two impacts:</strong> Cost — 10,000 notes × 2,000 tokens = 20M tokens/day; calculate before committing. Length — transcripts exceeding the limit must be chunked. The chunking strategy is your product requirement, not an engineering detail.</p>`,
+        audio_a: `A token is roughly three quarters of a word. You pay per token. The context window is the maximum tokens per call — input and output combined.
 
-The context window is the maximum number of tokens the model can handle in a single call. This includes both the text you send in — called the input — and the text the model sends back — called the output. Combined, they cannot exceed the context window limit.
-
-Why does this matter for product decisions? Two reasons.
-
-First, cost. If you have ten thousand session notes per day, and each note is two thousand tokens, that is twenty million tokens per day. You need to calculate this cost before you commit to building the feature. Otherwise you may build something that is too expensive to run at scale.
-
-Second, length. A long session transcript — maybe a one hour therapy session — might be too long to fit in a single context window. In that case, you need to break it into smaller pieces. This is called chunking. As a Technical Product Owner, the chunking strategy is your product requirement to define — not an implementation detail to leave to engineering.
-
-Always model the cost at realistic production scale before the feature goes on the roadmap.`,
+Two impacts. First, cost — ten thousand notes at two thousand tokens each is twenty million tokens daily. Calculate this before committing to a feature. Second, length — transcripts that exceed the limit must be broken into pieces. That is called chunking, and the chunking strategy is your product requirement, not an engineering detail.`,
         recall: "Token = about 3/4 of a word · Pay per token · Context window = hard cap · Long docs need chunking → product requirement",
         tpo: "Always model cost at realistic production scale before committing to a feature."
       },
       {
         q: "What are AI bias risks in healthcare?",
         audio_q: "What are the bias risks of AI models, and how do they apply specifically in a healthcare product?",
-        a: `<p>AI models learn from data. And they inherit whatever biases exist in that data. If a model was trained mostly on data from one demographic group, it may work much less well for people from a different group. In healthcare, this is not just a quality problem — it is a fairness and safety problem. Different patients could receive different quality of care because of how the model was trained.</p>
-<p>There are also other important risks. <strong>PHI leakage:</strong> PHI stands for Protected Health Information — any data that can identify a patient. If the model was trained on patient data, it might accidentally reproduce parts of that data in its outputs.</p>
-<p><strong>HIPAA compliance:</strong> if you send patient data to an external language model API — like OpenAI or Anthropic — you must have a signed legal agreement called a Business Associate Agreement, or BAA. Without this agreement, you are violating HIPAA.</p>
-<p>As a Technical Product Owner, require a demographic fairness analysis before any AI feature launches. And ensure patient data never reaches an external API without a signed BAA.</p>`,
-        audio_a: `AI models learn from data. And they inherit whatever biases exist in that data.
+        a: `<p>Models inherit bias from training data. Trained on one demographic, they may perform worse for others — a patient safety issue in healthcare.</p>
+<p><strong>Two other risks:</strong> PHI leakage (patient data in training may appear in outputs) · HIPAA violation (sending patient data to an external API without a signed BAA is illegal). Require a demographic fairness analysis before launch. Verify the BAA before any external vendor touches patient data.</p>`,
+        audio_a: `Models inherit bias from training data. Trained mostly on one demographic group, they may perform worse for others — a patient safety issue in healthcare.
 
-Here is a concrete example. If a model was trained mostly on data from one demographic group, it may work much less well for people from a different group. In healthcare, this is not just a quality problem — it is a fairness and safety problem. Different patients could receive different quality of care because of how the model was trained.
+Two other risks. First, PHI leakage — Protected Health Information used in training may appear in outputs. Second, HIPAA violation — sending patient data to an external API without a signed Business Associate Agreement is illegal.
 
-There are also other important risks.
-
-The first is PHI leakage. PHI stands for Protected Health Information — this means any data that can identify a patient. If the model was trained on patient data, it might accidentally reproduce parts of that data in its outputs.
-
-The second risk is HIPAA compliance. HIPAA is the main privacy law in American healthcare. If you send patient data to an external language model API — like OpenAI or Anthropic — you must have a signed legal agreement called a Business Associate Agreement, or BAA. Without this agreement, you are violating HIPAA.
-
-As a Technical Product Owner, you must require a demographic fairness analysis before any AI feature launches. And you must ensure that patient data never reaches an external API without a signed BAA.`,
+Require a demographic fairness analysis before launch. Verify the BAA before any external vendor touches patient data.`,
         recall: "Bias = inherited from training data · PHI = Protected Health Information · BAA required for third-party APIs · Bias audit is a DoD item",
         tpo: "Demographic fairness analysis is a Definition of Done item, not a post-launch nice-to-have."
       },
       {
         q: "What is model drift and how do you manage it?",
         audio_q: "What is model drift, and how do you manage it as a Technical Product Owner?",
-        a: `<p>Model drift happens when the model's performance gets worse over time — not because the model changed, but because the real world changed. In healthcare, this happens constantly: new diagnosis codes get added, payer policies get updated, and the way therapists write notes evolves. But the model was trained on old data, so it slowly becomes less accurate.</p>
-<p>As a Technical Product Owner, you manage drift with three things. <strong>First, baseline metrics:</strong> when the feature launches, measure its performance carefully and record those numbers as your reference point. <strong>Second, alert thresholds:</strong> define specific numbers that, if crossed, trigger an investigation — for example, if the therapist acceptance rate drops below 75%, someone gets alerted. <strong>Third, a retraining schedule:</strong> put model retraining on the roadmap as a regular, recurring item — not something you only do when there is a crisis.</p>
-<p>The most important rule: monitoring must ship with the feature. If you cannot observe the model's performance in production, the feature is not done. This belongs in the Definition of Done, every time.</p>`,
-        audio_a: `Model drift happens when the model's performance gets worse over time — not because the model changed, but because the real world changed.
+        a: `<p>The model gets worse over time because the world changed — new billing codes, updated guidelines, evolving therapist language. Trained on old data, it slowly falls behind.</p>
+<p><strong>Three responses:</strong> record baseline metrics at launch · set alert thresholds (acceptance below 75% → investigate) · schedule retraining as a recurring roadmap item. Monitoring must ship with the feature — no monitoring means no visibility into drift.</p>`,
+        audio_a: `The model gets worse over time because the world changed — not the model. New billing codes, updated guidelines, evolving therapist language. Trained on old data, it slowly falls behind.
 
-In healthcare, this happens constantly. New diagnosis codes get added. Payer policies get updated. The way therapists write their notes evolves over time. But the model was trained on old data, so it slowly becomes less accurate.
-
-As a Technical Product Owner, you manage drift with three things.
-
-The first thing is baseline metrics. When the feature launches, you measure its performance carefully and record those numbers. This is your reference point.
-
-The second thing is alert thresholds. You define specific numbers that, if crossed, trigger an investigation. For example, if the therapist acceptance rate drops below seventy-five percent, someone gets alerted and investigates why.
-
-The third thing is a retraining schedule. You put model retraining on the roadmap as a regular, recurring item — not something you only do when there is a crisis.
-
-And the most important rule: monitoring must ship with the feature. If you cannot observe the model's performance in production, the feature is not done. This belongs in the Definition of Done, every time.`,
+Three responses. Record baseline metrics at launch — that is your reference point. Set alert thresholds — therapist acceptance below 75 percent triggers an investigation. Schedule retraining as a recurring roadmap item, not a crisis response. Monitoring must ship with the feature. No monitoring means no visibility into drift.`,
         recall: "Drift = world changed, model didn't · 3 responses: baseline metrics + alert threshold + retraining schedule · Monitoring = Definition of Done item",
         tpo: "Monitoring is not a post-launch add-on. It ships with the feature or the feature is not done."
       },
@@ -554,17 +481,15 @@ And the most important rule: monitoring must ship with the feature. If you canno
   </tbody>
 </table>
 <div class="recall-card"><div class="recall-card-label">⚡ Escalation order</div>Prompt Engineering → RAG → Fine-tuning. Never skip steps. Always try the cheaper option first.</div>`,
-        audio_a: `Let me walk through the three ways you improve an AI model, in the order you should try them.
+        audio_a: `Three ways to improve a model — try them in order.
 
-The first approach is prompt engineering. This means improving the instructions you give the model — without changing the model itself. It is free and produces results in hours. Always try this first.
+Prompt engineering: improve the instructions. Free, results in hours. Always try this first.
 
-The second approach is RAG — Retrieval Augmented Generation. Instead of changing the model, you give it access to real documents at the moment it answers a question. This is the right choice when the model needs current or traceable knowledge — like billing rules or clinical guidelines. It takes days to weeks to set up and does not change the model itself. Every answer can be traced back to a specific source document, which makes it auditable.
+RAG — Retrieval Augmented Generation: give the model access to real documents at query time. Current, traceable, auditable. Days to weeks to set up.
 
-The third approach is fine-tuning. This means you continue training the model on your own examples, which permanently changes how it behaves. Use this only when you need consistent writing style and prompt engineering has already failed. It is expensive, takes weeks, and the behavior is baked into the model — so it is not auditable in the same way RAG is.
+Fine-tuning: continue training on your own data. Permanent change, expensive, takes weeks. Only when everything else has failed.
 
-The escalation order is this. Prompt engineering first. Then RAG. Then fine-tuning. Never skip steps. Always try the cheaper option first.
-
-At Ensora, this means: try prompt engineering first, use RAG for billing rules and clinical guidelines, and only consider fine-tuning if style consistency cannot be achieved any other way.`,
+Never skip steps. Always try the cheaper option first.`,
         recall: "Prompt Eng → RAG → Fine-tuning · Free/hours → Moderate/weeks → Expensive/months · Only fine-tune when everything else fails",
         tpo: "Recommending fine-tuning before exhausting prompt engineering and RAG signals poor product judgment."
       },
@@ -583,15 +508,9 @@ At Ensora, this means: try prompt engineering first, use RAG for billing rules a
   </tbody>
 </table>
 <div class="recall-card"><div class="recall-card-label">⚡ Simple rule</div>Need to extract a specific fact? Use NLP. Need to generate natural text? Use an LLM. Don't default to LLMs because they sound impressive.</div>`,
-        audio_a: `Here is the difference between traditional NLP tools and large language models.
+        audio_a: `NLP tools are specialists — one task, fast, cheap, fully explainable. Large language models are generalists — flexible, fluent, but can hallucinate and cost more.
 
-Traditional NLP tools are specialists. They are built to do one specific task very well — like extracting a billing code or identifying a diagnosis from text. They are fast, cheap, and fully explainable. You can trace exactly why the tool gave a specific output. In healthcare, this explainability is critical for compliance.
-
-Large language models are generalists. They are flexible, handle many different types of language tasks, and can generate fluent natural text. But they are more expensive to run, they can hallucinate, and their output is not always predictable.
-
-The simple rule is this. If you need to extract a specific fact — like a billing code or a diagnosis — use a traditional NLP tool. If you need to generate a natural paragraph of text — like a session note or a summary — use a large language model.
-
-At Ensora, NLP extracts the codes. The large language model writes the notes. Do not default to a large language model just because it sounds more impressive. A specialist NLP tool is often more defensible in a healthcare audit.`,
+Simple rule: need to extract a specific fact, use NLP. Need to generate natural text, use a large language model. At Ensora: NLP extracts the codes. The large language model writes the notes.`,
         recall: "NLP = specialist, fast, auditable · LLM = generalist, flexible, can hallucinate · Extract → NLP · Generate text → LLM",
         tpo: "A specialist NLP tool is more defensible in a healthcare audit than an LLM. Don't over-engineer."
       },
@@ -609,17 +528,13 @@ At Ensora, NLP extracts the codes. The large language model writes the notes. Do
   </tbody>
 </table>
 <div class="recall-card"><div class="recall-card-label">⚡ TPO translation</div>Engineer says "recall is 68%." You say: "We're missing 32% of real cases. In a clinical context that's unacceptable — optimize for recall." You pick the acceptable error. They minimize it.</div>`,
-        audio_a: `Let me explain precision, recall, and F1 score with a concrete example.
+        audio_a: `Precision: when the model flags something, how often is it right? Low precision means too many false alarms.
 
-Precision answers this question: when the model says "yes, this is a problem," how often is it actually right? Here is an example. The model flags 10 session notes as missing a diagnosis code. If 8 of those flags are genuine and 2 are false alarms, precision is 80 percent. Low precision means the model cries wolf too often — it wastes clinician time chasing false alarms.
+Recall: of all the real problems, how many did the model find? Low recall means real cases are being missed.
 
-Recall answers a different question: out of all the real problems that actually exist, how many did the model find? Using the same example — say there are 10 notes genuinely missing a diagnosis code. If the model found 7 and missed 3, recall is 70 percent. Low recall means real problems are slipping through undetected. In healthcare, this is usually more dangerous than false alarms.
+In healthcare, recall usually matters more — a missed case is worse than a false alarm. F1 balances both into one number.
 
-F1 score is a single number that balances both precision and recall together. Use it when you need one summary metric to describe overall model quality.
-
-Here is the key insight for a Technical Product Owner. In clinical contexts, recall usually matters more than precision. Missing a real case is worse than generating a false alarm. As the Technical Product Owner, your job is to decide which error is more acceptable for the business. Engineering then decides how to minimize that error.
-
-So if an engineer tells you the model has a recall of 68 percent, you translate that into a product decision. You say — we are missing 32 percent of real cases. In a clinical context, that is not acceptable. We need to optimize for recall. The engineer decides how to do it. You decide that recall is the priority.`,
+As TPO, you decide which error is more acceptable. Engineering minimizes it.`,
         recall: "Precision = reliability of yes answers · Recall = coverage of real cases · F1 = balance of both · Healthcare: recall usually wins · TPO picks the error, engineer minimizes it",
         tpo: "The precision vs recall tradeoff is what separates a TPO from a regular PM. Name it explicitly."
       },
@@ -638,17 +553,9 @@ So if an engineer tells you the model has a recall of 68 percent, you translate 
   </tbody>
 </table>
 <div class="recall-card"><div class="recall-card-label">⚡ Key rule</div>As TPO you live in the inference world. Training is a roadmap decision you trigger — not a daily concern. Monitoring in production is how you know when retraining is needed.</div>`,
-        audio_a: `Training and inference are two completely different phases in an AI system's life.
+        audio_a: `Training is when the model learns from data — slow, expensive, happens periodically every few months. Inference is when it runs in production — fast, real-time, thousands of calls per day.
 
-Training is when the model learns from data. Its internal settings are adjusted. This is slow and expensive — it can take days or weeks of computing time. It happens periodically, maybe every few months, triggered when you see signs that the model is getting worse over time.
-
-Inference is when the model is actually used in production. Every time a therapist requests a session note summary, that is an inference call. It happens in milliseconds to seconds, runs continuously, and can occur thousands of times per day.
-
-As a Technical Product Owner, you live primarily in the inference world. For inference, you own three things. First, the latency requirement — how fast must the system respond? Second, the cost per call budget — how much can each inference call cost at realistic production scale? Third, the fallback behavior — what happens if the model is unavailable or returns a low-confidence response?
-
-For training, your role is different. You decide when to retrain by watching production signals — like the therapist acceptance rate dropping below your alert threshold. You put retraining on the roadmap as a recurring item, not something you only do in a crisis.
-
-The key rule is this. Monitoring in production is how you know when retraining is needed. If you cannot observe the model's performance, you will never know when to trigger it.`,
+As TPO you live in the inference world. You own latency, cost per call, and fallback behavior. Training is a roadmap decision you trigger when drift signals tell you performance is slipping.`,
         recall: "Training = learns (slow, periodic) · Inference = runs in production (fast, continuous) · TPO inference: latency + cost + fallback · TPO training: when to retrain on the roadmap",
         tpo: "Monitoring is how you connect the inference world to the training decision. No monitoring = flying blind."
       },
@@ -679,17 +586,15 @@ The key rule is this. Monitoring in production is how you know when retraining i
 <p style="margin-top:14px"><strong>Rule 4 — Monitoring ships with the feature.</strong></p>
 <p>If you cannot observe the model's performance in production, the feature is not done. This is not a post-launch task. It belongs in the Definition of Done.</p>
 <div class="recall-card" style="margin-top:6px"><div class="recall-card-label">⚡ Memory hook</div>A code bug fails loudly. A bad AI model fails quietly for months — unless monitoring ships with the feature.</div>`,
-        audio_a: `Here are the four rules for writing acceptance criteria for AI features. Learn them in order.
+        audio_a: `Four rules for AI acceptance criteria.
 
-Rule one. Replace the word "correct" with a number. Never write "the output is correct." AI is probabilistic — it will not be correct every single time, and that is expected and acceptable. Write a measurable threshold instead. For example: "The AI-generated note is accepted by the reviewing therapist without major edits in 85 percent or more of test cases." That is a testable criterion.
+One: replace the word correct with a threshold — 85 percent or more of notes accepted without major edits.
 
-Rule two. Define three performance bands upfront. Before development starts, agree on exactly what each performance zone means. The first zone is healthy — 85 percent or above, no action needed. The second zone is investigate — between 75 and 85 percent, the team looks into why but the feature stays live. The third zone is rollback — below 60 percent, the feature turns off immediately and the team begins finding the cause. You define these numbers before the sprint starts, not after there is a crisis.
+Two: define three bands before development starts. Healthy: 85 percent or above. Investigate: 75 to 85 percent, feature stays live. Rollback: below 60 percent, feature turns off immediately.
 
-Rule three. Always write a fallback acceptance criterion. Define what happens when the model is uncertain or fails. This is a required criterion, not something you leave to engineering to figure out. For example: if the model returns a low-confidence response, the system shows a blank template and asks the therapist to fill it in manually. You never show a degraded AI output to a clinical user.
+Three: always write a fallback criterion — low confidence shows a blank template, never a bad output.
 
-Rule four. Monitoring ships with the feature. If you cannot observe the model's performance in production, the feature is not done. This is not a post-launch task. It belongs in the Definition of Done from the start.
-
-The memory hook for this rule is: a code bug fails loudly. A bad AI model fails quietly for months — unless monitoring ships with the feature.`,
+Four: monitoring ships with the feature. A code bug fails loudly. A bad model fails quietly for months.`,
         recall: "Rule 1: threshold not binary · Rule 2: three bands (healthy / investigate / rollback) · Rule 3: fallback AC required · Rule 4: monitoring in Definition of Done",
         tpo: "These four rules are what separate a TPO who has shipped AI from one who hasn't."
       },
@@ -729,19 +634,11 @@ The memory hook for this rule is: a code bug fails loudly. A bad AI model fails 
   </tbody>
 </table>
 <div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ Memory hook</div><strong>E · C · M · F · H</strong> — Eval · Clinician · Monitor · Fallback · HIPAA. All five or it does not ship.</div>`,
-        audio_a: `Here are the five items in the Definition of Done for an AI feature. All five must be complete before the feature ships. If any one is missing, the feature is not done.
+        audio_a: `Five items. All five or the feature does not ship.
 
-Item one. The eval report meets the pre-agreed threshold. This means engineering ran the model against a test dataset before launch and the results hit the exact number that was agreed before development started. Not close to the number. The exact number.
+One: eval report meets the pre-agreed threshold — the exact number, not close. Two: clinician sign-off — a licensed therapist reviewed a sample. Three: monitoring live on launch day — not next sprint. Four: fallback explicitly tested — low-confidence path shows a blank template. Five: HIPAA cleared — BAA in place for any external vendor.
 
-Item two. Clinician sign-off. A licensed therapist reviewed a representative sample of the model's outputs and formally approved them. Quality assurance testing alone is not enough for a clinical AI feature. A clinical expert must review it.
-
-Item three. Monitoring is live on launch day. Not scheduled for the next sprint. Not planned for later. Live on the day the feature ships. A model that worked perfectly at launch can silently get worse over time. Monitoring is how you catch that before users experience it.
-
-Item four. Fallback behavior has been explicitly tested. The low-confidence path has been verified to work correctly. For example, when the model is uncertain, the system shows a blank template instead of a bad AI output. You need to have actually tested this path — not just assumed it works.
-
-Item five. HIPAA cleared. Every data path has been reviewed. A Business Associate Agreement — a BAA — is in place if patient data touches any third-party API. No patient data leaves the system without a signed legal agreement.
-
-The memory hook is the five letters E, C, M, F, H. Eval, Clinician, Monitor, Fallback, HIPAA. All five or it does not ship.`,
+Memory hook: E, C, M, F, H. All five or it does not ship.`,
         recall: "E — Eval report · C — Clinician sign-off · M — Monitoring live · F — Fallback tested · H — HIPAA cleared",
         tpo: "ECMFH. All five or it does not ship."
       },
@@ -768,17 +665,13 @@ The memory hook is the five letters E, C, M, F, H. Eval, Clinician, Monitor, Fal
   </tbody>
 </table>
 <div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ Key distinction</div><strong>Hallucination</strong> = wrong at launch, needs a review gate and RAG. <strong>Drift</strong> = correct at launch, gets worse over time, needs monitoring and a retraining schedule.</div>`,
-        audio_a: `There are two major AI risks every Technical Product Owner must manage. Hallucination and model drift. They are different problems with different solutions.
+        audio_a: `Two different risks — different problems, different solutions.
 
-Hallucination is when the model generates text that sounds confident but is factually wrong. The model does not know it is wrong. In healthcare, this could mean an invented medication dosage or a fabricated diagnosis code ending up in a patient record.
+Hallucination: wrong from launch — confident but factually incorrect. Fix it with a review gate, RAG grounding, and a rollback trigger.
 
-There are three ways you manage hallucination as a Technical Product Owner. First, build a human review gate into every clinical acceptance criterion. No AI output goes into a patient record without a therapist reviewing and approving it. This is non-negotiable. Second, use RAG to ground the model's answers in real, verified documents rather than its training memory. Third, define a rollback trigger before launch. If the hallucination rate in production crosses your threshold, the feature turns off immediately.
+Drift: correct at launch, gets worse over time because the world changed. Fix it with baseline metrics, alert thresholds, and a retraining schedule.
 
-Model drift is a different problem. The model was working correctly at launch — but over time, the real world changed and the model did not. New billing codes were released. Clinical guidelines were updated. Therapist documentation styles evolved. The model was trained on old data, so it slowly becomes less accurate.
-
-There are three ways you manage model drift. First, record baseline metrics at launch — this is your reference point for everything that follows. Second, set alert thresholds — for example, if the therapist acceptance rate drops below 75 percent, the team investigates. Third, put model retraining on the roadmap as a regular scheduled item — not something you only do when there is a crisis.
-
-The key distinction to remember is this. Hallucination means the model was wrong from the start — you need a review gate and RAG. Drift means the model was correct at launch but got worse over time — you need monitoring and a retraining schedule.`,
+Hallucination fails loudly if you have a review gate. Drift fails silently unless you have monitoring.`,
         recall: "Hallucination: wrong at launch → review gate + RAG + rollback trigger · Drift: correct at launch, degrades → baseline metrics + alert thresholds + retraining schedule",
         tpo: "Hallucination fails loudly if you have a review gate. Drift fails silently unless you have monitoring."
       },
@@ -795,17 +688,11 @@ The key distinction to remember is this. Hallucination means the model was wrong
   </tbody>
 </table>
 <div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ Memory hook</div><strong>AEBA</strong> — Authorization · Encryption · BAA · Audit Logs. All four or the feature does not ship.</div>`,
-        audio_a: `There are four things a Technical Product Owner must check on every feature that touches patient data. Think of it as a compliance checklist. Each item is non-negotiable.
+        audio_a: `Four checks before any feature that touches patient data ships.
 
-The first thing to check is authorization. This means only the right people can access patient data. Users can only see what their role permits. As a Technical Product Owner, you write these access rules directly in your acceptance criteria. For example, a billing admin can see financial records, but cannot access therapy notes. This is called Role-Based Access Control — or RBAC for short.
+Authorization — write RBAC rules in acceptance criteria; billing admins cannot access therapy notes. Encryption — patient data must be encrypted in transit and at rest. BAA — a signed Business Associate Agreement is required before patient data touches any external API. Audit logs — every access to patient data must be recorded.
 
-The second thing to check is encryption. Patient data must be encrypted in two situations. First, when it is moving between systems — this is called encryption in transit. Second, when it is stored on a server — this is called encryption at rest. Unencrypted patient data is a HIPAA violation. Encryption must be a Definition of Done requirement on every feature that handles patient information.
-
-The third thing to check is the BAA — the Business Associate Agreement. This is a legal contract that must be signed before any patient data — which HIPAA calls Protected Health Information, or PHI — touches a third-party vendor or API. If you send session notes to an external AI service without a signed BAA, you are breaking the law. This is non-negotiable. Check it before any external vendor is involved.
-
-The fourth thing to check is audit logs. Every time someone accesses patient data, that access must be recorded — who accessed it, when, and why. This log is required for compliance audits and legal reviews. Audit logging is a Definition of Done item. It is not optional.
-
-The memory hook is four letters: A, E, B, A. Authorization, Encryption, BAA, Audit Logs. All four or the feature does not ship.`,
+Memory hook: AEBA. All four or the feature does not ship.`,
         recall: "AEBA: Authorization (RBAC) · Encryption (transit + rest) · BAA (third-party vendors) · Audit Logs (Definition of Done)",
         tpo: "AEBA. If any one is missing, the feature does not ship."
       }
@@ -834,15 +721,9 @@ The memory hook is four letters: A, E, B, A. Authorization, Encryption, BAA, Aud
   </tbody>
 </table>
 <div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ One-line summary</div>Microservices on AWS · REST (sync) + SQS/SNS (async) · RDS + S3 · ECS + Lambda · CloudWatch · <strong>I bring the constraints. Engineering brings the design.</strong></div>`,
-        audio_a: `The system I worked on at Cox Automotive was a microservices application running on AWS. Instead of one large application, the system was broken into smaller, independent services. Each service owned one business capability and could be deployed and scaled on its own.
+        audio_a: `Microservices on AWS. Services communicate two ways: synchronously via REST for real-time calls, asynchronously via SQS and SNS for background work. Data in RDS and S3. Compute on ECS and Lambda. API Gateway for external traffic. CloudWatch for monitoring.
 
-Services communicated in two ways. The first way was synchronously, using REST APIs — one service calls another and waits for a response. That was used for real-time requests. The second way was asynchronously, using SQS and SNS — message queues where one service sends a message and does not wait. That was used for background work, notifications, and event-driven tasks. Keeping these two patterns separate made the system more resilient.
-
-Data was stored in RDS for relational data and S3 for files. Services ran on ECS containers. Lambda handled serverless tasks. API Gateway managed external traffic. CloudWatch handled monitoring and alerts.
-
-Now here is the part that matters for this role. My job as Technical Product Owner was to bring the constraints — not the design. I told engineering how fast the system had to respond, how much load it had to handle, and what data had to stay isolated for compliance. Engineering decided how to meet those constraints. When they gave me options, I asked for the tradeoffs. One option might be faster but more expensive. Another simpler but harder to scale. I kept asking until I could make the right product decision.
-
-The one-line version: Microservices on AWS. REST for real-time, SQS and SNS for async. RDS and S3 for data. ECS and Lambda for compute. CloudWatch for monitoring. I bring the constraints. Engineering brings the design.`,
+My role as TPO: I brought the constraints — latency, load, compliance isolation. Engineering brought the design. When they gave me options, I asked for tradeoffs until I could make the right product decision. I bring the constraints. Engineering brings the design.`,
         recall: "Microservices on AWS · REST (sync) + SQS/SNS (async) · RDS + S3 · ECS + Lambda · CloudWatch · TPO: constraints not design",
         tpo: "If they probe any AWS service — say what you observed it doing, not how it works internally. You're a TPO, not a cloud architect."
       }
@@ -875,33 +756,9 @@ The one-line version: Microservices on AWS. REST for real-time, SQS and SNS for 
     <tr><td>ICD Codes</td><td><strong>International Classification of Diseases codes</strong> — the standardized numbers used to label diagnoses. <em>Example: F32.1 means Major Depressive Disorder, moderate.</em> These codes change with each ICD version release. This is one concrete reason why RAG — pulling from a live, updated document library — is safer than relying on a model's frozen training data for clinical coding features.</td></tr>
   </tbody>
 </table>`,
-        audio_a: `Let me walk you through the most important vocabulary terms for this interview. I will give you a clear definition and a concrete example for each one.
+        audio_a: `Key terms to use naturally.
 
-The first term is BAA — a Business Associate Agreement. This is a legal contract required by HIPAA, the American healthcare privacy law, whenever a vendor handles patient data. If you send patient session notes to an AI company's servers without a signed BAA, you are breaking the law. Use it in a sentence like this: "Patient data must never reach a third-party API without a signed BAA."
-
-The second term is PHI — Protected Health Information. This means any data that can identify a patient. Names, session notes, diagnosis codes, billing records — if it can be linked back to a real person, it is PHI and must be protected.
-
-Now let me explain precision and recall. These two terms trip a lot of people up, so I want to give you a clear example for each one.
-
-Precision answers the question: when the model says "yes, this is a problem," how often is it actually right? Here is a concrete example. The model flags 10 session notes as missing a diagnosis code. Precision tells you how many of those 10 flags are genuine. If 8 are real problems and 2 are false alarms, your precision is 80 percent. Low precision means the model cries wolf too often — it wastes clinicians' time chasing false alarms.
-
-Recall answers a different question: out of all the real problems that actually exist, how many did the model find? Using the same example — say there are 10 notes genuinely missing a diagnosis code. If the model found 7 of them and missed 3, your recall is 70 percent. Low recall means real problems slip through undetected. In healthcare, missing a real case is usually more dangerous than a false alarm. That is why recall often matters more than precision in clinical settings.
-
-F1 score is a single number that balances both precision and recall together. Use it when you need one summary metric to describe overall model quality.
-
-P95 latency means how fast the system responds for 95 out of every 100 requests. When you write "must respond within 2 seconds at P95," you mean that 95 percent of all requests must finish in under 2 seconds. The slowest 5 percent might take a bit longer, and that is acceptable. Always specify latency this way in your acceptance criteria — never just write "must be fast."
-
-A token is the unit a language model reads and charges for — roughly three quarters of a word. You pay per token. Here is why this matters. If you have ten thousand session notes per day and each note is two thousand tokens, that is twenty million tokens per day. You need to calculate this cost before committing to build the feature. Cost can make an otherwise great idea completely impractical at scale.
-
-The context window is the maximum amount of text a model can process in a single call. Both what you send in and what the model sends back count toward this limit. A one-hour therapy session transcript might be too long to fit — so you would need to break it into smaller pieces before sending. This is called chunking, and deciding how to chunk is a product requirement, not an engineering detail.
-
-Model drift is when the model quietly gets worse over time — not because the model changed, but because the world did. New billing codes get released. Payer policies get updated. Therapists' language and documentation styles evolve. But the model was trained on old data, so it slowly falls behind. This is why monitoring must ship with every AI feature.
-
-DoD stands for Definition of Done — the agreed checklist a feature must pass before it is considered complete. For AI features, your Definition of Done must include: the evaluation report meets the agreed threshold, a clinician has signed off, monitoring is live at launch, fallback behavior has been tested, and HIPAA compliance has been cleared.
-
-RBAC stands for Role-Based Access Control. It means users can only see and do what their role permits. For example, a billing admin can access financial records but cannot read therapy notes. A therapist can see their own clients but not another therapist's. In healthcare, this is critical for limiting who can reach patient data.
-
-And finally, ICD codes — International Classification of Diseases codes — are the standardized numbers used to label medical diagnoses. For example, the code F32.1 means Major Depressive Disorder, moderate. These codes are updated with each new version release. This is one concrete reason why RAG — which pulls from a live, updated document library — is safer than relying on a model's frozen training memory for any feature involving clinical coding.`,
+BAA — Business Associate Agreement. Required before patient data touches any external API. No BAA is a HIPAA violation. PHI — Protected Health Information. Any data that identifies a patient. Precision — how reliable the model's yes answers are; high precision means few false alarms. Recall — how many real cases the model finds; high recall means fewer missed cases. In healthcare, recall usually matters more. F1 — balances both into one number. P95 latency — system must respond within target time for 95 percent of requests. Token — roughly three quarters of a word; you pay per token. Context window — maximum tokens per call; long documents must be chunked. Model drift — the model gets worse because the world changed. Definition of Done — the checklist every AI feature must pass before shipping. RBAC — Role-Based Access Control; users see only what their role permits. ICD codes — standardized diagnosis labels that change with each release; use RAG, not training memory, for anything involving codes.`,
         recall: "BAA · PHI · Precision · Recall · F1 · p95 Latency · Token · Context Window · Model Drift · DoD · RBAC · ICD Codes",
         tpo: "Use these naturally. Forcing them sounds worse than not using them."
       }
