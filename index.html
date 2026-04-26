@@ -1337,6 +1337,297 @@ And finally, ICD codes — International Classification of Diseases codes — ar
         tpo: "Use these naturally. Forcing them sounds worse than not using them."
       }
     ]
+  },
+  {
+    id: "summary",
+    icon: "📊",
+    name: "Summary Cheat Sheets",
+    subtitle: "Tables, AC rules & DoD",
+    intro: "Comparison tables and numbered rules you can recite in order. Study these until the structure is automatic.",
+    questions: [
+      {
+        q: "Comparison: Prompt Engineering vs RAG vs Fine-tuning",
+        audio_q: "Comparison table. Prompt Engineering versus RAG versus Fine-tuning.",
+        a: `<table class="vocab-table">
+  <thead><tr><th>—</th><th>Prompt Engineering</th><th>RAG</th><th>Fine-tuning</th></tr></thead>
+  <tbody>
+    <tr><td>Definition</td><td>Improve the instructions you give the model</td><td>Give the model access to real documents at query time</td><td>Continue training the model on your own examples</td></tr>
+    <tr><td>When to use</td><td>First thing to try — always. Output style or format is wrong.</td><td>Model needs current or traceable knowledge (policies, guidelines)</td><td>Model needs to consistently write in a specific style and prompt tuning failed</td></tr>
+    <tr><td>Cost &amp; speed</td><td>Free. Results in hours.</td><td>Moderate. Days to weeks to set up.</td><td>Expensive. Weeks of compute time.</td></tr>
+    <tr><td>Changes the model?</td><td>No</td><td>No</td><td>Yes — permanently</td></tr>
+    <tr><td>Auditable?</td><td>Partially — you can read the prompt</td><td>Yes — every answer traces to a source document</td><td>No — behavior is baked into model weights</td></tr>
+    <tr><td>Ensora angle</td><td colspan="3">Always try prompt engineering first → RAG for billing rules and clinical guidelines → fine-tuning only if style consistency cannot be achieved any other way</td></tr>
+  </tbody>
+</table>
+<div class="recall-card"><div class="recall-card-label">⚡ Escalation order</div>Prompt Engineering → RAG → Fine-tuning. Never skip steps. Always try the cheaper option first.</div>`,
+        audio_a: `Let me walk through the three ways you improve an AI model, in the order you should try them.
+
+The first approach is prompt engineering. This means improving the instructions you give the model — without changing the model itself. It is free and produces results in hours. Always try this first.
+
+The second approach is RAG — Retrieval Augmented Generation. Instead of changing the model, you give it access to real documents at the moment it answers a question. This is the right choice when the model needs current or traceable knowledge — like billing rules or clinical guidelines. It takes days to weeks to set up and does not change the model itself. Every answer can be traced back to a specific source document, which makes it auditable.
+
+The third approach is fine-tuning. This means you continue training the model on your own examples, which permanently changes how it behaves. Use this only when you need consistent writing style and prompt engineering has already failed. It is expensive, takes weeks, and the behavior is baked into the model — so it is not auditable in the same way RAG is.
+
+The escalation order is this. Prompt engineering first. Then RAG. Then fine-tuning. Never skip steps. Always try the cheaper option first.
+
+At Ensora, this means: try prompt engineering first, use RAG for billing rules and clinical guidelines, and only consider fine-tuning if style consistency cannot be achieved any other way.`,
+        recall: "Prompt Eng → RAG → Fine-tuning · Free/hours → Moderate/weeks → Expensive/months · Only fine-tune when everything else fails",
+        tpo: "Recommending fine-tuning before exhausting prompt engineering and RAG signals poor product judgment."
+      },
+      {
+        q: "Comparison: LLM vs NLP",
+        audio_q: "Comparison table. Large language models versus traditional NLP tools.",
+        a: `<table class="vocab-table">
+  <thead><tr><th>—</th><th>Traditional NLP</th><th>Large Language Model (LLM)</th></tr></thead>
+  <tbody>
+    <tr><td>What it is</td><td>Specialist tools trained for one specific task</td><td>Generalist model trained on massive text — can handle many tasks</td></tr>
+    <tr><td>Strengths</td><td>Fast, cheap, fully explainable output — you can trace exactly why it gave an answer</td><td>Flexible, handles complex language, generates fluent natural text</td></tr>
+    <tr><td>Limitations</td><td>Rigid — only does the one task it was built for</td><td>Can hallucinate, expensive to run, output is not always predictable</td></tr>
+    <tr><td>When to use</td><td>Extract a specific fact — billing code, diagnosis, named entity</td><td>Generate a natural paragraph — session note, summary, explanation</td></tr>
+    <tr><td>Auditability</td><td>High — fully explainable, critical for healthcare compliance</td><td>Lower — hard to explain why a specific output was generated</td></tr>
+    <tr><td>Ensora angle</td><td>NLP extracts the codes</td><td>LLM writes the notes</td></tr>
+  </tbody>
+</table>
+<div class="recall-card"><div class="recall-card-label">⚡ Simple rule</div>Need to extract a specific fact? Use NLP. Need to generate natural text? Use an LLM. Don't default to LLMs because they sound impressive.</div>`,
+        audio_a: `Here is the difference between traditional NLP tools and large language models.
+
+Traditional NLP tools are specialists. They are built to do one specific task very well — like extracting a billing code or identifying a diagnosis from text. They are fast, cheap, and fully explainable. You can trace exactly why the tool gave a specific output. In healthcare, this explainability is critical for compliance.
+
+Large language models are generalists. They are flexible, handle many different types of language tasks, and can generate fluent natural text. But they are more expensive to run, they can hallucinate, and their output is not always predictable.
+
+The simple rule is this. If you need to extract a specific fact — like a billing code or a diagnosis — use a traditional NLP tool. If you need to generate a natural paragraph of text — like a session note or a summary — use a large language model.
+
+At Ensora, NLP extracts the codes. The large language model writes the notes. Do not default to a large language model just because it sounds more impressive. A specialist NLP tool is often more defensible in a healthcare audit.`,
+        recall: "NLP = specialist, fast, auditable · LLM = generalist, flexible, can hallucinate · Extract → NLP · Generate text → LLM",
+        tpo: "A specialist NLP tool is more defensible in a healthcare audit than an LLM. Don't over-engineer."
+      },
+      {
+        q: "Comparison: Precision vs Recall vs F1",
+        audio_q: "Comparison table. Precision versus Recall versus F1 score.",
+        a: `<table class="vocab-table">
+  <thead><tr><th>—</th><th>Precision</th><th>Recall</th><th>F1 Score</th></tr></thead>
+  <tbody>
+    <tr><td>The question it answers</td><td>When the model says "yes" — how often is it right?</td><td>Of all the real cases that exist — how many did the model find?</td><td>Is the model good at both finding cases AND being reliable when it flags them?</td></tr>
+    <tr><td>Low score means</td><td>Too many false alarms — model cries wolf. Wastes clinician time.</td><td>Real problems are slipping through undetected. More dangerous in healthcare.</td><td>The model is failing on at least one of the two dimensions above.</td></tr>
+    <tr><td>Concrete example</td><td>Model flags 10 notes as missing a code. Only 8 are genuine → Precision = 80%</td><td>10 notes truly missing a code. Model found 7 → Recall = 70%. It missed 3.</td><td>Balances both. Use when you need one summary number.</td></tr>
+    <tr><td>When it matters most</td><td>When false alarms are costly — e.g. unnecessary clinician reviews</td><td>When missing a real case is dangerous — almost always true in healthcare</td><td>When you cannot optimize one without hurting the other</td></tr>
+    <tr><td>Ensora angle</td><td colspan="3">In clinical contexts, <strong>recall usually matters more</strong> — missing a real problem is worse than a false alarm. As TPO, you decide which error is more acceptable. Engineering decides how to minimize it.</td></tr>
+  </tbody>
+</table>
+<div class="recall-card"><div class="recall-card-label">⚡ TPO translation</div>Engineer says "recall is 68%." You say: "We're missing 32% of real cases. In a clinical context that's unacceptable — optimize for recall." You pick the acceptable error. They minimize it.</div>`,
+        audio_a: `Let me explain precision, recall, and F1 score with a concrete example.
+
+Precision answers this question: when the model says "yes, this is a problem," how often is it actually right? Here is an example. The model flags 10 session notes as missing a diagnosis code. If 8 of those flags are genuine and 2 are false alarms, precision is 80 percent. Low precision means the model cries wolf too often — it wastes clinician time chasing false alarms.
+
+Recall answers a different question: out of all the real problems that actually exist, how many did the model find? Using the same example — say there are 10 notes genuinely missing a diagnosis code. If the model found 7 and missed 3, recall is 70 percent. Low recall means real problems are slipping through undetected. In healthcare, this is usually more dangerous than false alarms.
+
+F1 score is a single number that balances both precision and recall together. Use it when you need one summary metric to describe overall model quality.
+
+Here is the key insight for a Technical Product Owner. In clinical contexts, recall usually matters more than precision. Missing a real case is worse than generating a false alarm. As the Technical Product Owner, your job is to decide which error is more acceptable for the business. Engineering then decides how to minimize that error.
+
+So if an engineer tells you the model has a recall of 68 percent, you translate that into a product decision. You say — we are missing 32 percent of real cases. In a clinical context, that is not acceptable. We need to optimize for recall. The engineer decides how to do it. You decide that recall is the priority.`,
+        recall: "Precision = reliability of yes answers · Recall = coverage of real cases · F1 = balance of both · Healthcare: recall usually wins · TPO picks the error, engineer minimizes it",
+        tpo: "The precision vs recall tradeoff is what separates a TPO from a regular PM. Name it explicitly."
+      },
+      {
+        q: "Comparison: Training vs Inference",
+        audio_q: "Comparison table. Training versus Inference.",
+        a: `<table class="vocab-table">
+  <thead><tr><th>—</th><th>Training</th><th>Inference</th></tr></thead>
+  <tbody>
+    <tr><td>What happens</td><td>The model learns from data — its internal settings are adjusted</td><td>The model is used in production — it processes a real user request and returns a response</td></tr>
+    <tr><td>Speed &amp; cost</td><td>Slow and expensive — can take days or weeks of compute</td><td>Fast and real-time — milliseconds to seconds per call</td></tr>
+    <tr><td>Frequency</td><td>Periodic — maybe every few months, triggered by performance degradation</td><td>Continuous — thousands of times per day in production</td></tr>
+    <tr><td>Who triggers it</td><td>TPO prioritizes retraining on the roadmap based on drift signals</td><td>Happens automatically every time a user makes a request</td></tr>
+    <tr><td>TPO owns</td><td>When to retrain (roadmap decision) · What data to use · Success threshold for the new model</td><td>Latency requirement · Cost per call budget · Fallback behavior · Drift monitoring</td></tr>
+    <tr><td>Ensora angle</td><td>Retrain when therapist acceptance rate drops below alert threshold or billing codes change significantly</td><td>Every session note generation is an inference call — TPO defines the speed and cost requirements</td></tr>
+  </tbody>
+</table>
+<div class="recall-card"><div class="recall-card-label">⚡ Key rule</div>As TPO you live in the inference world. Training is a roadmap decision you trigger — not a daily concern. Monitoring in production is how you know when retraining is needed.</div>`,
+        audio_a: `Training and inference are two completely different phases in an AI system's life.
+
+Training is when the model learns from data. Its internal settings are adjusted. This is slow and expensive — it can take days or weeks of computing time. It happens periodically, maybe every few months, triggered when you see signs that the model is getting worse over time.
+
+Inference is when the model is actually used in production. Every time a therapist requests a session note summary, that is an inference call. It happens in milliseconds to seconds, runs continuously, and can occur thousands of times per day.
+
+As a Technical Product Owner, you live primarily in the inference world. For inference, you own three things. First, the latency requirement — how fast must the system respond? Second, the cost per call budget — how much can each inference call cost at realistic production scale? Third, the fallback behavior — what happens if the model is unavailable or returns a low-confidence response?
+
+For training, your role is different. You decide when to retrain by watching production signals — like the therapist acceptance rate dropping below your alert threshold. You put retraining on the roadmap as a recurring item, not something you only do in a crisis.
+
+The key rule is this. Monitoring in production is how you know when retraining is needed. If you cannot observe the model's performance, you will never know when to trigger it.`,
+        recall: "Training = learns (slow, periodic) · Inference = runs in production (fast, continuous) · TPO inference: latency + cost + fallback · TPO training: when to retrain on the roadmap",
+        tpo: "Monitoring is how you connect the inference world to the training decision. No monitoring = flying blind."
+      },
+      {
+        q: "AC Best Practices — 4 rules in order",
+        audio_q: "Acceptance criteria best practices for AI features. Four rules in order.",
+        a: `<div class="tpo-note"><div class="tpo-note-label">How to use this</div>Recite these four rules in order. Each one corrects a specific mistake people make when writing AC for AI features.</div>
+
+<p style="margin-top:14px"><strong>Rule 1 — Replace "correct" with a number.</strong></p>
+<p>Never write "the output is correct." AI is probabilistic — it will not be correct every time and that is expected. Write a measurable threshold instead.</p>
+<div class="recall-card" style="margin-top:6px"><div class="recall-card-label">Example</div>"The AI-generated note is accepted by the reviewing therapist without major edits in <em>85% or more</em> of test cases."</div>
+
+<p style="margin-top:14px"><strong>Rule 2 — Define three bands upfront.</strong></p>
+<p>Never leave performance interpretation open. Before development starts, agree on exactly what each zone means.</p>
+<table class="vocab-table" style="margin-top:6px">
+  <thead><tr><th>Band</th><th>Threshold</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td style="color:var(--accent)">Healthy</td><td>85% or above</td><td>No action needed</td></tr>
+    <tr><td style="color:var(--gold)">Investigate</td><td>75% – 85%</td><td>Team investigates — feature stays live</td></tr>
+    <tr><td style="color:#e87a7a">Rollback</td><td>Below 60%</td><td>Feature turns off immediately. Root cause analysis begins.</td></tr>
+  </tbody>
+</table>
+
+<p style="margin-top:14px"><strong>Rule 3 — Always write a fallback AC.</strong></p>
+<p>Define what happens when the model is uncertain or fails. This is a required acceptance criterion — not an engineering assumption.</p>
+<div class="recall-card" style="margin-top:6px"><div class="recall-card-label">Example</div>"If the model returns a low-confidence score, the system displays a blank template and prompts the therapist to fill it in manually. No degraded AI output is shown to a clinical user."</div>
+
+<p style="margin-top:14px"><strong>Rule 4 — Monitoring ships with the feature.</strong></p>
+<p>If you cannot observe the model's performance in production, the feature is not done. This is not a post-launch task. It belongs in the Definition of Done.</p>
+<div class="recall-card" style="margin-top:6px"><div class="recall-card-label">⚡ Memory hook</div>A code bug fails loudly. A bad AI model fails quietly for months — unless monitoring ships with the feature.</div>`,
+        audio_a: `Here are the four rules for writing acceptance criteria for AI features. Learn them in order.
+
+Rule one. Replace the word "correct" with a number. Never write "the output is correct." AI is probabilistic — it will not be correct every single time, and that is expected and acceptable. Write a measurable threshold instead. For example: "The AI-generated note is accepted by the reviewing therapist without major edits in 85 percent or more of test cases." That is a testable criterion.
+
+Rule two. Define three performance bands upfront. Before development starts, agree on exactly what each performance zone means. The first zone is healthy — 85 percent or above, no action needed. The second zone is investigate — between 75 and 85 percent, the team looks into why but the feature stays live. The third zone is rollback — below 60 percent, the feature turns off immediately and the team begins finding the cause. You define these numbers before the sprint starts, not after there is a crisis.
+
+Rule three. Always write a fallback acceptance criterion. Define what happens when the model is uncertain or fails. This is a required criterion, not something you leave to engineering to figure out. For example: if the model returns a low-confidence response, the system shows a blank template and asks the therapist to fill it in manually. You never show a degraded AI output to a clinical user.
+
+Rule four. Monitoring ships with the feature. If you cannot observe the model's performance in production, the feature is not done. This is not a post-launch task. It belongs in the Definition of Done from the start.
+
+The memory hook for this rule is: a code bug fails loudly. A bad AI model fails quietly for months — unless monitoring ships with the feature.`,
+        recall: "Rule 1: threshold not binary · Rule 2: three bands (healthy / investigate / rollback) · Rule 3: fallback AC required · Rule 4: monitoring in Definition of Done",
+        tpo: "These four rules are what separate a TPO who has shipped AI from one who hasn't."
+      },
+      {
+        q: "DoD Checklist — 5 items in order",
+        audio_q: "Definition of Done checklist for AI features. Five items in order.",
+        a: `<div class="tpo-note"><div class="tpo-note-label">How to use this</div>Recite these five items in order. If any item is missing, the feature is not done — no exceptions.</div>
+
+<table class="vocab-table" style="margin-top:12px">
+  <thead><tr><th>#</th><th>Item</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="color:var(--accent);text-align:center">1</td>
+      <td><strong>Eval report</strong> meets the pre-agreed threshold</td>
+      <td>Engineering ran the model against a test dataset before launch. The results hit the exact number agreed before development started — not close, the exact number.</td>
+    </tr>
+    <tr>
+      <td style="color:var(--accent);text-align:center">2</td>
+      <td><strong>Clinician sign-off</strong> on a sample of outputs</td>
+      <td>A licensed therapist reviewed a representative sample and formally approved. QA alone is not enough for a clinical AI feature.</td>
+    </tr>
+    <tr>
+      <td style="color:var(--accent);text-align:center">3</td>
+      <td><strong>Monitoring live</strong> on launch day</td>
+      <td>Not scheduled. Not planned for next sprint. Live on the day the feature ships. A model that worked at launch can silently degrade — monitoring catches it.</td>
+    </tr>
+    <tr>
+      <td style="color:var(--accent);text-align:center">4</td>
+      <td><strong>Fallback tested</strong> explicitly</td>
+      <td>The low-confidence path has been verified to behave correctly — e.g. blank template shown, not a bad AI output. You need to have actually tested this path, not assumed it works.</td>
+    </tr>
+    <tr>
+      <td style="color:var(--accent);text-align:center">5</td>
+      <td><strong>HIPAA cleared</strong></td>
+      <td>Every data path reviewed. BAA in place if patient data touches any third-party API. No patient data leaves the system without a signed legal agreement.</td>
+    </tr>
+  </tbody>
+</table>
+<div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ Memory hook</div><strong>E · C · M · F · H</strong> — Eval · Clinician · Monitor · Fallback · HIPAA. All five or it does not ship.</div>`,
+        audio_a: `Here are the five items in the Definition of Done for an AI feature. All five must be complete before the feature ships. If any one is missing, the feature is not done.
+
+Item one. The eval report meets the pre-agreed threshold. This means engineering ran the model against a test dataset before launch and the results hit the exact number that was agreed before development started. Not close to the number. The exact number.
+
+Item two. Clinician sign-off. A licensed therapist reviewed a representative sample of the model's outputs and formally approved them. Quality assurance testing alone is not enough for a clinical AI feature. A clinical expert must review it.
+
+Item three. Monitoring is live on launch day. Not scheduled for the next sprint. Not planned for later. Live on the day the feature ships. A model that worked perfectly at launch can silently get worse over time. Monitoring is how you catch that before users experience it.
+
+Item four. Fallback behavior has been explicitly tested. The low-confidence path has been verified to work correctly. For example, when the model is uncertain, the system shows a blank template instead of a bad AI output. You need to have actually tested this path — not just assumed it works.
+
+Item five. HIPAA cleared. Every data path has been reviewed. A Business Associate Agreement — a BAA — is in place if patient data touches any third-party API. No patient data leaves the system without a signed legal agreement.
+
+The memory hook is the five letters E, C, M, F, H. Eval, Clinician, Monitor, Fallback, HIPAA. All five or it does not ship.`,
+        recall: "E — Eval report · C — Clinician sign-off · M — Monitoring live · F — Fallback tested · H — HIPAA cleared",
+        tpo: "ECMFH. All five or it does not ship."
+      },
+      {
+        q: "Managing Hallucination and Model Drift",
+        audio_q: "Managing hallucination and model drift. Two of the most important AI risks for a Technical Product Owner.",
+        a: `<p><strong>Hallucination</strong> — the model generates confident text that is factually wrong. It does not know it is wrong.</p>
+<table class="vocab-table" style="margin-top:8px">
+  <thead><tr><th>Signal</th><th>Mitigation</th><th>TPO action</th></tr></thead>
+  <tbody>
+    <tr><td>Therapist edits or rejects AI output more than expected</td><td>Human review gate — no output goes to a record without therapist approval</td><td>Build review gate into every clinical AC as a non-negotiable requirement</td></tr>
+    <tr><td>Fabricated codes or invented clinical details in outputs</td><td>RAG — ground the model in real, verified documents instead of training memory</td><td>Specify RAG grounding as a product requirement, not an engineering choice</td></tr>
+    <tr><td>Hallucination rate rising in production</td><td>Track hallucination rate as a production metric continuously</td><td>Define the rollback trigger before launch — if rate crosses the threshold, feature turns off</td></tr>
+  </tbody>
+</table>
+
+<p style="margin-top:16px"><strong>Model Drift</strong> — the model quietly gets worse over time because the world changed, not the model.</p>
+<table class="vocab-table" style="margin-top:8px">
+  <thead><tr><th>Signal</th><th>Mitigation</th><th>TPO action</th></tr></thead>
+  <tbody>
+    <tr><td>Therapist acceptance rate declining over weeks or months</td><td>Baseline metrics — record performance at launch as your reference point</td><td>Define alert thresholds before launch — e.g. if acceptance drops below 75%, team investigates</td></tr>
+    <tr><td>New billing codes or updated clinical guidelines not reflected in outputs</td><td>RAG knowledge base updated on a defined schedule (freshness SLA)</td><td>Put knowledge base refresh on the roadmap as a recurring item</td></tr>
+    <tr><td>No visibility into production performance</td><td>Monitoring ships with the feature — always in the Definition of Done</td><td>Put model retraining on the roadmap as a regular scheduled item, not a crisis response</td></tr>
+  </tbody>
+</table>
+<div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ Key distinction</div><strong>Hallucination</strong> = wrong at launch, needs a review gate and RAG. <strong>Drift</strong> = correct at launch, gets worse over time, needs monitoring and a retraining schedule.</div>`,
+        audio_a: `There are two major AI risks every Technical Product Owner must manage. Hallucination and model drift. They are different problems with different solutions.
+
+Hallucination is when the model generates text that sounds confident but is factually wrong. The model does not know it is wrong. In healthcare, this could mean an invented medication dosage or a fabricated diagnosis code ending up in a patient record.
+
+There are three ways you manage hallucination as a Technical Product Owner. First, build a human review gate into every clinical acceptance criterion. No AI output goes into a patient record without a therapist reviewing and approving it. This is non-negotiable. Second, use RAG to ground the model's answers in real, verified documents rather than its training memory. Third, define a rollback trigger before launch. If the hallucination rate in production crosses your threshold, the feature turns off immediately.
+
+Model drift is a different problem. The model was working correctly at launch — but over time, the real world changed and the model did not. New billing codes were released. Clinical guidelines were updated. Therapist documentation styles evolved. The model was trained on old data, so it slowly becomes less accurate.
+
+There are three ways you manage model drift. First, record baseline metrics at launch — this is your reference point for everything that follows. Second, set alert thresholds — for example, if the therapist acceptance rate drops below 75 percent, the team investigates. Third, put model retraining on the roadmap as a regular scheduled item — not something you only do when there is a crisis.
+
+The key distinction to remember is this. Hallucination means the model was wrong from the start — you need a review gate and RAG. Drift means the model was correct at launch but got worse over time — you need monitoring and a retraining schedule.`,
+        recall: "Hallucination: wrong at launch → review gate + RAG + rollback trigger · Drift: correct at launch, degrades → baseline metrics + alert thresholds + retraining schedule",
+        tpo: "Hallucination fails loudly if you have a review gate. Drift fails silently unless you have monitoring."
+      }
+    ]
+  },
+  {
+    id: "system-design",
+    icon: "🏗️",
+    name: "System Design (Cox)",
+    subtitle: "Architecture from a TPO lens",
+    intro: "One clean, honest answer describing the Cox Automotive system. TPO perspective throughout — bring the constraints, let engineering bring the design.",
+    questions: [
+      {
+        q: "Walk me through a system you've worked on.",
+        audio_q: "Walk me through a system you have worked on — describe the architecture.",
+        a: `<p>The system I worked on at Cox Automotive was a <strong>microservices application running on AWS</strong>. Rather than one large application, the system was broken into smaller, independent services — each owning a specific business capability. This meant teams could deploy and scale each service independently, and a failure in one service did not bring down the whole system.</p>
+
+<p style="margin-top:10px">Services communicated in two ways. <strong>Synchronously via REST APIs</strong> for real-time requests where an immediate response was needed. And <strong>asynchronously via SQS and SNS</strong> for work that did not need an immediate response — things like background processing, notifications, and event-driven workflows. This separation kept services loosely coupled and the system resilient.</p>
+
+<p style="margin-top:10px">Data was stored in <strong>RDS</strong> — a managed relational database — with <strong>S3</strong> used for file and object storage. Services ran in containers on <strong>ECS</strong>. <strong>CloudWatch</strong> handled production monitoring and alerting. For serverless tasks and lightweight integrations, we used <strong>Lambda</strong>, with <strong>API Gateway</strong> managing external-facing API traffic.</p>
+
+<p style="margin-top:10px"><strong>My role as TPO was to bring the constraints — not the design.</strong> I defined what the system needed to achieve: how fast it had to respond, how much load it had to handle at peak, what data had to stay isolated for compliance. Engineering decided how to meet those constraints. When they presented options, I asked for the tradeoffs — one option might be faster but more expensive, another simpler but less scalable — and I made the product decision about which tradeoff was acceptable for the business.</p>
+
+<p style="margin-top:10px">I worked on both <strong>greenfield services</strong> — scoping new capabilities from scratch — and <strong>existing services</strong> where I had to understand the current boundaries before adding to them. In both cases, I scoped stories to one service at a time, called out API contracts explicitly in acceptance criteria, and treated integration points as product requirements — not engineering assumptions.</p>
+
+<div class="recall-card" style="margin-top:14px"><div class="recall-card-label">⚡ One-line summary</div>Microservices on AWS · REST for sync, SQS/SNS for async · RDS + S3 + ECS + CloudWatch + Lambda + API Gateway · I bring constraints, engineering brings design.</div>`,
+        audio_a: `The system I worked on at Cox Automotive was a microservices application running on AWS. Rather than one large application, the system was broken into smaller, independent services. Each service owned a specific business capability. This meant teams could deploy and scale each service independently. A failure in one service did not bring down the whole system.
+
+Services communicated in two ways. Synchronously via REST APIs — meaning one service makes a direct call to another and waits for a response. This was used for real-time requests where an immediate answer was needed. And asynchronously via SQS and SNS — messaging services where one service sends a message and does not wait. This was used for background processing, notifications, and event-driven workflows. Keeping these two patterns separate made the services loosely coupled and the system more resilient.
+
+Data was stored in RDS — a managed relational database on AWS. S3 was used for file and object storage. Services ran in containers on ECS. CloudWatch handled production monitoring and alerting. Lambda was used for serverless tasks and lightweight integrations. API Gateway managed external-facing API traffic.
+
+Now here is the important part — my role as Technical Product Owner. My job was to bring the constraints. Not the design. I defined what the system needed to achieve. How fast it had to respond. How much load it had to handle at peak. What data had to stay isolated for compliance reasons. Engineering decided how to meet those constraints.
+
+When the engineering team presented architecture options, I asked for the tradeoffs. One option might be faster but more expensive. Another simpler but less scalable. I asked questions until I understood the implications. Then I made the product decision about which tradeoff was acceptable for the business.
+
+I worked on both greenfield services — scoping new capabilities from scratch — and existing services where I had to understand the current boundaries before adding to them. In both cases, I scoped user stories to one service at a time, called out API contracts explicitly in the acceptance criteria, and treated integration points as product requirements — not things I left for engineering to figure out on their own.
+
+The one-line summary is this. Microservices on AWS. REST for real-time calls, SQS and SNS for async work. RDS and S3 for data, ECS for containers, CloudWatch for monitoring, Lambda and API Gateway for integrations. I bring the constraints. Engineering brings the design.`,
+        recall: "Microservices on AWS · REST (sync) + SQS/SNS (async) · RDS + S3 + ECS + CloudWatch + Lambda + API Gateway · TPO: constraints not design · Greenfield and maintenance · API contracts in AC",
+        tpo: "If they ask a follow-up on any AWS service — say what you observed it doing, not how it works internally. You're a TPO, not a cloud architect."
+      }
+    ]
   }
 ];
 
